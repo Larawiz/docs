@@ -1,14 +1,14 @@
 # 🧙‍♂️ Larawiz
 
-Larawiz is a project scaffolder with very noob-friendly syntax, intelligent and flexible. Never touch an artisan command anymore.
+Larawiz is a project scaffolder with noob-friendly syntax, intelligent and flexible.
 
-[You can check the documentation in a friendly interface in Gitbook](https://darkghosthunter.gitbook.io/larawiz/).
+Never touch an artisan command again.
 
-## What Larawiz solves
+## What Larawiz solves?
 
-Larawiz, short for "**Lara**vel **Wiz**ard", is a scaffolder. It will read a simple YAML file and spawn multiple files with synchronized properties and attributes, instead of letting you do the same... manually.
+Larawiz, short for "**Lara**vel **Wiz**ard", is a scaffolder. From a simple YAML, Larawiz will spawn multiple files with synchronized properties and attributes. This is a great alternative to creating each file from scratch.
 
-Larawiz works out of the box, it was created to think less and do more, and comes with sample files to create simple Blog. I mean, you can understand what files will spawn this scaffold, don't you?
+Larawiz works out of the box, it was created to think less and do more, and comes with sample files to create simple Blog.
 
 {% tabs %}
 {% tab title="Database" %}
@@ -18,8 +18,11 @@ models:
   User:
     name: string
     email: string
+    email_verified_at: timestamp nullable
     password: string
     rememberToken: ~
+    is_admin: boolean default:false
+    comments: hasMany:Comment
     posts: hasMany:Post
 
   Post:
@@ -35,15 +38,6 @@ models:
     author: belongsTo:User
 ```
 {% endtab %}
-
-{% tab title="HTTP" %}
-```yaml
-controllers:
-
-  PostController: Post policy
-  PostCommentController: Post.comments policy only:index,store
-```
-{% endtab %}
 {% endtabs %}
 
 If you didn't, here is what is created from these files:
@@ -52,7 +46,6 @@ If you didn't, here is what is created from these files:
 * [Migrations](https://laravel.com/docs/7.x/migrations#introduction) for `users`,  `posts` and `comments` tables.
 * `UserFactory`, `PostFactory` and `CommentFactory` [factories](https://laravel.com/docs/7.x/database-testing#writing-factories).
 * `UsersSeeder`, `PostsSeeder` and `CommentsSeeder` [seeders](https://laravel.com/docs/7.x/seeding).
-* The `PostController` and `PostCommentController` [resource controllers](https://laravel.com/docs/7.x/controllers#resource-controllers), the latter only with `only` and `store` methods.
 * The `PostPolicy` and `CommentPolicy` [policies](https://laravel.com/docs/7.x/authorization#creating-policies).
 
 Wow! That a lot of code! Indeed, but falter not, you also have some flexibility since the core of this package is simple:

@@ -29,28 +29,3 @@
 * [Migrations](database/migrations-1/README.md)
   * [Pivot tables](database/migrations-1/pivot-tables.md)
 
-## HTTP
-
-* [🌐 HTTP](http/http.md)
-* [Namespace](http/namespace.md)
-* [Middleware](http/middleware.md)
-* [Form Requests](http/form-requests.md)
-* [Controllers](http/controllers/README.md)
-  * [Controller Middleware](http/controllers/controller-middleware.md)
-  * [Actions](http/controllers/actions/README.md)
-    * [Route](http/controllers/actions/route.md)
-    * [Models](http/controllers/actions/models.md)
-    * [Authorize](http/controllers/actions/authorize.md)
-    * [Validate](http/controllers/actions/validate.md)
-    * [Queries](http/controllers/actions/queries.md)
-    * [Save](http/controllers/actions/save.md)
-    * [Delete](http/controllers/actions/delete.md)
-    * [Events](http/controllers/actions/events.md)
-    * [Jobs](http/controllers/actions/jobs.md)
-    * [Notify](http/controllers/actions/notify.md)
-    * [Custom](http/controllers/actions/custom.md)
-    * [View](http/controllers/actions/view.md)
-    * [Redirect](http/controllers/actions/redirect.md)
-* [Resource controllers](http/resource-controllers.md)
-* [Routes](http/routes.md)
-
