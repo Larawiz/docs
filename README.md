@@ -2,7 +2,7 @@
 
 Larawiz is a project scaffolder with very noob-friendly syntax, intelligent and flexible. Never touch an artisan command anymore.
 
-[You can check the documentation in a friendly interface in Gitbook](https://app.gitbook.com/@darkghosthunter/s/larawiz/quickstart).
+[You can check the documentation in a friendly interface in Gitbook](https://darkghosthunter.gitbook.io/larawiz/).
 
 ## What Larawiz solves
 
@@ -28,7 +28,7 @@ models:
     published_at: timestamps nullable
     author: belongsTo:User
     comments: hasMany:Comment
-    
+
   Comment:
     body: string
     post: belongsTo:Post
