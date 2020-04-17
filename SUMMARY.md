@@ -1,7 +1,6 @@
 # Table of contents
 
 * [🧙‍♂️ Larawiz](README.md)
-* [💾 Installation](installation.md)
 * [⚡ Quickstart](quickstart.md)
 
 ## Database
