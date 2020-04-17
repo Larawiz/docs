@@ -1,18 +1,10 @@
----
-description: From WHY? to WHY NOT?
----
-
 # Larawiz
 
-* Tired of the tedious tasks to do just for scaffold your project from scratch?
-* Tired of going around from command to command for just empty files?
-* Tired of waiting for a good scaffolder for Laravel projects?
-
-Then rejoice, plebeian! Here is Larawiz, to avoid these tiresome tasks once and for all!
+Larawiz is a project scaffolder with very noob-friendly syntax, intelligent and flexible. Never touch an artisan command anymore.
 
 ## What Larawiz solves
 
-Larawiz, short for "**Lara**vel **Wiz**ard", is scaffolder. It will read a simple YAML file and spawn multiple files with synchronized properties and attributes, instead of letting you do the same... manually.
+Larawiz, short for "**Lara**vel **Wiz**ard", is a scaffolder. It will read a simple YAML file and spawn multiple files with synchronized properties and attributes, instead of letting you do the same... manually.
 
 Larawiz works out of the box, it was created to think less and do more, and comes with sample files to create simple Blog. I mean, you can understand what files will spawn this scaffold, don't you?
 
