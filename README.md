@@ -1,4 +1,4 @@
-# Larawiz
+# 🧙‍♂️ Larawiz
 
 Larawiz is a project scaffolder with very noob-friendly syntax, intelligent and flexible. Never touch an artisan command anymore.
 

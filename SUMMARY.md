@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Larawiz](README.md)
+* [🧙‍♂️ Larawiz](README.md)
 * [Quickstart](quickstart.md)
 
 ## Database
