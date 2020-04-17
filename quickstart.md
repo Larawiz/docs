@@ -1,4 +1,4 @@
-# Quickstart
+# ⚡ Quickstart
 
 If you want the gist for Larawiz, just publish the sample Database and HTTP scaffold files using the `larawiz:sample` command and you're done. These are pretty much self-explanatory.
 

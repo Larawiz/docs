@@ -1,11 +1,11 @@
 # Table of contents
 
 * [🧙‍♂️ Larawiz](README.md)
-* [Quickstart](quickstart.md)
+* [⚡ Quickstart](quickstart.md)
 
 ## Database
 
-* [Database](database/database.md)
+* [🗃️ Database](database/database.md)
 * [Namespace](database/namespace.md)
 * [Models](database/models/README.md)
   * [Columns](database/models/columns/README.md)
@@ -31,7 +31,7 @@
 
 ## HTTP
 
-* [HTTP](http/http.md)
+* [🌐 HTTP](http/http.md)
 * [Namespace](http/namespace.md)
 * [Middleware](http/middleware.md)
 * [Form Requests](http/form-requests.md)

@@ -1,4 +1,4 @@
-# Database
+# 🗃️ Database
 
 Larawiz makes setting your database a breeze, simplifying in one file multiple rounds of synchronizing your models with your migrations, factories, seeders, and Eloquent relationships.
 

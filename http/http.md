@@ -1,4 +1,4 @@
-# HTTP
+# 🌐 HTTP
 
 Larawiz conveniently generates controllers for you, along with almost everything you need to make them work, including routes. You only have to point out your controllers, what you want them to do, and that's it.
 
