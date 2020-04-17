@@ -2,6 +2,8 @@
 
 Larawiz is a project scaffolder with very noob-friendly syntax, intelligent and flexible. Never touch an artisan command anymore.
 
+[You can check the documentation in a friendly interface in Gitbook](https://app.gitbook.com/@darkghosthunter/s/larawiz/quickstart).
+
 ## What Larawiz solves
 
 Larawiz, short for "**Lara**vel **Wiz**ard", is a scaffolder. It will read a simple YAML file and spawn multiple files with synchronized properties and attributes, instead of letting you do the same... manually.
