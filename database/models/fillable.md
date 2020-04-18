@@ -1,6 +1,6 @@
 # Fillable
 
-By default, using [Quick Models](../#quick-model) or Custom Models, Larawiz adds to the `$fillable` property of the Model every column that is not a **timestamp**, a **relation column**, **soft delete** or **primary key**, so most of the time there is no need to set the fillable columns manually.
+By default, using [Quick Models](./#quick-model) or Custom Models, Larawiz adds to the `$fillable` property of the Model every column that is not a **timestamp**, a **relation column**, **soft delete** or **primary key**, so most of the time there is no need to set the fillable columns manually.
 
 {% tabs %}
 {% tab title="YAML" %}
@@ -34,7 +34,7 @@ class Post extends Model
 {% endtab %}
 {% endtabs %}
 
-When using [Custom Models](../#custom-model), the same rule will apply, but you can override the fillable properties using the `fillable` key. 
+When using [Custom Models](./#custom-model), the same rule will apply, but you can override the fillable properties using the `fillable` key. 
 
 In this example, we will set only the `title` and the `body` columns for the Model.
 

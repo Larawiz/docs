@@ -1,4 +1,4 @@
-# Namespace
+# 📁 Namespace
 
 Laravel uses the `App` as namespace for your Models, so if you create a `Post` model, it will be in `App\Post`.
 

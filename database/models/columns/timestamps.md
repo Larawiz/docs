@@ -51,6 +51,52 @@ Schema::create('posts', function (Blueprint $table) {
 {% endtab %}
 {% endtabs %}
 
+## Timezone Timestamps
+
+Laravel by default always saves dates converted to UTC into the database, so in most scenarios using **time zone is not needed**.
+
+{% hint style="warning" %}
+If you plan to **save and retrieve time using different time zones into the database**, like displaying it to users from different parts of the world or run logic for each of them at a given time, **you may use time-zone-aware timestamps**.
+{% endhint %}
+
+When using [Quick Models](../#quick-model), you can always use `timestampsTz` in the columns definitions to swap the normal timestamps to these in a case-by-case scenario.
+
+{% tabs %}
+{% tab title="YAML" %}
+```yaml
+models:
+  Post:
+    title: string
+    body: string
+
+  Comment:
+    body: string
+    timestampsTz: ~
+```
+{% endtab %}
+
+{% tab title="Migration" %}
+```php
+Schema::create('posts', function (Blueprint $table) {
+    $table->id();
+    $table->string('title');
+    $table->string('body');
+    $table->timestamps();
+)};
+
+Schema::create('posts', function (Blueprint $table) {
+    $table->id();
+    $table->string('body');
+    $table->timestampsTz(); // Overridden from `timestamps`.
+)};
+```
+{% endtab %}
+{% endtabs %}
+
+{% hint style="warning" %}
+If you're using [Custom Models](../#custom-model), you need to set the `timestamps` or `timestampsTz` manually.
+{% endhint %}
+
 ## No Timestamps
 
 When using [Custom Models](../#custom-model), if the model doesn't includes either `timestamps` or `timestampsTz`, timestamps will be disabled.

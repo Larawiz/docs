@@ -62,6 +62,10 @@ Schema::create('podcasts', function (Blueprint $table) {
 {% endtab %}
 {% endtabs %}
 
+{% hint style="info" %}
+Doing `id: name` instead of `name: id` ensures the model only has only one primary key.
+{% endhint %}
+
 ## UUID as Primary Key
 
 When using Quick Models, you can exchange the default `id` column for a primary `uuid` column by just setting it. You can also change the default name, if you want, otherwise it will be `uuid` as default.

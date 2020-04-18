@@ -1,4 +1,4 @@
-# Migrations
+# 📝 Migrations
 
 The `migrations` key represents a quick way to add raw tables that are **not** tied to Models and any other addendum. For example, the `failed_jobs` tables can be declared like this:
 

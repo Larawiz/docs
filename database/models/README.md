@@ -1,4 +1,4 @@
-# Models
+# 📦 Models
 
 Models are named by the key name in singular. Table migrations are created automatically using studly case on plural.
 
