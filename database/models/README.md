@@ -216,7 +216,6 @@ namespace: App\Models
 models:
   Podcast:
     columns: 
-      slug: string
       title: string
       excerpt: string
       show: belongsTo:Show,show_uuid
@@ -225,7 +224,7 @@ models:
       timestamps: ~
       softDeletes: ~
     perPage: 20
-    primary: slug
+    primary: title
     fillable:
       - title
       - excerpt
@@ -263,7 +262,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $subscribers
  *  
  * @property string $show_uuid
- * @property string $slug
  * @property string $title
  * @property string $excerpt
  * @property \Illuminate\Support\Carbon|null $published_at
@@ -281,7 +279,7 @@ class Podcast extends Model
      *
      * @var string
      */
-    protected $primaryKey = 'slug';
+    protected $primaryKey = 'title';
 
     /**
      * The "type" of the primary key ID.
@@ -360,7 +358,6 @@ class CreatePodcastsTable extends Migration
     public function up()
     {
         Schema::create('podcasts', function (Blueprint $table) {
-            $table->string('slug');
             $table->string('title');
             $table->string('excerpt');
             $table->unsignedBigInteger('show_uuid');
@@ -368,6 +365,8 @@ class CreatePodcastsTable extends Migration
             $table->timestamp('published_at')->nullable()->useCurrent();
             $table->timestamps();
             $table->softDeletes();
+            
+            $table->primary('title');
         });
     }
 
@@ -399,8 +398,7 @@ use Faker\Generator as Faker;
 $factory->define(Podcast::class, function (Faker $faker) {
     return [
         'title' => $faker->title,
-        'slug' => $faker->slug,
-        'title' => $faker->title,
+        'excerpt' => $faker->body,
         'length' => $faker->randomDigitNotNull,
         'published_at' => $faker->dateTime,
     ];

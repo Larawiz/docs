@@ -60,7 +60,7 @@ trait HasPrimaryUuid
      *
      * @return void
      */
-    public static function bootHasPrimaryUuid
+    protected static function bootHasPrimaryUuid
     {
         // TODO: Boot the HasPrimaryUuid trait.
     }
@@ -70,7 +70,7 @@ trait HasPrimaryUuid
      *
      * @return void
      */
-    public function initializeSoftDeletes()
+    protected function initializeSoftDeletes()
     {
         // TODO: Initialize the HasPrimaryUuid trait.
     }

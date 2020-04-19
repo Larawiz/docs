@@ -40,7 +40,7 @@ models:
 {% endtab %}
 {% endtabs %}
 
-If you didn't, here is what is created from these files:
+From that file, here is what is created:
 
 * `User`, `Post` and `Comment` [models](https://laravel.com/docs/7.x/eloquent#defining-models), complete with: PHPDocs, [primary keys](https://laravel.com/docs/7.x/eloquent#eloquent-model-conventions), [timestamps](https://laravel.com/docs/7.x/eloquent#eloquent-model-conventions), [attribute casting](https://laravel.com/docs/7.x/eloquent-mutators#attribute-casting), [relations](https://laravel.com/docs/7.x/eloquent-relationships) and [fillable properties](https://laravel.com/docs/7.x/eloquent#mass-assignment).
 * [Migrations](https://laravel.com/docs/7.x/migrations#introduction) for `users`,  `posts` and `comments` tables.

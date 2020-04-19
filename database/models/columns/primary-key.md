@@ -68,7 +68,7 @@ Doing `id: name` instead of `name: id` ensures the model only has only one prima
 
 ## UUID as Primary Key
 
-When using Quick Models, you can exchange the default `id` column for a primary `uuid` column by just setting it. You can also change the default name, if you want, otherwise it will be `uuid` as default.
+When using [Quick Models](../#quick-model), you can exchange the default `id` column for a primary `uuid` column by just setting it. You can also change the default name, if you want, otherwise it will be `uuid` as default.
 
 Larawiz will automatically point and update the primary key inside the model.
 

@@ -25,32 +25,6 @@ Schema::create('posts', function (Blueprint $table) {
 {% endtab %}
 {% endtabs %}
 
-If you need time-zone-aware timestamps, just add the `timestampsTz`. Larawiz will swap it automatically.
-
-{% tabs %}
-{% tab title="YAML" %}
-```yaml
-Post:
-  title: string
-  excerpt: string
-  body: longText
-  timestampsTz: ~
-```
-{% endtab %}
-
-{% tab title="Migration" %}
-```php
-Schema::create('posts', function (Blueprint $table) {
-    $table->id();
-    $table->string('title');
-    $table->string('excerpt');
-    $table->longText('body');
-    $table->timestampsTz();
-});
-```
-{% endtab %}
-{% endtabs %}
-
 ## Timezone Timestamps
 
 Laravel by default always saves dates converted to UTC into the database, so in most scenarios using **time zone is not needed**.

@@ -1,6 +1,6 @@
 # Pivot tables
 
-Larawiz will [guess pivot tables if you don't issue them](../models/pivots.md), along with columns needed to reach each model of the `belongsToMany` and `morphsToMany` relations. So there is **no need to create migrations for pivot columns**.
+Larawiz will [guess pivot tables if you don't issue them](../models/relations/pivots.md), along with columns needed to reach each model of the `belongsToMany` and `morphsToMany` relations. So there is **no need to create migrations for pivot columns**.
 
 While migrations with the same table name of Models will throw an error so you can make your mind , like a `Post` model and a `posts` table, migrations for pivot models can be safely overwritten.
 
