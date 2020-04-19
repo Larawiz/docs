@@ -8,7 +8,7 @@ When using Pivot Models, **Larawiz will hands-off the pivot to you**, so be sure
 
 ## Many to Many
 
-If you want to use a Pivot Model, simply create a `belongsToMany` and **add the `using` method in the relation declaration**, pointing the model you want to use as Pivot or Polymorphic Pivot. Yeah, that's it.
+If you want to use a Pivot Model, simply create a `belongsToMany` and **add the `using` method in all the relations declaration**, pointing the model you want to use as Pivot or Polymorphic Pivot. Yeah, that's it.
 
 {% tabs %}
 {% tab title="YAML" %}

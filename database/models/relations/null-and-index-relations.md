@@ -1,6 +1,0 @@
-# Null and index relations
-
-
-
-
-

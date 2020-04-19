@@ -19,7 +19,6 @@
     * [Polymorphic Has One or Many](database/models/relations/polymorphic-has-one-or-many.md)
     * [Many to Many](database/models/relations/many-to-many-and-polymorphic.md)
     * [Pivots Models](database/models/relations/pivots.md)
-    * [Null and index relations](database/models/relations/null-and-index-relations.md)
   * [Table](database/models/table.md)
   * [Fillable](database/models/fillable.md)
   * [Traits](database/models/traits.md)
@@ -30,6 +29,5 @@
   * [Seeders](database/models/seeders.md)
   * [Global Scopes](database/models/global-scopes.md)
   * [Eloquent Observers](database/models/eloquent-observers.md)
-* [📝 Migrations](database/migrations-1/README.md)
-  * [Pivot tables](database/migrations-1/pivot-tables.md)
+* [📝 Migrations](database/migrations-1.md)
 

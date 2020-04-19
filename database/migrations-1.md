@@ -62,7 +62,3 @@ class CreateFailedJobsTable extends Migration
 
 The migrations are defined using the table name as key, and a list of columns directly under the name. These are passed as-it-is to the migration class, using the same column notation.
 
-{% hint style="warning" %}
-Factories and Seeders are not created for migrations. You must do that manually for each of them.
-{% endhint %}
-
