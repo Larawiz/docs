@@ -10,7 +10,7 @@ composer require -dev larawiz/larawiz
 
 ## 📘 Usage
 
-To start using Larawiz, just publish the sample Database and HTTP scaffold files using the `larawiz:sample` command and you're done. These files are meant to have a syntax bery self-explanatory.
+To start using Larawiz, just publish the sample Database scaffold file using the `larawiz:sample` command and you're done. These files are meant to have a syntax very self-explanatory, so you should get the gist of what's happening.
 
 ```bash
 php artisan larawiz:sample
@@ -34,7 +34,7 @@ php artisan larawiz:scaffold
 # Scaffodling your proyect, it will take a little time.
 ```
 
-Of course, this will work for simple applications. Larawiz will try to guess almost everything. This documentation will help you do some less-simple things.
+Of course, this will work for simple applications. Larawiz will try to guess almost everything. This documentation will help you do some advanced things.
 
 ## 📂 Backups
 

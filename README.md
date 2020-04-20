@@ -6,7 +6,7 @@ Never touch an artisan command again.
 
 ## What Larawiz solves?
 
-Larawiz, short for "**Lara**vel **Wiz**ard", is a scaffolder. From a simple YAML, Larawiz will spawn multiple files with synchronized properties and attributes. This is a great alternative to creating each file from scratch.
+Larawiz, short for "**Lara**vel **Wiz**ard", is a scaffolder. From a simple YAML, Larawiz will spawn multiple files with synchronized properties and attributes. This is a great alternative to creating each file from scratch or from the command line.
 
 Larawiz works out of the box, it was created to think less and do more, and comes with sample files to create simple Blog.
 
@@ -14,28 +14,37 @@ Larawiz works out of the box, it was created to think less and do more, and come
 {% tab title="Database" %}
 ```yaml
 models:
-
   User:
     name: string
     email: string
     email_verified_at: timestamp nullable
     password: string
-    rememberToken: ~
     is_admin: boolean default:false
+    rememberToken: ~
     comments: hasMany:Comment
     posts: hasMany:Post
 
   Post:
+    uuid: ~
     title: string
     body: longText
-    published_at: timestamps nullable
     author: belongsTo:User
     comments: hasMany:Comment
 
   Comment:
     body: string
-    post: belongsTo:Post
     author: belongsTo:User
+    post: belongsTo:Post
+    softDeletes: ~
+
+migrations:
+  failed_jobs:
+    id: ~
+    connection: text
+    queue: text
+    payload: longText
+    exception: longText
+    failed_at: timestamp useCurrent
 ```
 {% endtab %}
 {% endtabs %}

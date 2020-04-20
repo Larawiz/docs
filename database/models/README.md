@@ -77,7 +77,7 @@ When creating a model, the following logic will be automated for you:
 * [Creating relationships](https://laravel.com/docs/7.x/eloquent-relationships) methods and pivot tables, if necessary.
 * PHPDoc mixin for Eloquent Builder, `create` and `make` methods among others \(`find`, `firstOrNew`, etc\)
 * PHPDoc blocks for model properties and relations.
-* Migrations, [factories](factories.md) and [seeders](seeders.md).
+* [Migrations](../migrations-1.md), [factories](factories.md) and [seeders](seeders.md).
 
 ## Quick model
 

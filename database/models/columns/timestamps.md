@@ -27,10 +27,10 @@ Schema::create('posts', function (Blueprint $table) {
 
 ## Timezone Timestamps
 
-Laravel by default always saves dates converted to UTC into the database, so in most scenarios using **time zone is not needed**.
+Laravel by default always saves dates converted to UTC into the database, so **in most scenarios using time zone is not needed**.
 
 {% hint style="warning" %}
-If you plan to **save and retrieve time using different time zones into the database**, like displaying it to users from different parts of the world or run logic for each of them at a given time, **you may use time-zone-aware timestamps**.
+If you plan to **save and retrieve time using different time zones into the database**, like displaying it to users from different parts of the world or run jobs at each local time, **you may use time-zone-aware timestamps**.
 {% endhint %}
 
 When using [Quick Models](../#quick-model), you can always use `timestampsTz` in the columns definitions to swap the normal timestamps to these in a case-by-case scenario.

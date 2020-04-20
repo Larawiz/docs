@@ -6,49 +6,71 @@ For polymorphic relations, you can just simply set it as `morphTo`. If you don't
 Because of the nature of Eloquent ORM polymorphic relations, only parent models with `id` or `uuid` primary keys are supported.
 {% endhint %}
 
-In this example, this will create the `Post` , `Article` and `Category`models with the relationships set, fully aware of the `Category` relation name. The migration for the `Category` model will include the morphs automatically.
+In this example, both `Student` and `Teacher` have one `Classroom`, but many `Courses`. The polymorphic relations will be fully aware of the names, and the migrations for both `Classroom` and `Course` will include the morphs automatically.
 
 {% tabs %}
 {% tab title="YAML" %}
 ```yaml
 models:
-  Post:
-    title: string
-    body: string
-    category: morphOne:Category
-  
-  Article:
-    title: string
-    body: string
-    category: morphOne:Category
-
-  Category:
+  Student:
     name: string
-    categorizable: morphTo
+    classroom: morphOne:Classroom
+    courses: morphMany:Course
+  
+  Teacher:
+    title: string
+    classroom: morphOne:Classroom
+    courses: morphMany:Course
+    
+  Classroom:
+    name: string
+    assistable: morphTo
+
+  Course:
+    name: string
+    coursable: morphTo
 ```
 {% endtab %}
 
 {% tab title="Models" %}
 ```php
-class Post extends Model
+class Student extends Model
 {
-    public function category()
+    public function classroom()
     {
-        return $this->morphOne(Category::class, 'categorizable');
+        return $this->morphOne(Category::class, 'assistable');
+    }
+    
+    public function courses()
+    {
+        return $this->morphMany(Course::class, 'coursable');
     }
 }
 
-class Article extends Model
+class Teacher extends Model
 {
-    public function category()
+    public function classroom()
     {
-        return $this->morphOne(Category::class, 'categorizable');
+        return $this->morphOne(Category::class, 'assistable');
+    }
+    
+    public function courses()
+    {
+        return $this->morphMany(Course::class, 'coursable');
     }
 }
 
-class Category extends Model
+class Classroom extends Model
 {
-    public function categorizable()
+    public function assistable()
+    {
+        return $this->morphTo();
+    }
+}
+
+class Course extends Model
+{
+    public function coursable()
     {
         return $this->morphTo();
     }
@@ -58,17 +80,15 @@ class Category extends Model
 
 {% tab title="Migrations" %}
 ```php
-Schema::create('posts', function (Blueprint $table) {
+Schema::create('photos', function (Blueprint $table) {
     $table->id();
     $table->string('title');
-    $table->string('body');
     $table->timestamps();
 });
 
-Schema::create('articles', function (Blueprint $table) {
+Schema::create('videos', function (Blueprint $table) {
     $table->id();
     $table->string('title');
-    $table->string('body');
     $table->timestamps();
 });
 
@@ -78,12 +98,19 @@ Schema::create('categories', function (Blueprint $table) {
     $table->morphs('categorizable');
     $table->timestamps();
 });
+
+Schema::create('tags', function (Blueprint $table) {
+    $table->id();
+    $table->string('name');
+    $table->morphs('taggable');
+    $table->timestamps();
+});
 ```
 {% endtab %}
 {% endtabs %}
 
 {% hint style="warning" %}
-If the child model has many `morphTo` relations, Larawiz will only pick the first if you don't issue the relation name, like `morphOne:Category,categorizable`.
+If the child model has many `morphTo` relations, Larawiz will only pick the first if you don't issue the relation name, like `morphOne:Classroom,assistable`.
 {% endhint %}
 
 If all the related models use `uuid` as primary key, don't worry, Larawiz will automatically change the migration column to use `uuid`.
@@ -92,16 +119,14 @@ If all the related models use `uuid` as primary key, don't worry, Larawiz will a
 {% tab title="YAML" %}
 ```yaml
 models:
-  Post:
+  Photo:
     uuid: ~
     title: string
-    body: string
     category: morphOne:Category
   
-  Article:
+  Video:
     uuid: ~
     title: string
-    body: string
     category: morphOne:Category
 
   Category:
@@ -112,7 +137,7 @@ models:
 
 {% tab title="Models" %}
 ```php
-class Post extends Model
+class Photo extends Model
 {
     public function category()
     {
@@ -120,7 +145,7 @@ class Post extends Model
     }
 }
 
-class Article extends Model
+class Video extends Model
 {
     public function category()
     {
@@ -140,17 +165,15 @@ class Category extends Model
 
 {% tab title="Migrations" %}
 ```php
-Schema::create('posts', function (Blueprint $table) {
+Schema::create('photos', function (Blueprint $table) {
     $table->uuid();
     $table->string('title');
-    $table->string('body');
     $table->timestamps();
 });
 
-Schema::create('articles', function (Blueprint $table) {
+Schema::create('videos', function (Blueprint $table) {
     $table->uuid();
     $table->string('title');
-    $table->string('body');
     $table->timestamps();
 });
 
@@ -166,7 +189,7 @@ Schema::create('categories', function (Blueprint $table) {
 
 ## Nullable morphTo
 
-For the case of `morphTo` relation, an index is set automatically by Eloquent Blueprint. Instead, you can use the `nullable` keyword to allow null relations:
+For the case of `morphTo` relation, an index is set automatically by Eloquent Blueprint. You can still use the `nullable` keyword to allow null relations:
 
 {% tabs %}
 {% tab title="YAML" %}

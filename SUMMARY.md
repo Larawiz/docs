@@ -11,7 +11,7 @@
   * [Columns](database/models/columns/README.md)
     * [Soft Deletes](database/models/columns/soft-deletes.md)
     * [Primary Key](database/models/columns/primary-key.md)
-    * [Index and Unique](database/models/columns/index-and-unique.md)
+    * [Indexes](database/models/columns/indexes.md)
     * [Timestamps](database/models/columns/timestamps.md)
   * [Relations](database/models/relations/README.md)
     * [Has One or Many](database/models/relations/has-one-or-many.md)

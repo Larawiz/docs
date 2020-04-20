@@ -1,6 +1,14 @@
 # Fillable
 
-By default, using [Quick Models](./#quick-model) or [Custom Models](./#custom-model), Larawiz adds to the `$fillable` property every column that is not a **timestamp**, a **boolean**, a **relation column**, **soft delete** or **primary key**, so most of the time there is no need to set the fillable columns manually.
+By default, using [Quick Models](./#quick-model) or [Custom Models](./#custom-model), Larawiz adds to the `$fillable` property every column that is not:
+
+* a **timestamp**, 
+* a **boolean**, 
+* a **relation column**, 
+* a **soft delete** column,
+* or a **primary key**, 
+
+Considering that these types depend most on the application rather than inputs from a Request, most of the time there is no need to set the fillable columns manually.
 
 {% tabs %}
 {% tab title="YAML" %}
@@ -13,6 +21,7 @@ models:
     slug: string
     body: longText
     published_at: timestamp nullable
+    is_commentable: boolean default:true
     user: belongsTo:User
     softDeletes: ~
 ```
@@ -34,8 +43,6 @@ class Post extends Model
 {% endtab %}
 {% endtabs %}
 
-When using [Custom Models](./#custom-model), the same rule will apply, but you can override the fillable properties using the `fillable` key. 
-
 {% hint style="info" %}
 Note that the `published_at` wasn't included in the `$fillable` array because is a `timestamp` . If you want it fillable, you can always use `datetime`.
 
@@ -56,7 +63,9 @@ class Post extends Model
 ```
 {% endhint %}
 
-In this example, we will set only the `title` and the `body` columns for the Model, since we plan to automatically create the `slug` from the title itself.
+When using [Custom Models](./#custom-model), the same rule will apply, but you can override the fillable properties using the `fillable` key. 
+
+In this example, we will set only the `title` and the `body` columns for the Model, since we plan to automatically create the `slug` from the title itself after scaffolding.
 
 {% tabs %}
 {% tab title="YAML" %}

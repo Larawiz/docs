@@ -3,7 +3,7 @@
 Many-to-many relations are easy to make. Larawiz will automatically create pivot tables for your `belongsToMany` and `morphToMany` relations by using Laravel naming convention automatically.
 
 {% hint style="danger" %}
-Many-to-many and Polymorphic many-to-many relations are only supported on models with primary keys.
+Because the nature of many-to-many relations, these are only supported on models with primary keys.
 {% endhint %}
 
 ## Many to Many
@@ -65,7 +65,7 @@ Schema::create('role_user', function (Blueprint $table) {
 {% endtab %}
 {% endtabs %}
 
-The pivot table is created automatically.
+The pivot table is created automatically based on Laravel's naming conventions.
 
 ## Polymorphic Many to Many
 

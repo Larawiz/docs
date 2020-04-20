@@ -1,6 +1,6 @@
 # Primary Key
 
-Larawiz automatically creates the `id` as primary column when using [Quick Models](../#quick-model), so there is no need to re-declare it.
+Larawiz automatically creates the `id` as primary column when using [Quick Models](../#quick-model), so there is no need to declare it.
 
 {% tabs %}
 {% tab title="YAML" %}
@@ -25,7 +25,7 @@ Schema::create('podcasts', function (Blueprint $table) {
 {% endtab %}
 {% endtabs %}
 
-You can change the name of the primary key using the `id` column followed by the new name. Larawiz will automatically point the primary key name inside the model.
+You can change the name of the primary key using the `id` column followed by the new name. Larawiz will automatically point the primary key column name inside the model.
 
 {% tabs %}
 {% tab title="YAML" %}
@@ -110,7 +110,7 @@ Schema::create('podcasts', function (Blueprint $table) {
 {% endtabs %}
 
 {% hint style="success" %}
-Having `uuid` as primary column will automatically change `morphs` columns to `uuidMorphs` automatically when using polymorphic relations.
+Having `uuid` as primary column will automatically change `morphs` columns to `uuidMorphs` automatically when using the model on polymorphic relations.
 {% endhint %}
 
 ## Custom Primary Key
@@ -120,10 +120,10 @@ Using [Custom Models](../#custom-model), you will be in charge of adding the pri
 By default, if there is no `id` or other auto-incrementing column defined, it will be understood the model has no primary key, so it will be disabled for the model.
 
 {% hint style="success" %}
-Don't regret it later: it's always recommended to have a primary key.
+Primary keys are meant to identify a single row in the database. Most of the time you will want one in your table.
 {% endhint %}
 
-To manually set a primary key column, you can by using the `primary` key. Larawiz will guess the rest based on the column you point as primary. Larawiz, on the other hand, will guess the rest of the information like the type and incrementing nature in the Model.
+If you're not using `id`, you can set any other column as primary by using the `primary` key. Larawiz will guess the rest based on the column you point as primary, like the type and incrementing nature.
 
 {% tabs %}
 {% tab title="YAML" %}
@@ -206,7 +206,7 @@ Schema::create('podcasts', function (Blueprint $table) {
 {% endtabs %}
 
 {% hint style="danger" %}
-You will get an error if you set `primary` to `false` or any other column if you have an auto-incrementing column like `id` .  The latter takes precedence. Instead, use `unsignedBigInteger` or edit the migration after scaffolding.
+You will get an error if you set `primary` to `false` or any other column if you have an auto-incrementing column like `id` , since the latter takes precedence. Instead, use `unsignedBigInteger` or edit the migration after scaffolding.
 {% endhint %}
 
 If you need to manually set the primary key properties, for custom or non-standard columns, you can add `type` and `incrementing` values:
