@@ -19,7 +19,7 @@
     * [Polymorphic Has One or Many](database/models/relations/polymorphic-has-one-or-many.md)
     * [Many to Many](database/models/relations/many-to-many-and-polymorphic.md)
     * [Pivots Models](database/models/relations/pivots.md)
-  * [Table](database/models/table.md)
+  * [Table names](database/models/table-names.md)
   * [Fillable](database/models/fillable.md)
   * [Traits](database/models/traits.md)
   * [Route Binding](database/models/route-binding.md)

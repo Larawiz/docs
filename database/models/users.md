@@ -64,3 +64,7 @@ models:
     type: user
 ```
 
+{% hint style="warning" %}
+Users models are not compatible with Pivots or Morph Pivots models.
+{% endhint %}
+

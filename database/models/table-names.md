@@ -1,4 +1,4 @@
-# Table
+# Table names
 
 With [Quick Models](./#quick-model), you don't need to name the model table, since it's automatically created as the plural name of the model.
 
