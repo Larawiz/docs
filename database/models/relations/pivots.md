@@ -1,6 +1,6 @@
 # Pivots Models
 
-Pivot models are easy to do: simply point them out in the relations and Larawiz will automatically change the model ti a Pivot Model or Polymorphic Pivot Model.
+Pivot models are easy to do: simply point them out in the relations and Larawiz will automatically change the model to a Pivot Model or Polymorphic Pivot Model.
 
 {% hint style="danger" %}
 When using Pivot Models, **Larawiz will hands-off the pivot to you**, so be sure to add the needed columns and relations so the pivot table can work properly once your project is scaffolded.
