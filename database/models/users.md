@@ -64,7 +64,21 @@ models:
     type: user
 ```
 
-{% hint style="warning" %}
-Users models are not compatible with Pivots or Morph Pivots models.
+{% hint style="success" %}
+If you set an User model with `password` ,  Larawiz will add a mutator to automatically encrypt the password into the model attributes, for free.
+
+```php
+class Admin extends Authenticatable
+{
+    // ...
+
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = app('hash')->make($password);
+    }
+}
+```
 {% endhint %}
+
+
 

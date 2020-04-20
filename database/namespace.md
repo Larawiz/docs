@@ -1,16 +1,20 @@
 # 📁 Namespace
 
-Laravel uses the `App` as namespace for your Models, so if you create a `Post` model, it will be in `App\Post`.
-
-Sometimes you may want to take your Models inside another namespace to organize them better. You can change the namespace of all the Models using the `namespace` key. Every model use that namespace as base, and all files will be created under PSR-4 standard.
+Laravel uses the `App` as namespace for your Models, so if you create a `Post` model, it will be in `App\Post`. You can change the base namespace of all Models using the `namespace` key, which will be appended to the base application namespace.
 
 {% hint style="info" %}
 Don't be shy to use the `Models` namespace if you want to keep all your models and related files in one folder, especially if you plan to have more than a few and have many related files in it.
 {% endhint %}
 
-The namespace will be appended to the application namespace. Since the default namespace in Laravel is `\App`, the namespace `MyModels` will get all your models inside the `App\MyModels` namespace.
+Since the default namespace in Laravel is `\App`, setting `MyModels` will get all your models inside the `App\MyModels` namespace.
 
 {% tabs %}
+{% tab title="" %}
+```
+
+```
+{% endtab %}
+
 {% tab title="YAML" %}
 ```yaml
 namespace: MyModels

@@ -200,7 +200,11 @@ When using the columns names directly, Larawiz will understand the following:
 * If it has `password` or `rememberToken`, it will be considered as an [User model](users.md).
 * Use [timestamps](columns/timestamps.md), alternatively swapped with `timestampsTz` manually.
 * Use a [Factory](factories.md) and [Seeder](seeders.md).
-* Make fillable everything except [timestamps](columns/timestamps.md), [soft-deletes](columns/soft-deletes.md) and [primary keys](columns/primary-key.md).
+* Make fillable everything except **booleans**, [timestamps](columns/timestamps.md), [soft-deletes](columns/soft-deletes.md) and [primary keys](columns/primary-key.md).
+
+{% hint style="info" %}
+Note that columns for `date`, `datetime`, `time` , and their timezone variants, are considered fillable.
+{% endhint %}
 
 ## Custom Model
 
@@ -448,10 +452,10 @@ class PodcastSeeder extends Seeder
 {% hint style="info" %}
 When using Custom Models:
 
-* [Primary key](columns/primary-key.md) guessing is limited to only checking the `id` key existence, the `uuid`  won't be considered as primary.
+* [Primary key](columns/primary-key.md) guessing is limited to only checking the `id` key existence, the `uuid`  won't be considered as primary but another column type.
 * [Timestamps](columns/timestamps.md) must be issued manually.
 * [User model](users.md) must be set manually.
-* Fillable properties can be overwritten completely.
+* [Fillable properties](fillable.md) can be completely overridden.
 {% endhint %}
 
 If you want more simplicity, you can use [Quick Models](./#quick-model) in any model, saving you time.

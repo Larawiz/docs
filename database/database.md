@@ -4,7 +4,7 @@ Larawiz makes setting your database a breeze, simplifying in one file multiple r
 
 Models in Larawiz are defined in `larawiz/database.yml`. Creating a model will spawn their migration, factory and seeder automatically, even PHPDocs and pivot tables. You don't have to do nothing.
 
-The schema is relatively basic. In this example, we will replicate Laravel default database setup for a simple blog site, which is the same available in the sample files.
+The schema is relatively basic. In this example, we will replicate Laravel default database setup for a _relatively_ simple blog site, which is the same available in the sample files.
 
 ```yaml
 models:
@@ -24,12 +24,17 @@ models:
     body: longText
     author: belongsTo:User
     comments: hasMany:Comment
+    tags: belongsToMany:Tag
 
   Comment:
     body: string
     author: belongsTo:User
     post: hasOne:Post
     softDeletes: ~
+    
+  Tags:
+    name: string
+    posts: belongsToMany:Post
 
 migrations:
   failed_jobs:
@@ -41,7 +46,7 @@ migrations:
     failed_at: timestamp useCurrent
 ```
 
-{% hint style="danger" %}
-To set a null value into a key you use `~`,  not `null`.
+{% hint style="info" %}
+To set a null value into a key you can use `~`  or `null`.
 {% endhint %}
 
