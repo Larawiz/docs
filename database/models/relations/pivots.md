@@ -88,7 +88,7 @@ Schema::create('subscriptions', function (Blueprint $table) {
 When you reference a Model as a Pivot, Larawiz will automatically change the type of Model to `Pivot` or `MorphPivot` instead of just `Model` depending on the case.
 
 {% hint style="info" %}
-When creating [Pivot models](https://laravel.com/docs/7.x/eloquent-relationships#defining-custom-intermediate-table-models), soft-deleted, primary keys and timestamps are automatically disabled. You can re-enable them using the `primary` and `timestamps` keys or columns, but soft-deletes are bypassed since the framework still doesn't support it, [but it may in the future](https://github.com/laravel/framework/pull/31224).
+When creating [Pivot models](https://laravel.com/docs/7.x/eloquent-relationships#defining-custom-intermediate-table-models), soft-deleted and primary keys are automatically disabled. You can re-enable them issuing the `id` , `uuid` or [filling the `primary`  key](../columns/primary-key.md), but soft-deletes are bypassed since the framework still doesn't support it, [but it may in the future](https://github.com/laravel/framework/pull/31224).
 
 ```yaml
 Subscription:
@@ -96,7 +96,6 @@ Subscription:
   user: belongsTo:User
   podcast: belongsTo:Podcast
   last_heard: timestamps nullable
-  timestamps: ~
 ```
 {% endhint %}
 
