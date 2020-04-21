@@ -1,14 +1,14 @@
 # Pivots Models
 
-Pivot models are easy to do: simply point them out in the relations and Larawiz will automatically change the model to a Pivot Model or Polymorphic Pivot Model.
+[Intermediate table models](https://laravel.com/docs/7.x/eloquent-relationships#defining-custom-intermediate-table-models), also called Pivot Models, are easy to do: simply point them out in the relations and Larawiz will automatically change the model to a Pivot Model or Polymorphic Pivot Model.
 
-{% hint style="danger" %}
+{% hint style="info" %}
 When using Pivot Models, **Larawiz will hands-off the pivot to you**, so be sure to add the needed columns and relations so the pivot table can work properly once your project is scaffolded.
 {% endhint %}
 
 ## Many to Many
 
-If you want to use a Pivot Model, simply create a `belongsToMany` and **add the `using` method in all the relations declaration**, pointing the model you want to use as Pivot or Polymorphic Pivot. Yeah, that's it.
+If you want to use a Pivot Model, simply create a `belongsToMany` and **add the `using` method in ALL the relations**, pointing the model you want to use as Pivot or Polymorphic Pivot. Yeah, that's it.
 
 {% tabs %}
 {% tab title="YAML" %}
@@ -85,10 +85,10 @@ Schema::create('subscriptions', function (Blueprint $table) {
 {% endtab %}
 {% endtabs %}
 
-When you reference a Model as a Pivot, Larawiz will automatically change the type of Model to `Pivot` or `MorphPivot` instead of just `Model` depending on the case.
+When you reference a Model as a Pivot, Larawiz will automatically change the type of Model to `Pivot` or `MorphPivot` instead of just `Model` .
 
 {% hint style="info" %}
-When creating [Pivot models](https://laravel.com/docs/7.x/eloquent-relationships#defining-custom-intermediate-table-models), soft-deleted and primary keys are automatically disabled. You can re-enable them issuing the `id` , `uuid` or [filling the `primary`  key](../columns/primary-key.md), but soft-deletes are bypassed since the framework still doesn't support it, [but it may in the future](https://github.com/laravel/framework/pull/31224).
+When creating [Pivot models](https://laravel.com/docs/7.x/eloquent-relationships#defining-custom-intermediate-table-models), primary keys and soft-deleted are automatically disabled. You can re-enable them issuing the `id` , `uuid` or [filling the `primary`  key](../columns/primary-key.md), but soft-deletes are bypassed since the framework still doesn't support it \([but it may in the future](https://github.com/laravel/framework/pull/31224)\).
 
 ```yaml
 Subscription:
@@ -101,7 +101,9 @@ Subscription:
 
 ## Polymorphic Pivot Tables
 
-The same goes for Polymorphic pivot tables, and if the models use UUID as primary key, no problem, Larawiz will automatically create a pivot table using `uuidMorphs`.
+The same goes for Polymorphic Pivot Models. If the connected models use UUID as primary key, as long everyone abides to the same type, no problem, Larawiz will automatically create a pivot table using `uuidMorphs`.
+
+For example, all related models use UUID, but the tag itself uses `id`.
 
 {% tabs %}
 {% tab title="YAML" %}

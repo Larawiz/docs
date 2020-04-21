@@ -1,4 +1,4 @@
-# Many to Many
+# Many to Many \(and Polymorphic\)
 
 Many-to-many relations are easy to make. Larawiz will automatically create pivot tables for your `belongsToMany` and `morphToMany` relations by using Laravel naming convention automatically.
 
@@ -8,7 +8,7 @@ Because the nature of many-to-many relations, these are only supported on models
 
 ## Many to Many
 
-Just simply add the `belongsToMany` in each Model pointing to the other.
+For [many-to-many](https://laravel.com/docs/7.x/eloquent-relationships#many-to-many) relations, just simply add the `belongsToMany` in each Model pointing to the other.
 
 {% tabs %}
 {% tab title="YAML" %}
@@ -65,11 +65,11 @@ Schema::create('role_user', function (Blueprint $table) {
 {% endtab %}
 {% endtabs %}
 
-The pivot table is created automatically based on Laravel's naming conventions.
+The pivot table is created automatically based on Laravel naming conventions, so you don't have to worry about creating the pivot table yourself manually.
 
 ## Polymorphic Many to Many
 
-For the case of polymorphic pivots, Larawiz will also guess the migration. Let's use the same Laravel example that many Posts or Videos having multiple Tags. Note that, again, we didn't issue the pivot table anywhere.
+For the case of [many-to-many-polymorphic](https://laravel.com/docs/7.x/eloquent-relationships#many-to-many-polymorphic-relations), Larawiz will also guess the pivot migration. Let's use the same Laravel example that many Posts or Videos having multiple Tags. Note that, again, we didn't issue the pivot table anywhere.
 
 {% tabs %}
 {% tab title="YAML" %}
@@ -150,7 +150,7 @@ Schema::create('taggables', function (Blueprint $table) {
 {% endtabs %}
 
 {% hint style="info" %}
-Polymorphic Many-to-many relations needs the name of "~able" relation.
+Polymorphic Many-to-many relations needs the name of "~able" relation as second argument.
 {% endhint %}
 
 If the models use UUID as primary key, no problem, Larawiz will automatically create a pivot table using `uuidMorphs`.
@@ -177,6 +177,39 @@ models:
 ```
 {% endtab %}
 
+{% tab title="Models" %}
+```php
+class Post extends Model
+{
+    public function roles()
+    {
+        return $this->morphToMany(Tag::class, 'taggable');
+    }
+}
+
+class Video extends Model
+{
+    public function users()
+    {
+        return $this->morphToMany(Tag::class, 'taggable');
+    }
+}
+
+class Tag extends Model
+{
+    public function posts()
+    {
+        return $this->morphedByMany(Post::class, 'taggable');
+    }
+    
+    public function videos()
+    {
+        return $this->morphedByMany(Video::class, 'taggable');
+    }
+}
+```
+{% endtab %}
+
 {% tab title="Migrations" %}
 ```php
 // Polymorphic Pivot created automatically by Larawiz for "tags"
@@ -187,4 +220,8 @@ Schema::create('taggables', function (Blueprint $table) {
 ```
 {% endtab %}
 {% endtabs %}
+
+{% hint style="danger" %}
+Polymorphic many-to-many only supports models with either `id` or `uuid` . If you use another type of primary key for your models, you should create the relation yourself after scaffolding.
+{% endhint %}
 

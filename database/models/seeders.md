@@ -35,7 +35,7 @@ class PodcastSeeder extends Seeder
 {% endtabs %}
 
 {% hint style="warning" %}
-If you have disabled the factory, you will have to [manually seed the records yourself](https://laravel.com/docs/7.x/seeding#writing-seeders). 
+If you have [disabled the factory](factories.md), you will have to [manually seed the records yourself](https://laravel.com/docs/7.x/seeding#writing-seeders) directly to the database.
 {% endhint %}
 
 To disable the seeder creation, use a [Custom Model](./#custom-model) and set the `seeder` as `false`.

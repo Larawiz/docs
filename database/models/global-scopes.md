@@ -60,6 +60,6 @@ class UnpublishedScope implements Scope
 Each of the scopes are saved inside the `app/Scopes` directory, allowing you to separate each scope by its Model. After that, you're free to add them to your application however you want.
 
 {% hint style="danger" %}
-Local scopes are not supported in Larawiz... yet. But probably won't ever to avoid cluttering up the YAML file.
+[Local scopes](https://laravel.com/docs/7.x/eloquent#local-scopes) are not supported in Larawiz.
 {% endhint %}
 

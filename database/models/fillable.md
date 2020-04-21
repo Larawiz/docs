@@ -4,7 +4,7 @@ By default, using [Quick Models](./#quick-model) or [Custom Models](./#custom-mo
 
 * a **timestamp**, 
 * a **boolean**, 
-* a **relation column**, 
+* a **relation column** \(`belongsTo` or `morphTo`\), 
 * a **soft delete** column,
 * or a **primary key**, 
 

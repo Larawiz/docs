@@ -1,6 +1,6 @@
-# Has Many Through
+# Has One or Many Through
 
-A far relationship is made simple with just issuing the model you want to reach to.
+A [has-one-through](https://laravel.com/docs/7.x/eloquent-relationships#has-one-through) or [has-many-through](https://laravel.com/docs/7.x/eloquent-relationships#has-many-through) is made simple with just issuing the model you want to reach to.
 
 For example, let's say a Country can have many Users, and each User can have many Posts. While there is no direct connection between the Country and the Posts, the Country can access the Post _through_ the User model themselves.
 

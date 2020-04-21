@@ -11,7 +11,7 @@ Larawiz, short for "**Lara**vel **Wiz**ard", is a scaffolder. From a simple YAML
 Larawiz works out of the box, it was created to think less and do more, and comes with sample files to create simple Blog.
 
 {% tabs %}
-{% tab title="Database" %}
+{% tab title="YAML" %}
 ```yaml
 models:
   User:
@@ -57,7 +57,7 @@ From that file, here is what is created:
 * `UsersSeeder`, `PostsSeeder` and `CommentsSeeder` [seeders](https://laravel.com/docs/7.x/seeding).
 * The `PostPolicy` and `CommentPolicy` [policies](https://laravel.com/docs/7.x/authorization#creating-policies).
 
-Wow! That a lot of code! Indeed, but falter not, you also have some flexibility since the core of this package is simple:
+Wow! That a lot of code! Indeed, but falter not, you also have control on what to do since the core of this package is simple:
 
 **LARAWIZ GUESSES, DOESN'T IMPOSES**.
 

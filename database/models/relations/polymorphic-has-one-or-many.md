@@ -1,6 +1,6 @@
 # Polymorphic Has One or Many
 
-For polymorphic relations, you can just simply set it as `morphTo`. If you don't add the column name to the `morphsTo` relation, it will be inferred in from the relation name.
+For [polymorphic relations](https://laravel.com/docs/7.x/eloquent-relationships#polymorphic-relationships) like [has-one-polymorphic](https://laravel.com/docs/7.x/eloquent-relationships#one-to-one-polymorphic-relations) or [has-many-polymorphic](https://laravel.com/docs/7.x/eloquent-relationships#one-to-many-polymorphic-relations), you can just simply set it as `morphTo`. If you don't add the column name to the `morphsTo` relation, it will be inferred in from the relation name.
 
 {% hint style="warning" %}
 Because of the nature of Eloquent ORM polymorphic relations, only parent models with `id` or `uuid` primary keys are supported.
