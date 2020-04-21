@@ -2,7 +2,7 @@
 
 Larawiz is a project scaffolder with noob-friendly syntax, intelligent and flexible.
 
-Never touch an artisan command again.
+With Larawiz you will **never touch an artisan command again**.
 
 ## What Larawiz solves?
 
