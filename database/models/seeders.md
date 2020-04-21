@@ -1,6 +1,6 @@
 # Seeders
 
-Seeders are conveniently created automatically for the model. The seeder always instruct to create two and a half pages of the model in the database.
+[Seeders](https://laravel.com/docs/7.x/seeding) are conveniently created automatically for the model. Just make the model, and the seeder will be automatically created using its key name.
 
 {% tabs %}
 {% tab title="YAML" %}
@@ -15,8 +15,6 @@ Podcasts:
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Models\Podcast;
 
@@ -29,9 +27,7 @@ class PodcastSeeder extends Seeder
      */
     public function run()
     {
-        $twoAndHalfPages = ceil(Podcast::make()->getPerPage() * 2.5);
-    
-        factory(Podcast::class, $twoAndHalfPages)->create();
+        // ...
     }
 }
 ```

@@ -21,7 +21,7 @@ models:
 
   Podcast:
     columns:
-      id: ~
+      uuid: ~
       title: string
       timestamps: ~
     traits:

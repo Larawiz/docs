@@ -30,15 +30,23 @@ $factory->define(Post::class, function (Faker $faker) {
 {% endtabs %}
 
 {% hint style="warning" %}
-Larawiz will try to guess the `Faker` values for each property by using the name of the column, but in any case you should go to your factory and check them manually just in case.
+Larawiz will try to guess the `Faker` values for each property by using the name of the column, but in any case you should go to your factory and check them manually just to be sure.
 {% endhint %}
 
-You can disable factories only when using [Custom Models](./#custom-model). To disable creating factories, issue the `factory` key with the `false` value:
+You can disable factories by issuing the `factory` key with the `false` value. You can do this directly below the Model definition of a [Quick Model](./#quick-model) or [Custom Model](./#custom-model).
 
 ```yaml
+User:
+  name: string
+  password: string
+  factory: false
+
 Post:
   columns:
-    # ...
+    id: ~
+    title: string
+    body: longText
+    timestamps: ~
   factory: false
 ```
 
@@ -47,9 +55,9 @@ You can add additional states by defining a list on the `factory` key:
 {% tabs %}
 {% tab title="YAML" %}
 ```yaml
-Podcast:
-  columns:
-    # ...
+Post:
+  title: string
+  body: longText
   factory:
     - unpublished
     - scheduled

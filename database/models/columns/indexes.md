@@ -27,9 +27,11 @@ Schema::create('posts', function (Blueprint $table) {
 
 ## Composite Indexes
 
-Additional and personalized indexes can be declared under the `indexes` key. Set one or many indexes with a custom name \(especially if your SQL engine doesn't support large-named indexes\) using a list. If you also want to name the index yourself, use `name:{index_name}` .
+For [Custom Models](../#custom-model), additional and personalized indexes can be declared under the `indexes` key. 
 
-For unique indexes, you can add `unique:true` for the index.
+Set one or many indexes with a custom name \(especially if your SQL engine doesn't support large-named indexes\) using a list. If you also want to name the index yourself, use `name:{index_name}` .
+
+For unique indexes, you can add `unique` for the index.
 
 {% tabs %}
 {% tab title="YAML" %}
@@ -42,7 +44,7 @@ Post:
     body: longText
     timestamps: ~
   indexes:
-    - slug id name:slug_id_index unique:true
+    - slug id name:slug_id_index unique
 ```
 {% endtab %}
 
