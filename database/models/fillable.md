@@ -101,3 +101,21 @@ class Post extends Model
 {% endtab %}
 {% endtabs %}
 
+## Disabling Fillable
+
+If you have no plans to have fillable properties, you can set the `fillable` property to `false`.
+
+```yaml
+Post:
+  columns:
+    id: ~
+    title: string
+    slug: string
+    body: longText
+    published_at: timestamp nullable
+    user: belongsTo:User
+    timestamps: ~
+    softDeletes: ~
+  fillable: false
+```
+
