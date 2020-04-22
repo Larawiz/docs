@@ -85,7 +85,7 @@ Schema::create('subscriptions', function (Blueprint $table) {
 {% endtab %}
 {% endtabs %}
 
-When you reference a Model as a Pivot, Larawiz will automatically change the type of Model to `Pivot` or `MorphPivot` instead of just `Model` .
+When you reference a Model as a Pivot, Larawiz will automatically change the type of Model to `Pivot`  instead of just `Model` .
 
 {% hint style="info" %}
 When creating [Pivot models](https://laravel.com/docs/7.x/eloquent-relationships#defining-custom-intermediate-table-models), primary keys and soft-deleted are automatically disabled. You can re-enable them issuing the `id` , `uuid` or [filling the `primary`  key](../columns/primary-key.md), but soft-deletes are bypassed since the framework still doesn't support it \([but it may in the future](https://github.com/laravel/framework/pull/31224)\).
@@ -103,7 +103,7 @@ Subscription:
 
 The same goes for Polymorphic Pivot Models. If the connected models use UUID as primary key, as long everyone abides to the same type, no problem, Larawiz will automatically create a pivot table using `uuidMorphs`.
 
-For example, all related models use UUID, but the tag itself uses `id`.
+For example, all related models use UUID, but the tag itself uses `id`. Here the `Taggable` model will be changed automatically to  `MorphPivot` .
 
 {% tabs %}
 {% tab title="YAML" %}
