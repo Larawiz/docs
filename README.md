@@ -10,8 +10,6 @@ Larawiz, short for "**Lara**vel **Wiz**ard", is a scaffolder. From a simple YAML
 
 Larawiz works out of the box, it was created to think less and do more, and comes with sample files to create simple Blog.
 
-{% tabs %}
-{% tab title="YAML" %}
 ```yaml
 # Welcome!
 # ----
@@ -20,11 +18,12 @@ Larawiz works out of the box, it was created to think less and do more, and come
 # tips to start scaffolding rightaway with your own scaffold schema:
 #
 # 1. Issue columns by their name, and add the type, like [name]: [type].
-# 2. [id] are automatically prepended to all models. using [uuid] will 
+# 2. [id] are automatically prepended to all models. Using [uuid] will 
 #    automatically change the primary key to [uuid].
 # 3. [timestamps] are automatically appended to all models.
-# 4. Relations can be set as [method]: [type]:[model]
-# 5. You don't need to create pivot tables, Larawiz can guess that for you.
+# 4. Using [password] or [rememberToken] will change change the model to 
+#    Authenticatable for your convenience.
+# 5. You don't need to create pivot tables, Larawiz will guess them for you.
 #
 # You can visit the docs at https://darkghosthunter.gitbook.io/larawiz/
 # for more info, you mostly you won't need to. Happy coding!
@@ -34,9 +33,9 @@ models:
     name: string
     email: string
     email_verified_at: timestamp nullable
-    password: string  # This changes the model to Authenticatable.
+    password: string
     is_admin: boolean default:false
-    rememberToken: ~  # This also can change the model to Authenticatable.
+    rememberToken: ~
     comments: hasMany:Comment
     posts: hasMany:Post
 
@@ -69,8 +68,6 @@ migrations:
     exception: longText
     failed_at: timestamp useCurrent
 ```
-{% endtab %}
-{% endtabs %}
 
 From that file, here is what is created:
 
@@ -78,7 +75,7 @@ From that file, here is what is created:
 * [Migrations](https://laravel.com/docs/7.x/migrations#introduction) for `users`,  `posts` , `comments`  and `tags` tables.
 * `UserFactory`, `PostFactory` , `CommentFactory` and `TagFactory` [factories](https://laravel.com/docs/7.x/database-testing#writing-factories).
 * `UsersSeeder`, `PostsSeeder` , `CommentsSeeder` and `TagsSeeder` [seeders](https://laravel.com/docs/7.x/seeding).
-* The `post_tag` pivot table for the `belongsToMany` relationship.
+* The `post_tag` pivot table for the `belongsToMany` relationship, **automatically**.
 
 Wow! That a lot of code! Indeed, but falter not, you also have control on what to do since the core of this package is simple:
 

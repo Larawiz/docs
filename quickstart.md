@@ -34,11 +34,11 @@ php artisan larawiz:scaffold
 # Scaffodling your proyect, it will take a little time.
 ```
 
-Of course, this will work for simple applications. Larawiz will try to guess almost everything. This documentation will help you do some advanced things.
+Larawiz will try to guess almost everything you want. This documentation will help you do some advanced things that Larawiz may not guess, or to override some behevarious for your convenience.
 
 ## 📂 Backups
 
 Larawiz will automatically copy your `app` and some of your `database` directories as backups every time you scaffold.
 
-You can find it in your application default storage path under the `storage/larakick/backups` directory, and copy them over your project if you need to go back to a previous state.
+You can find it in your application default storage path under the `storage/larawiz/backups` directory, and copy them over your project if you need to go back to a previous state.
 
