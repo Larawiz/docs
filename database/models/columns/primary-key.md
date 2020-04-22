@@ -5,22 +5,23 @@ Larawiz automatically creates the `id` as primary column when using [Quick Model
 {% tabs %}
 {% tab title="YAML" %}
 ```yaml
-Post:
-  title: string
-  excerpt: string
-  body: longText
+models:
+  Post:
+    title: string
+    excerpt: string
+    body: longText
 ```
 {% endtab %}
 
 {% tab title="Migration" %}
 ```php
-Schema::create('podcasts', function (Blueprint $table) {
-    $table->id(); // Added automatically
-    $table->string('title');
-    $table->string('slug');
-    $table->longText('body');
-    $table->timestamps(); 
-});
+  Schema::create('podcasts', function (Blueprint $table) {
+      $table->id(); // Added automatically
+      $table->string('title');
+      $table->string('slug');
+      $table->longText('body');
+      $table->timestamps(); 
+  });
 ```
 {% endtab %}
 {% endtabs %}
@@ -30,11 +31,12 @@ You can change the name of the primary key using the `id` column followed by the
 {% tabs %}
 {% tab title="YAML" %}
 ```yaml
-Post:
-  id: publication_number
-  title: string
-  excerpt: string
-  body: longText
+models:
+  Post:
+    id: publication_number
+    title: string
+    excerpt: string
+    body: longText
 ```
 {% endtab %}
 

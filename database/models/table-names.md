@@ -5,10 +5,11 @@ With [Quick Models](./#quick-model), you don't need to name the model table, sin
 {% tabs %}
 {% tab title="YAML" %}
 ```yaml
-Post:
-  title: string
-  excerpt: string
-  body: longText
+models:
+  Post:
+    title: string
+    excerpt: string
+    body: longText
 ```
 {% endtab %}
 
@@ -41,14 +42,15 @@ For example, we can set the `Post` model to use the `blog_posts` table. This wil
 {% tabs %}
 {% tab title="YAML" %}
 ```yaml
-Post:
-  table: blog_posts
-  columns:
-    id: ~
-    title: string
-    excerpt: string
-    body: longText
-    timestamps: ~
+models:
+  Post:
+    table: blog_posts
+    columns:
+      id: ~
+      title: string
+      excerpt: string
+      body: longText
+      timestamps: ~
 ```
 {% endtab %}
 

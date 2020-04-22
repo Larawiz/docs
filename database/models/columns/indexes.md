@@ -5,10 +5,11 @@ The most simple way to create an index or a unique index for a column is just to
 {% tabs %}
 {% tab title="YAML" %}
 ```yaml
-Post:
-  title: string index  # Make an Index on the `title` column
-  slug: string unique  # Make a Unique Index on the `slug` column
-  body: longText
+models:
+  Post:
+    title: string index  # Make an Index on the `title` column
+    slug: string unique  # Make a Unique Index on the `slug` column
+    body: longText
 ```
 {% endtab %}
 

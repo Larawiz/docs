@@ -5,8 +5,9 @@
 {% tabs %}
 {% tab title="YAML" %}
 ```yaml
-Podcasts:
-  # ...
+models:
+  Podcasts:
+    # ...
 ```
 {% endtab %}
 
@@ -41,10 +42,11 @@ If you have [disabled the factory](factories.md), you will have to [manually see
 To disable the seeder creation, use a [Custom Model](./#custom-model) and set the `seeder` as `false`.
 
 ```yaml
-Podcast:
-  columns:
-    # ...
-  seeder: false
+models:
+  Podcast:
+    columns:
+      # ...
+    seeder: false
 ```
 
 {% hint style="info" %}

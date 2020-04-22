@@ -13,13 +13,14 @@ For [many-to-many](https://laravel.com/docs/7.x/eloquent-relationships#many-to-m
 {% tabs %}
 {% tab title="YAML" %}
 ```yaml
-User:
-  name: string
-  roles: belongsToMany:Role as:permissionsSet
-
-Role:
-  name: string
-  users: belongsToMany:User
+models:
+  User:
+    name: string
+    roles: belongsToMany:Role as:permissionsSet
+  
+  Role:
+    name: string
+    users: belongsToMany:User
 ```
 {% endtab %}
 

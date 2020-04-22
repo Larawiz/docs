@@ -5,15 +5,16 @@ While you may want to change how to route bind the Model into the controllers la
 {% tabs %}
 {% tab title="YAML" %}
 ```yaml
-Post:
-  columns:
-    id: ~
-    title: string
-    excerpt: string index
-    body: longText
-    timestamps: ~
-    
-  route: title
+models:
+  Post:
+    columns:
+      id: ~
+      title: string
+      excerpt: string index
+      body: longText
+      timestamps: ~
+      
+    route: title
 ```
 {% endtab %}
 

@@ -7,10 +7,11 @@ Larawiz will automatically create an observer based on the Model name, by just c
 {% tabs %}
 {% tab title="YAML" %}
 ```yaml
-Post:
-  columns:
-    # ...
-  observer: true
+models:
+  Post:
+    columns:
+      # ...
+    observer: true
 ```
 {% endtab %}
 

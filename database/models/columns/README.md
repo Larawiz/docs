@@ -7,8 +7,9 @@ Additional arguments for the method are defined after the colon, and separated b
 {% tabs %}
 {% tab title="YAML" %}
 ```yaml
-Post:
-  claps: integer:true,true nullable
+models:
+  Post:
+    claps: integer:true,true nullable
 ```
 {% endtab %}
 
@@ -28,9 +29,10 @@ While the above syntax will work for [Quick Models](../#quick-model), you can ha
 {% tabs %}
 {% tab title="YAML" %}
 ```yaml
-Post:
-  columns:
-    claps: integer:true,true nullable
+models:
+  Post:
+    columns:
+      claps: integer:true,true nullable
 ```
 {% endtab %}
 
@@ -54,13 +56,14 @@ Columns keys with null values will transform into method names with no arguments
 {% tabs %}
 {% tab title="YAML" %}
 ```yaml
-Posts:
-  columns:
-    id: ~
-    uuid: ~
-    softDeletes: ~
-    timestampsTz: ~
-    rememberToken: ~
+models:
+  Posts:
+    columns:
+      id: ~
+      uuid: ~
+      softDeletes: ~
+      timestampsTz: ~
+      rememberToken: ~
 ```
 {% endtab %}
 

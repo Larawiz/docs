@@ -13,18 +13,19 @@ If you want to use a Pivot Model, simply create a `belongsToMany` and **add the 
 {% tabs %}
 {% tab title="YAML" %}
 ```yaml
-User:
-  name: string
-  subscriptions: belongsToMany:Podcast using:Subscription
-
-Podcast:
-  title: string
-  subscribers: belongsToMany:User using:Subscription
-
-Subscription:
-  user: belongsTo:User
-  podcast: belongsTo:Podcast
-  last_heard: timestamp nullable
+models:
+  User:
+    name: string
+    subscriptions: belongsToMany:Podcast using:Subscription
+  
+  Podcast:
+    title: string
+    subscribers: belongsToMany:User using:Subscription
+  
+  Subscription:
+    user: belongsTo:User
+    podcast: belongsTo:Podcast
+    last_heard: timestamp nullable
 ```
 {% endtab %}
 
@@ -91,11 +92,14 @@ When you reference a Model as a Pivot, Larawiz will automatically change the typ
 When creating [Pivot models](https://laravel.com/docs/7.x/eloquent-relationships#defining-custom-intermediate-table-models), primary keys and soft-deleted are automatically disabled. You can re-enable them issuing the `id` , `uuid` or [filling the `primary`  key](../columns/primary-key.md), but soft-deletes are bypassed since the framework still doesn't support it \([but it may in the future](https://github.com/laravel/framework/pull/31224)\).
 
 ```yaml
-Subscription:
-  id: ~
-  user: belongsTo:User
-  podcast: belongsTo:Podcast
-  last_heard: timestamps nullable
+models:
+  # ...
+
+  Subscription:
+    id: ~
+    user: belongsTo:User
+    podcast: belongsTo:Podcast
+    last_heard: timestamps nullable
 ```
 {% endhint %}
 

@@ -160,8 +160,6 @@ Schema::create('biographies', function (Blueprint $table) {
 {% endtab %}
 {% endtabs %}
 
-
-
 {% hint style="warning" %}
 Columns are needed for relations like [`belongsTo`](https://laravel.com/docs/7.x/eloquent-relationships#one-to-one) \(and [`morphTo`](https://laravel.com/docs/7.x/eloquent-relationships#one-to-one-polymorphic-relations)`)`. If these aren't issued, Larawiz will guess the column to create based the model name plus the primary column, like `user_id`. If not, Larawiz will tell you.
 {% endhint %}

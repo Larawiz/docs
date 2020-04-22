@@ -5,12 +5,13 @@ Factories for Models are created automatically for [Quick Models](./#quick-model
 {% tabs %}
 {% tab title="YAML" %}
 ```yaml
-Post:
-  title: string
-  slug: string
-  body: longText
-  published_at: timestamp nullable
-  length: int
+models:
+  Post:
+    title: string
+    slug: string
+    body: longText
+    published_at: timestamp nullable
+    length: int
 ```
 {% endtab %}
 
@@ -36,18 +37,19 @@ Larawiz will try to guess the `Faker` values for each property by using the name
 You can disable factories by issuing the `factory` key with the `false` value. You can do this directly below the Model definition of a [Quick Model](./#quick-model) or [Custom Model](./#custom-model).
 
 ```yaml
-User:
-  name: string
-  password: string
-  factory: false
-
-Post:
-  columns:
-    id: ~
-    title: string
-    body: longText
-    timestamps: ~
-  factory: false
+models:
+  User:
+    name: string
+    password: string
+    factory: false
+  
+  Post:
+    columns:
+      id: ~
+      title: string
+      body: longText
+      timestamps: ~
+    factory: false
 ```
 
 You can add additional states by defining a list on the `factory` key:

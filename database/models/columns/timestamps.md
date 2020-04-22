@@ -5,22 +5,23 @@ When using [Quick Models](../#quick-model), Larawiz automatically appends timest
 {% tabs %}
 {% tab title="YAML" %}
 ```yaml
-Post:
-  title: string
-  excerpt: string
-  body: longText
+models:
+  Post:
+    title: string
+    excerpt: string
+    body: longText
 ```
 {% endtab %}
 
 {% tab title="Migration" %}
 ```php
-Schema::create('posts', function (Blueprint $table) {
-    $table->id();
-    $table->string('title');
-    $table->string('excerpt');
-    $table->longText('body');
-    $table->timestamps();
-});
+  Schema::create('posts', function (Blueprint $table) {
+      $table->id();
+      $table->string('title');
+      $table->string('excerpt');
+      $table->longText('body');
+      $table->timestamps();
+  });
 ```
 {% endtab %}
 {% endtabs %}

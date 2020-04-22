@@ -47,9 +47,10 @@ class Post extends Model
 Note that the `published_at` wasn't included in the `$fillable` array because is a `timestamp` . If you want it fillable, you can always use `datetime`.
 
 ```yaml
-Post:
-  # ...
-  publised_at: datetime nullable
+models:
+  Post:
+    # ...
+    publised_at: datetime nullable
 ```
 
 ```php
@@ -70,19 +71,20 @@ In this example, we will set only the `title` and the `body` columns for the Mod
 {% tabs %}
 {% tab title="YAML" %}
 ```yaml
-Post:
-  columns:
-    id: ~
-    title: string
-    slug: string
-    body: longText
-    published_at: timestamp nullable
-    user: belongsTo:User
-    timestamps: ~
-    softDeletes: ~
-  fillable:
-    - title
-    - body
+models:
+  Post:
+    columns:
+      id: ~
+      title: string
+      slug: string
+      body: longText
+      published_at: timestamp nullable
+      user: belongsTo:User
+      timestamps: ~
+      softDeletes: ~
+    fillable:
+      - title
+      - body
 ```
 {% endtab %}
 
@@ -106,16 +108,17 @@ class Post extends Model
 If you have no plans to have fillable properties, you can set the `fillable` property to `false`.
 
 ```yaml
-Post:
-  columns:
-    id: ~
-    title: string
-    slug: string
-    body: longText
-    published_at: timestamp nullable
-    user: belongsTo:User
-    timestamps: ~
-    softDeletes: ~
-  fillable: false
+models:
+  Post:
+    columns:
+      id: ~
+      title: string
+      slug: string
+      body: longText
+      published_at: timestamp nullable
+      user: belongsTo:User
+      timestamps: ~
+      softDeletes: ~
+    fillable: false
 ```
 
