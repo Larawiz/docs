@@ -78,7 +78,8 @@ From that file, here is what is created:
 * [Migrations](https://laravel.com/docs/7.x/migrations#introduction) for `users`,  `posts` , `comments`  and `tags` tables.
 * `UserFactory`, `PostFactory` , `CommentFactory` and `TagFactory` [factories](https://laravel.com/docs/7.x/database-testing#writing-factories).
 * `UsersSeeder`, `PostsSeeder` , `CommentsSeeder` and `TagsSeeder` [seeders](https://laravel.com/docs/7.x/seeding).
-* 
+* The `post_tag` pivot table for the `belongsToMany` relationship.
+
 Wow! That a lot of code! Indeed, but falter not, you also have control on what to do since the core of this package is simple:
 
 **LARAWIZ GUESSES, DOESN'T IMPOSES**.
