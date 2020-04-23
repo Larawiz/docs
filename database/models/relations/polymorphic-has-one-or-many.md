@@ -1,12 +1,12 @@
 # Polymorphic Has One or Many
 
-For [polymorphic relations](https://laravel.com/docs/7.x/eloquent-relationships#polymorphic-relationships) like [has-one-polymorphic](https://laravel.com/docs/7.x/eloquent-relationships#one-to-one-polymorphic-relations) or [has-many-polymorphic](https://laravel.com/docs/7.x/eloquent-relationships#one-to-many-polymorphic-relations), you can just simply set it as `morphTo`. If you don't add the column name to the `morphsTo` relation, it will be inferred in from the relation name.
+For [polymorphic relations](https://laravel.com/docs/7.x/eloquent-relationships#polymorphic-relationships) like [has-one-polymorphic](https://laravel.com/docs/7.x/eloquent-relationships#one-to-one-polymorphic-relations) or [has-many-polymorphic](https://laravel.com/docs/7.x/eloquent-relationships#one-to-many-polymorphic-relations), you can just simply set it as `morphTo`, and the parent model as `morphOne` and `morphMany`.
 
 {% hint style="warning" %}
 Because of the nature of Eloquent ORM polymorphic relations, only parent models with `id` or `uuid` primary keys are supported.
 {% endhint %}
 
-In this example, both `Student` and `Teacher` have one `Classroom`, but many `Courses`. The polymorphic relations will be fully aware of the names, and the migrations for both `Classroom` and `Course` will include the morphs automatically.
+In this example, both `Student` and `Teacher` have one `Classroom`, and many `Courses`. The polymorphic relations will be fully aware of the names, and the migrations for both `Classroom` and `Course` will include the polymorphic columns automatically.
 
 {% tabs %}
 {% tab title="YAML" %}
@@ -110,7 +110,7 @@ Schema::create('tags', function (Blueprint $table) {
 {% endtabs %}
 
 {% hint style="warning" %}
-If the child model has many `morphTo` relations, Larawiz will only pick the first if you don't issue the relation name, like `morphOne:Classroom,assistable`.
+If the child model has many `morphTo` relations, you will need to pick one, like `morphOne:Classroom,assistable`.
 {% endhint %}
 
 If all the related models use `uuid` as primary key, don't worry, Larawiz will automatically change the migration column to use `uuid`.
@@ -189,7 +189,7 @@ Schema::create('categories', function (Blueprint $table) {
 
 ## Nullable morphTo
 
-For the case of `morphTo` relation, an index is set automatically by Eloquent Blueprint. You can still use the `nullable` keyword to allow null relations:
+For the case of `morphTo` relation, the only method accepted is the `nullable` keyword that allows null relations:
 
 {% tabs %}
 {% tab title="YAML" %}

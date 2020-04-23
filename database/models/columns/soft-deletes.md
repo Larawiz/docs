@@ -74,3 +74,32 @@ Schema::create('posts', function (Blueprint $table) {
 Laravel, thus Larawiz, doesn't support non-timestamp soft delete columns, but you're free to create your own soft-deleted column logic after scaffolding.
 {% endhint %}
 
+## Deleted factory state
+
+For convenience, when you create a model with soft deletes and factories enabled by default, Larawiz will automatically create a `deleted` factory state. Yes, for free.
+
+{% tabs %}
+{% tab title="YAML" %}
+```yaml
+models:
+  Post:
+    title: string
+    softDeletes: soft_deleted_at
+```
+{% endtab %}
+
+{% tab title="Factory" %}
+```php
+$factory->define(Post::class, function (Faker $faker) {
+    // ...
+});
+
+$factory->state(Post::class, 'deleted', function (Faker $faker) {
+    return [
+        'soft_deleted_at' => $faker->dateTime,
+    ];
+});
+```
+{% endtab %}
+{% endtabs %}
+
