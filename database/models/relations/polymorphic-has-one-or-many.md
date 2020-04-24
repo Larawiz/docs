@@ -189,7 +189,7 @@ Schema::create('categories', function (Blueprint $table) {
 
 ## Nullable morphTo
 
-For the case of `morphTo` relation, the only method accepted is the `nullable` keyword that allows null relations:
+For the case of `morphTo` relation, you can use the `nullable` keyword that allows null relations:
 
 {% tabs %}
 {% tab title="YAML" %}
@@ -224,5 +224,60 @@ Schema::create('images', function (Blueprint $table) {
 
 {% hint style="info" %}
 Larawiz will automatically use `nullableMorphs` or `nullableUuidMorphs` depending on the primary keys of the parent Models. No worries!
+{% endhint %}
+
+## UUID morphTo
+
+You can force Larawiz to create an UUID polymorphic relation using `uuidMorphs` in the column relation by issuing `uuid` to the relation declaration. You can also mix it with [nullable morphTo](polymorphic-has-one-or-many.md#nullable-morphto).
+
+{% tabs %}
+{% tab title="YAML" %}
+```yaml
+models:
+  Image:
+    imageable: morphTo uuid nullable
+    
+  Tag:
+    taggable: morphTo uuid
+```
+{% endtab %}
+
+{% tab title="Models" %}
+```php
+class Image extends Model
+{
+    public function imageable()
+    {
+        return $this->morphsTo();
+    }
+}
+
+class Tag extends Model
+{
+    public function taggable()
+    {
+        return $this->morphsTo();
+    }
+}
+```
+{% endtab %}
+
+{% tab title="Migration" %}
+```php
+Schema::create('images', function (Blueprint $table) {
+  $table->id();
+  $table->nullableUuidMorphs('imageable');
+});
+
+Schema::create('images', function (Blueprint $table) {
+  $table->id();
+  $table->uuidMorphs('taggable');
+});
+```
+{% endtab %}
+{% endtabs %}
+
+{% hint style="info" %}
+You should do this when using [polymorphic pivot models](pivots.md#polymorphic-many-to-many-pivot-models).
 {% endhint %}
 

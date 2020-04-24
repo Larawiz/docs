@@ -6,7 +6,7 @@
 When using Pivot Models, **Larawiz will hands-off the pivot to you**, so be sure to add the needed columns and relations so the pivot table can work properly once your project is scaffolded.
 {% endhint %}
 
-## Many to Many
+## Many to Many Pivot Models
 
 If you want to use a Pivot Model, simply create a `belongsToMany` and **add the `using` method in ALL the relations**, pointing the model you want to use as Pivot or Polymorphic Pivot. Yeah, that's it.
 
@@ -103,11 +103,11 @@ models:
 ```
 {% endhint %}
 
-## Polymorphic Pivot Tables
+## Polymorphic Many to Many Pivot Models
 
 The same goes for Polymorphic Pivot Models. If the connected models use UUID as primary key, as long everyone abides to the same type, no problem, Larawiz will automatically create a pivot table using `uuidMorphs`.
 
-For example, all related models use UUID, but the tag itself uses `id`. Here the `Taggable` model will be changed automatically to  `MorphPivot` .
+For example, all related models use UUID, but the tag itself uses `id`. Here the `Taggable` model will be changed automatically to  `MorphPivot` , and because the parent models are using UUID, we will add the `uuid` to the `morphTo` relation to make UUID polymorphic relations.
 
 {% tabs %}
 {% tab title="YAML" %}
@@ -130,7 +130,7 @@ models:
     
   Taggable:
     tag: belongsTo:Tag
-    taggable: morphTo
+    taggable: morphTo uuid
     timestmaps: ~
 ```
 {% endtab %}
@@ -209,4 +209,6 @@ Schema::create('taggables', function (Blueprint $table) {
 ```
 {% endtab %}
 {% endtabs %}
+
+
 
