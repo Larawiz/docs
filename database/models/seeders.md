@@ -46,6 +46,7 @@ models:
   Podcast:
     columns:
       # ...
+
     seeder: false
 ```
 

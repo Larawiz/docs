@@ -11,6 +11,7 @@ models:
   Post:
     columns:
       # ...
+
     perPage: 30
 ```
 {% endtab %}

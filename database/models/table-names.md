@@ -44,13 +44,14 @@ For example, we can set the `Post` model to use the `blog_posts` table. This wil
 ```yaml
 models:
   Post:
-    table: blog_posts
     columns:
       id: ~
       title: string
       excerpt: string
       body: longText
       timestamps: ~
+  
+    table: blog_posts
 ```
 {% endtab %}
 

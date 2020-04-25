@@ -11,6 +11,7 @@ models:
   Post:
     columns:
       # ...
+
     scopes:
       - Unpublished
 ```

@@ -69,28 +69,8 @@ class Message extends Model
 {% endtabs %}
 
 {% hint style="warning" %}
-Watch it! Even if you set a different namespace, your models are referenced using their key.
-
-```yaml
-namespace: MyModels
-
-models:
-
-  Admin:
-    name: string
-    email: string
-    password: string
-    messages: hasMany:Admin\Message
-    tasks: hasMany:Admin\Task
-
-  Admin\Message:
-    subject: string
-    body: string
-    admin: belongsTo:Admin
-
-  Admin\Task:
-    type: string
-    admin: belongsTo:Admin
-```
+Watch it! Even if you set a different namespace, your models are referenced **using their key**, like `Admin\Message` in the example above.
 {% endhint %}
+
+
 

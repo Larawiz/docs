@@ -136,6 +136,7 @@ Podcast:
     excerpt: string
     body: longText
     timestamps: ~
+
   primary: title
 ```
 {% endtab %}
@@ -181,6 +182,7 @@ Podcast:
     title: string
     slug: string
     # ...
+
   primary: false
 ```
 {% endtab %}
@@ -220,6 +222,7 @@ Podcast:
   columns:
     foo: custom
     # ...
+
   primary:
     column: foo
     type: bar

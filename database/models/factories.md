@@ -41,6 +41,7 @@ models:
   User:
     name: string
     password: string
+
     factory: false
   
   Post:
@@ -49,6 +50,7 @@ models:
       title: string
       body: longText
       timestamps: ~
+  
     factory: false
 ```
 

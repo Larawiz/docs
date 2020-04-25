@@ -61,6 +61,7 @@ models:
       rememberToken: ~
       age: unsignedSmallInteger default:18
       timestamps: ~
+
     type: user
 ```
 

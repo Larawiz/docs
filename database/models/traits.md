@@ -16,6 +16,7 @@ models:
     title: string
     excerpt: string nullable
     body: longText
+
     traits:
       - Utilites\HasPrimaryUuid
 
@@ -24,6 +25,7 @@ models:
       uuid: ~
       title: string
       timestamps: ~
+  
     traits:
       - Utilities\HasPrimaryUuid
 ```
@@ -79,7 +81,50 @@ trait HasPrimaryUuid
 {% endtab %}
 {% endtabs %}
 
-{% hint style="info" %}
+{% hint style="warning" %}
 Ensure the `trait` key is a list. If you issue a string in the YAML file, it will be treated as a column.
+{% endhint %}
+
+## External traits
+
+In other occasions, you may have a package that has a trait and you want to use it. 
+
+For example, if we have installed a package that [allows users to have Two Factor Authentication without external providers](https://github.com/DarkGhostHunter/Laraguard), we can immediately use the trait that comes with it instead of doing it later.
+
+{% tabs %}
+{% tab title="YAML" %}
+```yaml
+models:
+  User:
+    name: string
+    email: string
+    password: string
+
+    traits:
+      - DarkGhostHunter\Laraguard\TwoFactorAuthentication
+```
+{% endtab %}
+
+{% tab title="Model" %}
+```php
+<?php
+
+namespace App;
+
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use DarkGhostHunter\Laraguard\TwoFactorAuthentication;
+
+class User extends Authenticatable
+{
+    use TwoFactorAuthentication;
+
+    // ...
+}
+```
+{% endtab %}
+{% endtabs %}
+
+{% hint style="warning" %}
+If a trait doesn't exists, watch out, it will be created using the model namespace as base.
 {% endhint %}
 

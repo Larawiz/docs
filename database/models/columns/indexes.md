@@ -44,6 +44,7 @@ Post:
     slug: string
     body: longText
     timestamps: ~
+
   indexes:
     - slug id name:slug_id_index unique
 ```
