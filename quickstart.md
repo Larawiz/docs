@@ -15,13 +15,13 @@ To start using Larawiz, just publish the sample Database scaffold file using the
 ```bash
 php artisan larawiz:sample
 
-# Larawiz v1.0
+# 🧙‍♂️ Larawiz
 #
 # Scaffold sample files published. Happy coding!
 #
 # * var/www/app/larawiz/database.yml
 #
-# Once you're done, use `larakick:scaffold` to create your proyect.
+# Once you're done, use [larawiz:scaffold] to create your proyect.
 ```
 
 The above will publish files for a sample blog site so you can tinker around immediately. Once you're done, simply scaffold your project.
@@ -29,9 +29,9 @@ The above will publish files for a sample blog site so you can tinker around imm
 ```bash
 php artisan larawiz:scaffold
 
-# Larawiz v1.0
+# 🧙‍♂️ Larawiz
 #
-# Scaffodling your proyect, it will take a little time.
+# Scaffolding your project, it will take a little time...
 ```
 
 Larawiz will try to guess almost everything you want. This documentation will help you do some advanced things that Larawiz may not guess, or to override some behevarious for your convenience.
