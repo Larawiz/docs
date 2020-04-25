@@ -14,19 +14,18 @@ Larawiz works out of the box, it was created to think less and do more, and come
 # Welcome!
 # ----
 #
-# This example scaffold for a simple blog proyect. Here are some five quick
-# tips to start scaffolding rightaway with your own scaffold schema:
+# This is an example scaffold for a simple blog project. Here are some five
+# quick tips to start scaffolding right away with your own scaffold schema
+# for your project, if you (probably) wish to start doing your own thing:
 #
-# 1. Issue columns by their name, and add the type, like [name]: [type].
-# 2. [id] are automatically prepended to all models. Using [uuid] will 
-#    automatically change the primary key to [uuid].
-# 3. [timestamps] are automatically appended to all models.
-# 4. Using [password] or [rememberToken] will change change the model to 
-#    Authenticatable for your convenience.
-# 5. You don't need to create pivot tables, Larawiz will guess them for you.
+# 1. Columns are declared by their name, the type, and optional arguments.
+# 2. [id] are prepended to models. You can swap it for [uuid] as primary.
+# 3. [timestamps] are appended to models except for manual pivot models.
+# 4. Using [password|rememberToken] changes the model to an User model.
+# 5. Pivot tables are automatically guessed, and created conveniently.
 #
 # You can visit the docs at https://darkghosthunter.gitbook.io/larawiz/
-# for more info, you mostly you won't need to. Happy coding!
+# for more info, but you mostly you won't ever need to. Happy coding!
 
 models:
   User:
@@ -43,7 +42,7 @@ models:
     uuid: ~
     title: string
     body: longText
-    published_at: timestamp nullable  # Is this a draft? If not, is published.
+    published_at: timestamp nullable  # It's published? If not, its a draft.
     author: belongsTo:User
     comments: hasMany:Comment
     tags: belongsToMany:Tag
@@ -51,13 +50,13 @@ models:
 
   Comment:
     body: string
-    is_visible: boolean default:true  # Hide spam comments.
+    is_visible: boolean default:true  # This is to hide spam comments.
     author: belongsTo:User nullable  # Allow anonymous comments.
     post: belongsTo:Post
 
   Tag:
     name: string
-    posts: belongsToMany:Tag
+    posts: belongsToMany:Tag  # No need to declare the pivot table.
 
 migrations:
   failed_jobs:
