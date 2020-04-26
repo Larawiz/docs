@@ -1,6 +1,6 @@
 # 📁 Namespace
 
-A default installation of Laravel uses the `App` as namespace, so if you create a `Post` model, it will be in `App\Post`. You can change the base namespace of all Models using the `namespace` key, which will be appended to the base.
+A default installation of Laravel uses the `App` as namespace, so if you create a `Post` model, it will be in `App\Post`. You can change the base namespace of all Models using the `namespace` key, which will be appended to the one using your application.
 
 {% hint style="info" %}
 Don't be shy to use the `Models` namespace if you want to keep all your models and related files in one folder, especially if you plan to have more than a few and have many related files in it.
@@ -71,6 +71,4 @@ class Message extends Model
 {% hint style="warning" %}
 Watch it! Even if you set a different namespace, your models are referenced **using their key**, like `Admin\Message` in the example above.
 {% endhint %}
-
-
 

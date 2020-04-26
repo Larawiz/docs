@@ -236,3 +236,51 @@ Schema::create('taggables', function (Blueprint $table) {
 Polymorphic many-to-many only supports ALL parent models with either `id` or `uuid` for primary keys. If one of these models uses one different from the others, you will get an error.
 {% endhint %}
 
+## Overriding automatic pivot tables
+
+You can always override the pivot table created automatically by Larawiz by just doing a migration table with the same name. This works for both normal and polymorphic pivot tables.
+
+This is very handy if you don't want the pivot model overhead, and add some properties to the pivot relation.
+
+{% tabs %}
+{% tab title="YAML" %}
+```yaml
+models:
+  User:
+    name: string
+    roles: belongsToMany:Role withPivot:associated_at
+  
+  Role:
+    name: string
+    users: belongsToMany:User
+
+migrations:
+  role_user:
+    role_id: unsignedBigInteger
+    user_id: unsignedBigInteger
+    associated_at: timestamp useCurrent
+```
+{% endtab %}
+
+{% tab title="Migrations" %}
+```php
+Schema::create('users', function (Blueprint $table) {
+    $table->id();
+    $table->string('name');
+});
+
+Schema::create('roles', function (Blueprint $table) {
+    $table->id();
+    $table->string('name');
+});
+
+// Table overriden by the developer.
+Schema::create('role_user', function (Blueprint $table) {
+    $table->bigUnsignedInteger('user_id');
+    $table->bigUnsignedInteger('role_id');
+    $table->timestamp('associated_at')->useCurrent();
+});
+```
+{% endtab %}
+{% endtabs %}
+
