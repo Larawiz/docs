@@ -1,6 +1,6 @@
 # Global Scopes
 
-Sometimes thinking ahead for Global Scopes is a good way to leverage creating and handling them in the model itself. 
+Sometimes thinking ahead for Global Scopes is a good way to leverage creating and handling database filters in a dynamic way. 
 
 Using [Custom Models](./#custom-model), issue the `scopes` key with a list to generate each automatically, ready to be edited by you.
 
@@ -24,8 +24,8 @@ models:
 
 namespace App\Scopes\Post;
 
+use App\Post;
 use Illuminate\Database\Eloquent\Scope;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
 class UnpublishedScope implements Scope
@@ -37,7 +37,7 @@ class UnpublishedScope implements Scope
      * @param  \Illuminate\Database\Eloquent\Model|\App\Post $model
      * @return void
      */
-    public function apply(Builder $builder, Model $model)
+    public function apply(Builder $builder, Post $post)
     {
         // TODO: Apply builder methods to the UnpublishedScope scope.
     }
@@ -58,7 +58,11 @@ class UnpublishedScope implements Scope
 {% endtab %}
 {% endtabs %}
 
-Each of the scopes are saved inside the `app/Scopes` directory, allowing you to separate each scope by its Model. After that, you're free to add them to your application however you want.
+{% hint style="info" %}
+When you create a scope, Larawiz will automatically append the `Scope` name to it so you can identify it clearly. So if you use `Unpublished` or `UnpublishedScope`, it will become the latter no matter what.
+{% endhint %}
+
+Each of the scopes are saved inside the `app/Scopes/{Model}` directory, allowing you to separate each scope by its Model. After that, you're free to add them to your application however you want.
 
 {% hint style="danger" %}
 [Local scopes](https://laravel.com/docs/7.x/eloquent#local-scopes) are not supported in Larawiz.

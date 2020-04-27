@@ -2,7 +2,7 @@
 
 And finally, you can also create an [Observer](https://laravel.com/docs/7.x/eloquent#observers) for all Eloquent operations over the model, which may come handy. Using a Custom Model, set the `observer` key to `true`.
 
-Larawiz will automatically create an observer based on the Model name, by just calling the appropriate artisan command.
+Larawiz will automatically create an observer, based on the Model name, by just calling the appropriate artisan command.
 
 {% tabs %}
 {% tab title="YAML" %}
