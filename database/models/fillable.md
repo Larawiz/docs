@@ -22,7 +22,7 @@ models:
     body: longText
     published_at: timestamp nullable
     is_commentable: boolean default:true
-    user: belongsTo:User
+    user: belongsTo
     softDeletes: ~
 ```
 {% endtab %}
@@ -79,7 +79,7 @@ models:
       slug: string
       body: longText
       published_at: timestamp nullable
-      user: belongsTo:User
+      user: belongsTo
       timestamps: ~
       softDeletes: ~
     fillable:
@@ -116,7 +116,7 @@ models:
       slug: string
       body: longText
       published_at: timestamp nullable
-      user: belongsTo:User
+      user: belongsTo
       timestamps: ~
       softDeletes: ~
     fillable: false
