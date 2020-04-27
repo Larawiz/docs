@@ -10,7 +10,7 @@ For example, let's say a Country can have many Users, and each User can have man
 models:
   Country:
     name: string
-    userPosts: hasManyThrough:Post,User
+    userPosts: hasManyThrough
 
   User:
     name: string
@@ -77,7 +77,18 @@ Schema::create('posts', function (Blueprint $table) {
 {% endtab %}
 {% endtabs %}
 
-{% hint style="danger" %}
-Larawiz will throw you an error if the `hasManyThrough` relations don't have the correct `belongsTo` relations, because without these the needed columns won't be present.
+Larawiz will automatically get the target model and the through model from the relation name, so `userPosts` means `Post` model through the `User` model. 
+
+If you don't abide to Laravel naming conventions, you can always point the models yourself.
+
+```yaml
+models:
+  Country:
+    name: string
+    posts: hasManyThrough:Post,User
+```
+
+{% hint style="success" %}
+Larawiz will throw tell you if the `hasManyThrough` relations don't have the correct `belongsTo` relations, because without these the needed columns won't be present.
 {% endhint %}
 

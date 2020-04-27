@@ -35,28 +35,28 @@ models:
     password: string
     is_admin: boolean default:false
     rememberToken: ~
-    comments: hasMany:Comment
-    posts: hasMany:Post
+    comments: hasMany  # The model is inferred from the relation name.
+    posts: hasMany
 
   Post:
     uuid: ~
     title: string
     body: longText
     published_at: timestamp nullable  # It's published? If not, its a draft.
-    author: belongsTo:User
-    comments: hasMany:Comment
-    tags: belongsToMany:Tag
+    author: belongsTo:User  # Here we need to point the correct model.
+    comments: hasMany
+    tags: belongsToMany
     softDeletes: ~
 
   Comment:
     body: string
     is_visible: boolean default:true  # This is to hide spam comments.
-    author: belongsTo:User nullable  # Allow anonymous comments.
-    post: belongsTo:Post
+    author: belongsTo nullable  # Allow anonymous comments.
+    post: belongsTo
 
   Tag:
     name: string
-    posts: belongsToMany:Tag  # No need to declare the pivot table.
+    posts: belongsToMany  # No need to declare the pivot table.
 
 migrations:
   failed_jobs:

@@ -23,8 +23,8 @@ models:
     subscribers: belongsToMany:User using:Subscription
   
   Subscription:
-    user: belongsTo:User
-    podcast: belongsTo:Podcast
+    user: belongsTo
+    podcast: belongsTo
     last_heard: timestamp nullable
 ```
 {% endtab %}
@@ -89,7 +89,7 @@ Schema::create('subscriptions', function (Blueprint $table) {
 When you reference a Model as a Pivot, Larawiz will automatically change the type of Model to `Pivot`  instead of just `Model` .
 
 {% hint style="info" %}
-When creating [Pivot models](https://laravel.com/docs/7.x/eloquent-relationships#defining-custom-intermediate-table-models), primary keys and soft-deleted are automatically disabled. You can re-enable them issuing the `id` , `uuid` or [filling the `primary`  key](../columns/primary-key.md), but soft-deletes are bypassed since the framework still doesn't support it \([but it may in the future](https://github.com/laravel/framework/pull/31224)\).
+When creating [Pivot models](https://laravel.com/docs/7.x/eloquent-relationships#defining-custom-intermediate-table-models), primary keys and soft-deleted are automatically disabled. You can re-enable them issuing the `id` , `uuid` or [filling the `primary`  key](../columns/primary-key.md), but soft-deletes are bypassed since the framework still doesn't support it.
 
 ```yaml
 models:
@@ -97,8 +97,8 @@ models:
 
   Subscription:
     id: ~
-    user: belongsTo:User
-    podcast: belongsTo:Podcast
+    user: belongsTo
+    podcast: belongsTo
     last_heard: timestamps nullable
 ```
 {% endhint %}
@@ -129,7 +129,7 @@ models:
     videos: morphedByMany:Video,taggable
     
   Taggable:
-    tag: belongsTo:Tag
+    tag: belongsTo
     taggable: morphTo uuid
     timestmaps: ~
 ```
@@ -209,6 +209,4 @@ Schema::create('taggables', function (Blueprint $table) {
 ```
 {% endtab %}
 {% endtabs %}
-
-
 

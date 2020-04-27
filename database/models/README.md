@@ -1,6 +1,6 @@
 # 📦 Models
 
-Models are named by the key name in singular. Table migrations are created automatically using studly case on plural.
+Models are named by the key name in singular. Table migrations are created automatically using snake case on plural.
 
 For example, `GameLeaderboard` will make a table called `game_leaderboards`, without needing to set the table manually.
 
@@ -93,7 +93,7 @@ models:
     email: string
     email_verified_at: timestamp nullable
     softDeletes: ~
-    posts: hasMany:Post
+    posts: hasMany
   
   Post:
     uuid: ~

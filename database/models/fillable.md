@@ -6,7 +6,7 @@ By default, using [Quick Models](./#quick-model) or [Custom Models](./#custom-mo
 * a **boolean**, 
 * a **relation column** \(`belongsTo` or `morphTo`\), 
 * a **soft delete** column,
-* or a **primary key**, 
+* or a **primary key**.
 
 Considering that these types depend most on the application rather than inputs from a Request, most of the time there is no need to set the fillable columns manually.
 

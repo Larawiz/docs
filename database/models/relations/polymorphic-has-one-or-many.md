@@ -1,6 +1,6 @@
 # Polymorphic Has One or Many
 
-For [polymorphic relations](https://laravel.com/docs/7.x/eloquent-relationships#polymorphic-relationships) like [has-one-polymorphic](https://laravel.com/docs/7.x/eloquent-relationships#one-to-one-polymorphic-relations) or [has-many-polymorphic](https://laravel.com/docs/7.x/eloquent-relationships#one-to-many-polymorphic-relations), you can just simply set it as `morphTo`, and the parent model as `morphOne` and `morphMany`.
+For [polymorphic relations](https://laravel.com/docs/7.x/eloquent-relationships#polymorphic-relationships) like [has-one-polymorphic](https://laravel.com/docs/7.x/eloquent-relationships#one-to-one-polymorphic-relations) or [has-many-polymorphic](https://laravel.com/docs/7.x/eloquent-relationships#one-to-many-polymorphic-relations), you can just simply set it as `morphTo`, and the parent model as `morphOne` and `morphMany`. As always, no need to declare the model if Larawiz can guess it from the relation name.
 
 {% hint style="warning" %}
 Because of the nature of Eloquent ORM polymorphic relations, only parent models with `id` or `uuid` primary keys are supported.
@@ -14,13 +14,13 @@ In this example, both `Student` and `Teacher` have one `Classroom`, and many `Co
 models:
   Student:
     name: string
-    classroom: morphOne:Classroom
-    courses: morphMany:Course
+    classroom: morphOne
+    courses: morphMany
   
   Teacher:
     title: string
-    classroom: morphOne:Classroom
-    courses: morphMany:Course
+    classroom: morphOne
+    courses: morphMany
     
   Classroom:
     name: string
@@ -122,12 +122,12 @@ models:
   Photo:
     uuid: ~
     title: string
-    category: morphOne:Category
+    category: morphOne
   
   Video:
     uuid: ~
     title: string
-    category: morphOne:Category
+    category: morphOne
 
   Category:
     name: string

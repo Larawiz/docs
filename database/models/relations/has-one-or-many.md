@@ -1,6 +1,8 @@
 # Has One or Many
 
-You can do effortless [has-one](https://laravel.com/docs/7.x/eloquent-relationships#one-to-one) or [has-many](https://laravel.com/docs/7.x/eloquent-relationships#one-to-many) relations both ways with just issuing the type and the model itself, following Laravel naming conventions:
+You can do effortless [has-one](https://laravel.com/docs/7.x/eloquent-relationships#one-to-one) or [has-many](https://laravel.com/docs/7.x/eloquent-relationships#one-to-many) relations both ways with just issuing the type, following Laravel naming conventions.
+
+In this example, Larawiz gets a hint of the model you want to reach using the relation name. The `post: hasMany` means it has many `Post` , while the `user: belongsTo` means it belongs to the `User` model.
 
 {% tabs %}
 {% tab title="YAML" %}
@@ -8,17 +10,17 @@ You can do effortless [has-one](https://laravel.com/docs/7.x/eloquent-relationsh
 models:
   User:
     name: string
-    posts: hasMany:Post
-    biography: hasOne:Biography
+    posts: hasMany
+    biography: hasOne
     
   Post:
     title: string
     body: longText
-    user: belongsTo:User
+    user: belongsTo
     
   Biography:
     body: longText
-    user: belongsTo:User
+    user: belongsTo
 ```
 {% endtab %}
 
@@ -80,93 +82,13 @@ Schema::create('biographies', function (Blueprint $table) {
 {% endtab %}
 {% endtabs %}
 
-If you issue a relation not following Laravel naming conventions, Larawiz will try its best to guess it automatically, prioritizing the database table name rather than the method name, as you can see in the example above with `author: belongsTo:User`.
-
-{% tabs %}
-{% tab title="YAML" %}
-```yaml
-models:
-  User:
-    name: string
-    publications: hasMany:Post
-    bio: hasOne:Biography
-    
-  Post:
-    title: string
-    body: longText
-    author: belongsTo:User
-    
-  Biography:
-    body: longText
-    editor: belongsTo:User
-```
-{% endtab %}
-
-{% tab title="Models" %}
-```php
-class User extends Model
-{
-    public function publications()
-    {
-        return $this->hasMany(Post::class, 'post_id');
-    }
-
-    public function biography()
-    {
-        return $this->hasOne(Biography::class);
-    }
-}
-
-class Post extends Model
-{
-    public function author()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-}
-
-class Biography extends Model
-{
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-}
-```
-{% endtab %}
-
-{% tab title="Migrations" %}
-```php
-Schema::create('users', function (Blueprint $table) {
-    $table->id();
-    $table->string('name');
-    $table->timestamps();
-});
-
-Schema::create('posts', function (Blueprint $table) {
-    $table->id();
-    $table->longText('body');
-    $table->unsignedBigInteger('user_id');
-    $table->timestamps();
-});
-
-Schema::create('biographies', function (Blueprint $table) {
-    $table->id();
-    $table->longText('body');
-    $table->unsignedBigInteger('user_id');
-    $table->timestamps();
-});
-```
-{% endtab %}
-{% endtabs %}
-
-{% hint style="warning" %}
-Columns are needed for relations like [`belongsTo`](https://laravel.com/docs/7.x/eloquent-relationships#one-to-one) \(and [`morphTo`](https://laravel.com/docs/7.x/eloquent-relationships#one-to-one-polymorphic-relations)`)`. If these aren't issued, Larawiz will guess the column to create based the model name plus the primary column, like `user_id`. If not, Larawiz will tell you.
+{% hint style="success" %}
+While reference columns are needed for relations like [`belongsTo`](https://laravel.com/docs/7.x/eloquent-relationships#one-to-one) and [`morphTo`](https://laravel.com/docs/7.x/eloquent-relationships#one-to-one-polymorphic-relations), Larawiz will try to guess the column to create based the model name plus the primary column, like `user_id`. 
 {% endhint %}
 
 ## Null and index belongsTo
 
-When creating a `belongsTo` relation, you can issue the keyword  `index` to create a index on the relation column. This can speed up greatly getting relations from the belonging model.
+When creating a `belongsTo` relation, you can issue the keyword  `index`  or `unique` to create a index or unique index on the relation column. This can speed up greatly getting relations from the belonging model.
 
 You can also use the `nullable` keyword to create a nullable column, which can be used to create models without a belonging parent model.
 
@@ -176,7 +98,7 @@ You can also use the `nullable` keyword to create a nullable column, which can b
 models:
   User:
     name: string
-    comments: hasMany:Comment
+    comments: hasMany
   
   Comment:
     author: belongsTo:User index nullable withDefault
@@ -199,6 +121,6 @@ Schema::create('comments', function (Blueprint $table) {
 {% endtabs %}
 
 {% hint style="info" %}
-If you use `nullable` in your `belongsTo` relation, remember that you can also use `withDefault` .
+If you use `nullable` in your `belongsTo` relation, remember that you can also [use `withDefault`  to return an empty relation instance](https://laravel.com/docs/7.x/eloquent-relationships#default-models) if the record is not found.
 {% endhint %}
 

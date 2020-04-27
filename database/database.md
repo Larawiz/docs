@@ -15,16 +15,16 @@ models:
     password: string
     is_admin: boolean default:false
     rememberToken: ~
-    comments: hasMany:Comment
-    posts: hasMany:Post
+    comments: hasMany
+    posts: hasMany
 
   Post:
     uuid: ~
     title: string
     body: longText
     author: belongsTo:User
-    comments: hasMany:Comment
-    tags: belongsToMany:Tag
+    comments: hasMany
+    tags: belongsToMany
 
   Comment:
     body: string
@@ -34,7 +34,7 @@ models:
     
   Tags:
     name: string
-    posts: belongsToMany:Post
+    posts: belongsToMany
 
 migrations:
   failed_jobs:

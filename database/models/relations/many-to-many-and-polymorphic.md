@@ -8,7 +8,7 @@ Because the nature of many-to-many relations, these are only supported on models
 
 ## Many to Many
 
-For [many-to-many](https://laravel.com/docs/7.x/eloquent-relationships#many-to-many) relations, just simply add the `belongsToMany` in each Model pointing to the other.
+For [many-to-many](https://laravel.com/docs/7.x/eloquent-relationships#many-to-many) relations, just simply add the `belongsToMany` in each. No need to add the Model pointing to the other if we can infer that from the relation names.
 
 {% tabs %}
 {% tab title="YAML" %}
@@ -16,11 +16,11 @@ For [many-to-many](https://laravel.com/docs/7.x/eloquent-relationships#many-to-m
 models:
   User:
     name: string
-    roles: belongsToMany:Role as:permissionsSet
+    roles: belongsToMany as:permissionsGroup
   
   Role:
     name: string
-    users: belongsToMany:User
+    users: belongsToMany
 ```
 {% endtab %}
 
@@ -31,7 +31,7 @@ class User extends Model
     public function roles()
     {
         return $this->belongsToMany(Role::class)
-                    ->as('permissionsSet');
+                    ->as('permissionsGroup');
     }
 }
 
@@ -155,7 +155,7 @@ Schema::create('taggables', function (Blueprint $table) {
 {% endtabs %}
 
 {% hint style="warning" %}
-Polymorphic Many-to-many relations needs the name of "~able" relation as second argument. 
+Polymorphic Many-to-many relations needs both the target Model, and the name of "~able" relation as second argument. 
 {% endhint %}
 
 The example above will create the `taggables` table automatically, since Larawiz will use the second argument from the `morphToMany` and pluralize it for the migration.
@@ -248,11 +248,11 @@ This is very handy if you don't want the pivot model overhead, and add some prop
 models:
   User:
     name: string
-    roles: belongsToMany:Role withPivot:associated_at
+    roles: belongsToMany withPivot:associated_at
   
   Role:
     name: string
-    users: belongsToMany:User
+    users: belongsToMany
 
 migrations:
   role_user:
