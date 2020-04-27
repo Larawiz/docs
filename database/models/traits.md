@@ -89,7 +89,7 @@ Ensure the `trait` key is a list. If you issue a string in the YAML file, it wil
 
 In other occasions, you may have a package that has a trait and you want to use it. 
 
-For example, if we have installed a package that [allows users to have Two Factor Authentication without external providers](https://github.com/DarkGhostHunter/Laraguard), we can immediately use the trait that comes with it instead of doing it later.
+For illustration purposes, we are gonna install a package that [allows users to have Two Factor Authentication without external providers](https://github.com/DarkGhostHunter/Laraguard). We can immediately use the trait that comes with the package by just issuing it into the list.
 
 {% tabs %}
 {% tab title="YAML" %}
@@ -125,6 +125,6 @@ class User extends Authenticatable
 {% endtabs %}
 
 {% hint style="warning" %}
-If a trait doesn't exists, watch out, it will be created using the model namespace as base.
+If a trait doesn't exists, watch out, it will be created inside the application namespace.
 {% endhint %}
 
