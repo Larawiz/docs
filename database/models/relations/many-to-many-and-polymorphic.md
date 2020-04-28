@@ -76,6 +76,10 @@ You don't need to declare both models with a `belongsToMany`, automatic pivot ta
 
 For the case of [many-to-many-polymorphic](https://laravel.com/docs/7.x/eloquent-relationships#many-to-many-polymorphic-relations), Larawiz will also guess the pivot migration. Let's use the same Laravel example that many Posts or Videos having multiple Tags. Note that, again, we didn't issue the pivot table anywhere.
 
+{% hint style="warning" %}
+Polymorphic Many-to-many relations cannot be guessed by Larawiz. These needs both the target Model, and the name of "~able" relation as second argument. 
+{% endhint %}
+
 {% tabs %}
 {% tab title="YAML" %}
 ```yaml
@@ -154,17 +158,13 @@ Schema::create('taggables', function (Blueprint $table) {
 {% endtab %}
 {% endtabs %}
 
-{% hint style="warning" %}
-Polymorphic Many-to-many relations needs both the target Model, and the name of "~able" relation as second argument. 
-{% endhint %}
-
 The example above will create the `taggables` table automatically, since Larawiz will use the second argument from the `morphToMany` and pluralize it for the migration.
 
 {% hint style="info" %}
 There is no need to create a `morphedByMany` relation in the child model, but is recommended to.
 {% endhint %}
 
-If the models use UUID as primary key, no problem, Larawiz will automatically create a pivot table using `uuidMorphs`.
+If the models use UUID as primary key, no problem, Larawiz will automatically create a pivot table using `uuidMorphs` and/or reference the target model by its primary key.
 
 {% tabs %}
 {% tab title="YAML" %}
