@@ -51,7 +51,7 @@ models:
   Comment:
     body: string
     is_visible: boolean default:true  # This is to hide spam comments.
-    author: belongsTo nullable  # Allow anonymous comments.
+    author: belongsTo:User nullable  # Allow anonymous comments.
     post: belongsTo
 
   Tag:

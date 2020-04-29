@@ -3,7 +3,7 @@
 [Intermediate table models](https://laravel.com/docs/7.x/eloquent-relationships#defining-custom-intermediate-table-models), also called Pivot Models, are easy to do: simply point them out in the relations and Larawiz will automatically change the model to a Pivot Model or Polymorphic Pivot Model.
 
 {% hint style="info" %}
-When using Pivot Models, **Larawiz will hands-off the pivot to you**, so be sure to add the needed columns and relations so the pivot table can work properly once your project is scaffolded.
+When using Pivot Models, **Larawiz will hands-off the pivot to you**, so be sure to add the needed columns and relations so the pivot table can work properly once your project is scaffolded, specially a primary key if you think you will need it.
 {% endhint %}
 
 ## Many to Many Pivot Models
