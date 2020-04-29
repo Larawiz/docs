@@ -88,7 +88,7 @@ While reference columns are needed for relations like [`belongsTo`](https://lara
 
 ## Null and index belongsTo
 
-When creating a `belongsTo` relation, you can issue the keyword  `index`  or `unique` to create a index or unique index on the relation column. This can speed up greatly getting relations from the belonging model.
+When creating a `belongsTo` relation, you can issue the keyword  `index`  or `unique` to create a index or unique index on the relation column, respectively. This can speed up greatly getting relations from the belonging model, like using `unique`  for one-to-one relations and `index` for one-to-many.
 
 You can also use the `nullable` keyword to create a nullable column, which can be used to create models without a belonging parent model.
 
@@ -102,6 +102,9 @@ models:
   
   Comment:
     author: belongsTo:User index nullable withDefault
+    
+  Biography:
+    user: belongsTo unique
 ```
 {% endtab %}
 
@@ -115,6 +118,11 @@ Schema::create('user', function (Blueprint $table) {
 Schema::create('comments', function (Blueprint $table) {
   $table->id();
   $table->unsignedBigInteger('user_id')->index()->nullable();
+});
+
+Schema::create('biographies', function (Blueprint $table) {
+  $table->id();
+  $table->unsignedBigInteger('user_id')->unique();
 });
 ```
 {% endtab %}

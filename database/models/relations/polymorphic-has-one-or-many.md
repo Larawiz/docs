@@ -6,7 +6,7 @@ For [polymorphic relations](https://laravel.com/docs/7.x/eloquent-relationships#
 Because of the nature of Eloquent ORM polymorphic relations, only parent models with `id` or `uuid` primary keys are supported.
 {% endhint %}
 
-In this example, both `Student` and `Teacher` have one `Classroom`, and many `Courses`. The polymorphic relations will be fully aware of the names, and the migrations for both `Classroom` and `Course` will include the polymorphic columns automatically.
+In this example, both `Student` and `Teacher` share one `Classroom`, and share many `Courses`. The polymorphic relations will be fully aware of the names, and the migrations for both `Classroom` and `Course` will include the polymorphic columns automatically.
 
 {% tabs %}
 {% tab title="YAML" %}

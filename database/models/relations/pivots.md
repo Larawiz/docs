@@ -89,7 +89,7 @@ Schema::create('subscriptions', function (Blueprint $table) {
 When you reference a Model as a Pivot, Larawiz will automatically change the type of Model to `Pivot`  instead of just `Model` .
 
 {% hint style="info" %}
-When creating [Pivot models](https://laravel.com/docs/7.x/eloquent-relationships#defining-custom-intermediate-table-models), primary keys and soft-deleted are automatically disabled. You can re-enable them issuing the `id` , `uuid` or [filling the `primary`  key](../columns/primary-key.md), but soft-deletes are bypassed since the framework still doesn't support it.
+When creating [Pivot models](https://laravel.com/docs/7.x/eloquent-relationships#defining-custom-intermediate-table-models) as [Quick Models](../#quick-model), primary keys are automatically disabled, but you can re-enable them issuing the `id` , `uuid` or [filling the `primary`  key](../columns/primary-key.md). [Soft-deletes](../columns/soft-deletes.md) are bypassed since the framework _still_ doesn't support it.
 
 ```yaml
 models:
@@ -105,9 +105,9 @@ models:
 
 ## Polymorphic Many to Many Pivot Models
 
-The same goes for Polymorphic Pivot Models. If the connected models use UUID as primary key, as long everyone abides to the same type, no problem, Larawiz will automatically create a pivot table using `uuidMorphs`.
+You can also include Polymorphic Pivot Models. If the parent models use UUID as primary key, Larawiz will automatically create a pivot table using `uuidMorphs`.
 
-For example, all related models use UUID, but the tag itself uses `id`. Here the `Taggable` model will be changed automatically to  `MorphPivot` , and because the parent models are using UUID, we will add the `uuid` to the `morphTo` relation to make UUID polymorphic relations.
+For example, all related models use UUID, but the tag itself uses `id`. Here the `Taggable` model will be changed automatically to  `MorphPivot` . Because pivot models are handed off to us, we will need to add the `uuid` to the `morphTo` relation to make UUID polymorphic relations.
 
 {% tabs %}
 {% tab title="YAML" %}

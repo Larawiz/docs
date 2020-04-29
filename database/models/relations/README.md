@@ -25,9 +25,9 @@ models:
 
 In this part we're gonna go through how to make most of the Eloquent ORM relationships **without writing more than one sentence**.
 
-## Hands off relations
+## Total control on relations
 
-If in any relation declaration you issue table or column names, Larawiz will understand you want full control of the relation declaration and won't check anything from it. 
+If in any relation declaration you issue table or column names, Larawiz will understand you want full control of the relation declaration and won't guess or check anything from it. 
 
 ```yaml
 models:

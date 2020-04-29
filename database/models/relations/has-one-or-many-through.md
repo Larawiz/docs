@@ -85,7 +85,7 @@ If you don't abide to Laravel naming conventions, you can always point the model
 models:
   Country:
     name: string
-    posts: hasManyThrough:Post,User
+    posts: hasManyThrough:Publication,Writer
 ```
 
 {% hint style="success" %}
