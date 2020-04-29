@@ -20,9 +20,23 @@ models:
   User:
     publications: hasMany:Post
   Post:
-    title: string
-     author: belongsTo:User
+    author: belongsTo:User
 ```
 
 In this part we're gonna go through how to make most of the Eloquent ORM relationships **without writing more than one sentence**.
+
+## Hands off relations
+
+If in any relation declaration you issue table or column names, Larawiz will understand you want full control of the relation declaration and won't check anything from it. 
+
+```yaml
+models:
+  User:
+    publications: hasMany:Post,publication_id
+  Photo:
+    tags: morphToMany:Tag,taggable,taggables
+  #...
+```
+
+In any case, if you want to make complex relationships, it's better to do them after scaffolding.
 
