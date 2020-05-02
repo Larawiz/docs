@@ -72,7 +72,7 @@ Doing `id: name` instead of `name: id` ensures the model only has only one prima
 
 When using [Quick Models](../#quick-model), you can exchange the default `id` column for a primary `uuid` column by just setting it. You can also change the default name, if you want, otherwise it will be `uuid` as default.
 
-Larawiz will automatically point and update the primary key inside the model.
+For both [Quick Models](../#quick-model) and [Custom Models](../#custom-model), Larawiz will automatically point and update the primary key inside the model, and include the `HasUuidPrimaryKey` trait for free alongside it. With Larawiz your will include an UUID **right out of the box!**
 
 {% tabs %}
 {% tab title="YAML" %}
@@ -89,12 +89,48 @@ Post:
 ```php
 class Post extends Model
 {
+    use HasUuidPrimaryKey;
+
     protected $primaryKey = 'uuid';
     protected $keyType = 'string';
     protected $incrementing = false;
     
     // ...
 }
+```
+{% endtab %}
+
+{% tab title="Trait" %}
+```php
+<?php
+
+namespace App;
+
+use Illuminate\Support\Str;
+
+trait HasUuidPrimaryKey
+{
+    /**
+     * Sets the primary key for the model as an UUID.
+     *
+     * @return void
+     */
+    protected function initializeHasUuidPrimaryKey()
+    {
+        $this->attributes[$this->getKeyName()] = $this->generateUuid();
+    }
+
+    /**
+     * Generates an UUID to use as Primary Key.
+     *
+     * @return \Ramsey\Uuid\UuidInterface|string
+     */
+    protected function generateUuid()
+    {
+        return Str::uuid();
+    }
+}
+
 ```
 {% endtab %}
 
