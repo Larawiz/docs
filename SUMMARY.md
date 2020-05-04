@@ -21,6 +21,7 @@
     * [Pivots Models](database/models/relations/pivots.md)
   * [Table names](database/models/table-names.md)
   * [Fillable](database/models/fillable.md)
+  * [Hidden](database/models/hidden.md)
   * [Traits](database/models/traits.md)
   * [Route Binding](database/models/route-binding.md)
   * [Users](database/models/users.md)
