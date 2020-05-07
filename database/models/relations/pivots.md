@@ -1,6 +1,6 @@
 # Pivots Models
 
-[Intermediate table models](https://laravel.com/docs/7.x/eloquent-relationships#defining-custom-intermediate-table-models), also called Pivot Models, are easy to do: simply point them out in the relations and Larawiz will automatically change the model to a Pivot Model or Polymorphic Pivot Model.
+[Intermediate table models](https://laravel.com/docs/7.x/eloquent-relationships#defining-custom-intermediate-table-models), also called Pivot Models, are easy to do: simply point them out in the relations and Larawiz will automatically change the model to a Pivot Model or Polymorphic Pivot Model, and add the table names from the Pivot Model.
 
 {% hint style="info" %}
 When using Pivot Models, **Larawiz will hands-off the pivot to you**, so be sure to add the needed columns and relations so the pivot table can work properly once your project is scaffolded, specially a primary key if you think you will need it.
@@ -35,7 +35,7 @@ class User extends Model
 {
     public function subscriptions()
     {
-        return $this->belongsToMany(Podcast::class)
+        return $this->belongsToMany(Podcast::class, 'subscriptions')
                     ->using(Subscription::class);
     }
 }
@@ -44,7 +44,7 @@ class Podcast extends Model
 {
     public function subscribers()
     {
-        return $this->belongsToMany(User::class)
+        return $this->belongsToMany(User::class, 'subscriptions')
                     ->using(Subscription::class);
     }
 }
@@ -86,7 +86,7 @@ Schema::create('subscriptions', function (Blueprint $table) {
 {% endtab %}
 {% endtabs %}
 
-When you reference a Model as a Pivot, Larawiz will automatically change the type of Model to `Pivot`  instead of just `Model` .
+When you reference a Model as a Pivot, Larawiz will automatically change the type of Model to `Pivot`  instead of just `Model` , and add the correct table name to the relation if you haven't issued it manually, like `subscriptions: belongsToMany:Podcast,foobar`.
 
 {% hint style="info" %}
 When creating [Pivot models](https://laravel.com/docs/7.x/eloquent-relationships#defining-custom-intermediate-table-models) as [Quick Models](../#quick-model), primary keys are automatically disabled, but you can re-enable them issuing the `id` , `uuid` or [filling the `primary`  key](../columns/primary-key.md). [Soft-deletes](../columns/soft-deletes.md) are bypassed since the framework _still_ doesn't support it.
