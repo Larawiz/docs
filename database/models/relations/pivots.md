@@ -51,6 +51,8 @@ class Podcast extends Model
 
 class Subscription extends Pivot // Type changed automatically.
 {
+    protected $table = 'subscriptions';
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -102,6 +104,74 @@ models:
     last_heard: timestamps nullable
 ```
 {% endhint %}
+
+### Table names
+
+When using Pivot Models for a `belongsToMany` relation, pivot tables will be created using the model name on plural to respect your model naming if you don't follow Laravel naming convention.
+
+Alternatively, you can follow Laravel naming convention \(two models ordered alphabetically\), which will bypass naming the relation unnecessarily.
+
+{% tabs %}
+{% tab title="YAML" %}
+```yaml
+models:
+  User:
+    podcasts: belongsToMany using:PodcastUser
+  Podcast: 
+    users: belongsToMany using:PodcastUser
+  PodcastUser:
+    user: belongsTo
+    podcast: belongsTo    
+```
+{% endtab %}
+
+{% tab title="Model" %}
+```php
+class User extends Model
+{
+    public function podcasts()
+    {
+        return $this->belongsToMany(Podcast::class)
+                    ->using(PodcastUser::class);
+    }
+}
+
+class Podcast extends Model
+{
+    public function users()
+    {
+        return $this->belongsToMany(User::class)
+                    ->using(PodcastUser::class);
+    }
+}
+
+class PodcastUser extends Pivot // Type changed automatically.
+{
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function podcast()
+    {
+        return $this->belongsTo(Podcast::class);
+    }
+}
+```
+{% endtab %}
+
+{% tab title="Migration" %}
+```php
+#...
+
+Schema::create('podcast_user', function (Blueprint $table) {
+    $table->bigUnsignedInteger('user_id');
+    $table->bigUnsignedInteger('podcast_id');
+    $table->timestamps();
+});
+```
+{% endtab %}
+{% endtabs %}
 
 ## Polymorphic Many to Many Pivot Models
 
