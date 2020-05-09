@@ -11,6 +11,7 @@ jobs:
         uses: testthedocs/github-pages-deploy-action@master
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          TARGET_BRANCH: gh-pages
-          BUILD_SCRIPT: yarn && yarn docs:build
+          BASE_BRANCH: master
+          BRANCH: gh-pages
           BUILD_DIR: docs/.vuepress/dist/
+          BUILD_SCRIPT: yarn && yarn docs:build
