@@ -2,7 +2,7 @@
 home: true
 heroImage: /assets/img/mage.png
 heroText: Larawiz
-tagline: The Laravel scaffolder you deserve
+tagline: The Laravel Wizard scaffolder you wanted but never got, until now!
 actionText: Scaffold your database now →
 actionLink: /quickstart
 features:
