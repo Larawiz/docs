@@ -8,10 +8,10 @@ jobs:
         uses: actions/checkout@master
 
       - name: Build and Deploy
-        uses: grasilife/github-pages-deploy-action@master
+        uses: jenkey2011/vuepress-deploy@master
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          TARGET_REPO: larawiz/docs
           BASE_BRANCH: master
-          BRANCH: gh-pages
-          FOLDER: build
-          BUILD_SCRIPT: npm install && npm run-script build
+          BUILD_SCRIPT: yarn && yarn build
+          BUILD_DIR: docs/.vuepress/dist/
