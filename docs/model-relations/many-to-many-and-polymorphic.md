@@ -10,7 +10,7 @@ Because the nature of many-to-many relations, these are only supported on models
 
 For [many-to-many](https://laravel.com/docs/eloquent-relationships#many-to-many) relations, just simply add the `belongsToMany` in each. No need to add the Model pointing to the other if we can infer that from the relation names.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="many-to-many-yaml"
 ```yaml{4,8}
 models:
@@ -80,7 +80,7 @@ For the case of [many-to-many-polymorphic](https://laravel.com/docs/eloquent-rel
 Polymorphic Many-to-many relations cannot be guessed by Larawiz. These needs both the target Model, and the name of "~able" relation as second argument. 
 :::
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="polymorphic-many-to-many-yaml"
 ```yaml{4,8,12-13}
 models:
@@ -166,7 +166,7 @@ There is no need to create a `morphedByMany` relation in the child model, but is
 
 If the models use UUID as primary key, no problem, Larawiz will automatically create a pivot table using `uuidMorphs` and/or reference the target model by its primary key.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="polymorphic-many-to-many-yaml-2"
 ```yaml{3,8,13}
 models:
@@ -242,7 +242,7 @@ You can always override the pivot table created automatically by Larawiz by just
 
 This is very handy if you don't want the pivot model overhead, and add some properties to the pivot relation.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="overriding-automatic-pivot-tables-yaml"
 ```yaml{11-14}
 models:

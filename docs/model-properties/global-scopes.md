@@ -4,7 +4,7 @@ Sometimes thinking ahead for Global Scopes is a good way to leverage creating an
 
 Using [Custom Models](../model.md#custom-model), issue the `scopes` key with a list to generate each automatically, ready to be edited by you.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="global-scopes-yaml"
 ```yaml{6-7}
 models:

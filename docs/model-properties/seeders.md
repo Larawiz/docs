@@ -2,7 +2,7 @@
 
 [Seeders](https://laravel.com/docs/seeding) are conveniently created automatically for the model. Just make the model, and the seeder will be automatically created using its key name.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="seeders-yaml"
 ```yaml
 models:

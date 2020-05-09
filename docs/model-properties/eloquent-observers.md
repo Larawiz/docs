@@ -4,7 +4,7 @@ Finally, you can also create an [Observer](https://laravel.com/docs/eloquent#obs
 
 Larawiz will automatically create an observer, based on the Model name, by just calling the appropriate artisan command behind the scenes.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="eloquent-observers-yaml"
 ```yaml{6}
 models:

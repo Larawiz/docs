@@ -2,7 +2,7 @@
 
 Factories for Models are created automatically for [Quick Models](../model.md#quick-model) and [Custom Models](../model.md#custom-model).
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="factories-yaml"
 ```yaml
 models:
@@ -52,7 +52,7 @@ models:
 
 You can add additional states by defining a list on the `factory` key:
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="factories-yaml-2"
 ```yaml{4-6}
 Post:

@@ -4,7 +4,7 @@ Models must be named by the key name in singular. Table migrations will be creat
 
 For example, `GameLeaderboard` will make a table called `game_leaderboards`, without needing to set the table manually.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="braindead-syntax-tab-yaml"
 ```yaml{2}
 models:
@@ -80,7 +80,7 @@ When creating a model, the following logic will be automated for you:
 
 Quick models are the preferred way to create a model. Just issue the columns directly below the model key.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="quick-model-tab-yaml"
 ```yaml
 models:
@@ -209,7 +209,7 @@ Some models may need some non-standard configuration. For example, let's say thi
 
 To do that, we need only to put the columns inside the `columns` key, so we can separate the other values for the model.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="custom-model-tab-yaml"
 ```yaml
 namespace: App\Models

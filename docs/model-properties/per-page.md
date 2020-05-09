@@ -4,7 +4,7 @@ By default, Eloquent Models retrieve 15 records from the database when paginatin
 
 To do that, just use `perPage` key with the number you want using [Custom Models](../model.md#custom-model).
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="per-page-yaml"
 ```yaml{6}
 models:

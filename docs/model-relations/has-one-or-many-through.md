@@ -4,7 +4,7 @@ A [has-one-through](https://laravel.com/docs/eloquent-relationships#has-one-thro
 
 For example, let's say a Country can have many Users, and each User can have many Posts. While there is no direct connection between the Country and the Posts, the Country can access the Post _through_ the User model themselves.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="has-one-or-many-through-yaml"
 ```yaml{4,8,13}
 models:

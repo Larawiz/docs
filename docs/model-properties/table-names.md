@@ -2,7 +2,7 @@
 
 With [Quick Models](../model.md#quick-model), you don't need to name the model table, since it's automatically created as the plural name of the model.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="table-names-yaml"
 ```yaml{2}
 models:
@@ -39,7 +39,7 @@ For a [Custom Model](../model.md#custom-model), you can change the table name fo
 
 For example, we can set the `Post` model to use the `blog_posts` table. This will create a migration following the table name and reference it in the Model class, automatically.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="table-names-yaml-2"
 ```yaml{10}
 models:

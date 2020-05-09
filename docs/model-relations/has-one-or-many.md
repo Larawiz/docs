@@ -4,7 +4,7 @@ You can do effortless [has-one](https://laravel.com/docs/eloquent-relationships#
 
 In this example, Larawiz gets a hint of the model you want to reach using the relation name. The `post: hasMany` means it has many `Post` , while the `user: belongsTo` means it belongs to the `User` model.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="has-one-or-many-yaml"
 ```yaml{4-5,10,14}
 models:
@@ -92,7 +92,7 @@ When creating a `belongsTo` relation, you can issue the keyword  `index`  or `un
 
 You can also use the `nullable` keyword to create a nullable column, which can be used to create models without a belonging parent model, even in combination with index keywords.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="null-and-index-belongsto-yaml"
 ```yaml{7,10}
 models:

@@ -6,7 +6,7 @@ Define migrations using the table name as key, and a list of columns directly un
 
 For example, the `failed_jobs` tables can be declared like this:
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="migrations-yaml"
 ```yaml
 migrations:
@@ -70,7 +70,7 @@ Using automatic pivot tables or polymorphic pivot tables, you can override the t
 
 For example, we can override the `card_player` table to add some information about the card, like an aliased name the player may have for it.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="overriding-pivot-tables-yaml"
 ```yaml{12-17}
 models:  
@@ -142,7 +142,7 @@ Schema::create('card_player', function (Blueprint $table) {
 
 The same concept applies for polymorphic pivot tables. In the next example, the automatic table is called `routables`, so with adding the migration manually you can customize the table, like adding a column to point out the `difficulty` for the attached `Car` or `Bus` model.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="overriding-pivot-tables-yaml-2"
 ```yaml{16-20}
 models:  

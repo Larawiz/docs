@@ -8,7 +8,7 @@ Don't be shy to use the `Models` namespace if you want to keep all your models a
 
 For example, setting `MyModels` will get all your models inside the `App\MyModels` namespace.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML"
 ```yaml
 namespace: MyModels
@@ -37,7 +37,7 @@ class User extends Model
 
 You can also put a model inside another level below the default or custom namespace.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML"
 ```yaml
 namespace: Models

@@ -8,7 +8,7 @@ Because of the nature of Eloquent ORM polymorphic relations, only parent models 
 
 In this example, both `Student` and `Teacher` share one `Classroom`, and share many `Courses`. The polymorphic relations will be fully aware of the names, and the migrations for both `Classroom` and `Course` will include the polymorphic columns automatically.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="polymorphic-has-one-or-many-yaml"
 ```yaml{4-5,9-10,14,18}
 models:
@@ -115,7 +115,7 @@ When the child model has many `morphTo` relations, you will need to pick one, li
 
 If all the related models use `uuid` as primary key, don't worry, Larawiz will automatically change the migration column to use `uuid`.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="polymorphic-has-one-or-many-yaml-2"
 ```yaml{3,8}
 models:
@@ -191,7 +191,7 @@ Schema::create('categories', function (Blueprint $table) {
 
 For the case of `morphTo` relation, you can use the `nullable` keyword that allows null relations:
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="nullable-morphto-yaml"
 ```yaml{3}
 models:
@@ -230,7 +230,7 @@ Larawiz will automatically use `nullableMorphs` or `nullableUuidMorphs` dependin
 
 You can force Larawiz to create an UUID polymorphic relation using `uuidMorphs` in the column relation by issuing `uuid` to the relation declaration. You can also mix it with [nullable morphTo](polymorphic-has-one-or-many.md#nullable-morphto).
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="uuid-morphto-yaml"
 ```yaml{3,6}
 models:

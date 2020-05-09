@@ -2,7 +2,7 @@
 
 To make a model [soft-deletable](https://laravel.com/docs/eloquent#soft-deleting), just issue the `softDeletes` or `softDeletesTz` into the columns list. Larawiz will automatically detect and use the `SoftDeletes` trait for the Model.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="soft-deletes-yaml"
 ```yaml{4}
 models:
@@ -37,7 +37,7 @@ Schema::create('posts', function (Blueprint $table) {
 
 Alternatively, you can issue the column name to use as soft-deletes, that will be reflected in the model itself.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML"  id="soft-deletes-yaml-2"
 ```yaml{4}
 models:
@@ -78,7 +78,7 @@ Laravel doesn't support non-timestamp soft-delete columns, but you're free to cr
 
 When you create a model with soft deletes and factories enabled by default, Larawiz will conveniently create a `deleted` factory state, for free.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="deleted-factory-state-yaml"
 ```yaml{4}
 models:

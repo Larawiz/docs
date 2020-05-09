@@ -4,7 +4,7 @@ You may want to create an [Authenticable](https://laravel.com/docs/authenticatio
  
 If you're using a [Quick Model](./#quick-model), issuing a `password`, `rememberToken`, or both, will instruct Larawiz to treat the model as an User Model.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="users-yaml"
 ```yaml{5-6}
 models:

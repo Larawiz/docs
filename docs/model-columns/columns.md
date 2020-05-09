@@ -4,7 +4,7 @@ Column names must be defined by their key name, while the type references the me
 
 Additional arguments for the method can be defined after the colon, and separated by comma.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="columns-yaml-1"
 ```yaml{3}
 models:
@@ -26,7 +26,7 @@ Schema::create('posts', function (Blueprint $table) {
 
 While the above syntax will work for [Quick Models](../model.md#quick-model), you can have total control on the model itself using [Custom Models](../model.md#custom-model). For the latter, put your columns and relations inside the `columns` key.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="columns-yaml-2"
 ```yaml{4}
 models:
@@ -53,7 +53,7 @@ If you have a package adding custom columns types, like `$table->custom('foo')` 
 
 Column keys with null values will transform into method names with no arguments. This is used for timestamps, soft-deletes and other short-hands from the [Blueprint](https://laravel.com/docs/migrations#columns).
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="columns-with-no-values-yaml"
 ```yaml
 models:

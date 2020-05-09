@@ -2,7 +2,7 @@
 
 While you may want to change [how to route bind the Model](https://laravel.com/docs/routing#implicit-binding) into the controllers later in your application, or setting it in your App Service Provider, you can simply override it using the `route` key with the name of the property when you use [Custom Models](../model.md#custom-model).
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="route-binding-yaml"
 ```yaml{10}
 models:

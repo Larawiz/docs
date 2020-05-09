@@ -2,7 +2,7 @@
 
 Larawiz automatically creates the `id` as primary column when using [Quick Models](../model.md#quick-model), so there is no need to declare it.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="primary-key-yaml-1"
 ```yaml
 models:
@@ -28,7 +28,7 @@ Schema::create('podcasts', function (Blueprint $table) {
 
 You can change the name of the primary key using the `id` column followed by the new name. Larawiz will automatically point the primary key column name inside the model.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="primary-key-yaml-2"
 ```yaml{3}
 models:
@@ -74,7 +74,7 @@ When using [Quick Models](../model.md#quick-model), you can exchange the default
 
 For both [Quick Models](../model.md#quick-model) and [Custom Models](../model.md#custom-model), Larawiz will automatically point and update the primary key inside the model, and include the `HasUuidPrimaryKey` trait for free alongside it, **right out of the box!**
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="uuid-as-primary-key-yaml"
 ```yaml{2}
 Post:
@@ -163,7 +163,7 @@ Primary keys identify a single row in the database. Most of the time you will wa
 
 If you're not using `id`, you can set any other column as primary by using the `primary` key. Larawiz will guess the rest based on the column you point as primary, like the type and incrementing nature.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="custom-primary-key-yaml"
 ```yaml{8}
 Podcast:
@@ -210,7 +210,7 @@ Schema::create('podcasts', function (Blueprint $table) {
 
 On the other hand, if you want your model to not have any primary key, ensure you set `primary` to `false`.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="custom-primary-key-yaml-2" 
 ```yaml{7}
 Podcast:
@@ -253,7 +253,7 @@ Instead, use `unsignedBigInteger` or edit the migration after scaffolding.
 
 If you need to manually set the primary key properties, for custom or non-standard columns, you can add `type` and `incrementing` values:
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML"  id="custom-primary-key-yaml-3"
 ```yaml{6-9}
 Podcast:

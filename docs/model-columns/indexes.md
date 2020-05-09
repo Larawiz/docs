@@ -2,7 +2,7 @@
 
 A simple way to create an index or unique index for a table is just to add `index` or `unique` to the column definition:
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="indexes-yaml"
 ```yaml{3-4}
 models:
@@ -34,7 +34,7 @@ Set one or many indexes with a custom name (especially if your SQL engine doesn'
 
 For unique indexes, you can add `unique` for the index.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="composite-indexes-yaml"
 ```yaml{9-10}
 Post:

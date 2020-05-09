@@ -8,7 +8,7 @@ When using [Quick Models](../model.md#quick-model) or [Custom Models](../model.m
 * `hidden`,
 * or is a `rememberToken`.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="hidden-yaml"
 ```yaml{4-6,11}
 models:
@@ -46,7 +46,7 @@ class Post extends Model
 
 If you're using a [Custom Model](../model.md#custom-model), you have full control on what is hidden or not by using the `hidden` key inside the model declaration.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="hidden-yaml-2"
 ```yaml{8-10}
 models:

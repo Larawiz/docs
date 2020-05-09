@@ -4,7 +4,7 @@ Sometimes you may want to take advantage of Model Booting and Initializing using
 
 Each trait contains an empty `boot{Trait}` and `initialize{Trait}` ready for you to code them. You can even reference the same trait from other models.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="traits-yaml"
 ```yaml{11-12,20-21}
 namespace: Models
@@ -91,7 +91,7 @@ In other occasions, you may have a package with a trait you want to use.
 
 For illustration purposes, we are gonna install a package that [allows users to have Two Factor Authentication without external providers](https://github.com/DarkGhostHunter/Laraguard). We can immediately use the trait that comes with the package by just issuing it into the list.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="external-traits-yaml"
 ```yaml{7-8}
 models:

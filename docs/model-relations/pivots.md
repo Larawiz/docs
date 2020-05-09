@@ -10,7 +10,7 @@ When using Pivot Models, **Larawiz will hands-off the pivot to you**, so be sure
 
 If you want to use a Pivot Model, simply create a `belongsToMany` and **add the `using` method in ALL the relations**, pointing the model you want to use as Pivot or Polymorphic Pivot. Yeah, that's it.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="many-to-many-pivot-models-yaml"
 ```yaml{4,8,11-12}
 models:
@@ -115,7 +115,7 @@ When using Pivot Models for a `belongsToMany` relation, pivot tables will be cre
 
 Alternatively, you can follow Laravel naming convention \(two models ordered alphabetically\), which will bypass naming the relation unnecessarily.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="table-names-yaml"
 ```yaml{3,5,7-8}
 models:
@@ -181,7 +181,7 @@ You can also include Polymorphic Pivot Models. If the parent models use UUID as 
 
 For example, here all related models use UUID, but the tag itself uses `id`. Here the `Taggable` model will be changed automatically to  `MorphPivot` . We will need to **add the `uuid` to the `morphTo` relation** to make UUID polymorphic relations work.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="polymorphic-many-to-many-pivot-models-yaml"
 ```yaml{18-19}
 models:

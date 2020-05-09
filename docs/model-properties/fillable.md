@@ -10,7 +10,7 @@ By default, using [Quick Models](../model.md#quick-model) or [Custom Models](../
 
 Considering that these types depend most on the application rather than inputs from a Request, most of the time there is no need to set the fillable columns manually.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="fillable-yaml"
 ```yaml
 models:
@@ -68,7 +68,7 @@ When using [Custom Models](../model.md#custom-model), the same rule will apply, 
 
 In this example, we will set only the `title` and the `body` columns for the Model, since we plan to automatically create the `slug` from the title itself after scaffolding.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="fillable-yaml-2"
 ```yaml{12-14}
 models:

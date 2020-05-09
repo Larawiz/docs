@@ -2,7 +2,7 @@
 
 When using [Quick Models](../model.md#quick-model), Larawiz automatically appends timestamps, so there is no need to re-declare them inside the model definition.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="timestamps-yaml"
 ```yaml
 models:
@@ -36,7 +36,7 @@ If you plan to **save and retrieve time using different time zones into the data
 
 When using [Quick Models](../model.md#quick-model), you can always use `timestampsTz` in the columns definitions to swap the normal timestamps to these in a case-by-case scenario.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="timezone-timestamps-yaml"
 ```yaml{8}
 models:
@@ -72,7 +72,7 @@ Schema::create('posts', function (Blueprint $table) {
 
 When using [Custom Models](../model.md#custom-model), if the model doesn't includes either `timestamps` or `timestampsTz`, timestamps will be disabled.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="no-timestamps-yaml"
 ```yaml
 Post:
@@ -109,7 +109,7 @@ Schema::create('posts', function (Blueprint $table) {
 
 When using [Custom Models](../#custom-model), you can change the default columns for _timestamping_ using the `timestamps` key. For example, you can disable the default timestamps for updates and only point out a column for the creation date.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="custom-timestamps-yaml"
 ```yaml{9-10}
 Post:

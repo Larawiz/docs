@@ -2,7 +2,7 @@
 
 Some relations need a Pivot table to work. Don't worry, Larawiz will automatically create pivot tables for your `belongsToMany` and `morphToMany` relations by using Laravel naming convention automatically.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML"
 ```yaml
 User:
@@ -59,7 +59,7 @@ Schema::create('role_user', function (Blueprint $table) {
 
 For the case of polymorphic pivots, Larawiz will also guess the migration. Let's use the same Laravel example that many Posts or Videos having multiple Tags. Note that, again, we didn't issue the pivot table anywhere.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML"
 ```yaml
 models:
@@ -147,7 +147,7 @@ You can also create your own Pivot model, or a Morphable Pivot model, by setting
 
 Then, **use the `using` method in the relation declaration** to let Larawiz know you're using a Pivot Model instead of a normal Eloquent Model to avoid creating an automatic pivot migration.
 
-:::: tabs
+:::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML"
 ```yaml
 User:
