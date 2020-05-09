@@ -10,7 +10,7 @@ composer require -dev larawiz/larawiz
 
 ## Usage
 
-If it's your first time using Larawiz, publish the **sample blog** scafoold using the `larawiz:sample` command. It uses a very self-explanatory syntax, so you should get the gist of what's happening without problems.
+If it's your first time using Larawiz, publish the **sample blog** scaffold using the `larawiz:sample` command. It uses a very self-explanatory syntax, so you should get the gist of what's happening without problems.
 
 ```bash{7}
 php artisan larawiz:sample

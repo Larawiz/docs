@@ -2,7 +2,7 @@
 home: true
 heroImage: /assets/img/mage.png
 heroText: Larawiz
-tagline: The Laravel Wizard scaffolder you wanted but never got, until now!
+tagline: The Laravel scaffolder you wanted but never got, until now!
 actionText: Scaffold your database now →
 actionLink: /quickstart
 features:
@@ -17,7 +17,7 @@ footer: MIT Licensed | Laravel is a Trademark of Taylor Otwell. Copyright © 201
 
 ## 🧙 Scaffold your database like magic
 
-This is just an example of what Larawiz can do for you, **automatically**. 
+This is just a tiny example of what Larawiz can do for you, **automatically**. 
 
 ```yaml
 models:
