@@ -1,4 +1,4 @@
-# Models
+# Model
 
 Models must be named by the key name in singular. Table migrations will be created automatically using snake case on plural.
 

@@ -1,7 +1,10 @@
 title: Larawiz
 description: Scaffolder documentation
 base: /docs/
-theme: yuu
+theme: succinct
+globalUIComponents:
+  - ThemeManager
+
 themeConfig:
   logo: /assets/img/mage.png
   home: true
@@ -59,12 +62,10 @@ themeConfig:
         - /model-properties/seeders
         - /model-properties/global-scopes
         - /model-properties/eloquent-observers
-    - title: 🗄 Migrations
+    - title: 📝 Migrations
       path: /migrations
 
-  yuu:
-    defaultColorTheme: blue
-    disableThemeIgnore: true
+  searchPlaceholder: Search...
 
 plugins:
   - tabs

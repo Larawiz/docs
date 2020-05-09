@@ -15,7 +15,7 @@ features:
 footer: MIT Licensed | Laravel is a Trademark of Taylor Otwell. Copyright © 2011-2020 Laravel LLC.
 ---
 
-## 🧙 Scaffold your database like magic
+## Scaffold your database like a 🧙 
 
 This is just a tiny example of what Larawiz can do for you, **automatically**. 
 
