@@ -13,6 +13,6 @@ git init
 git add -A
 git commit -m 'deploy'
 
-git push -f git@github.com:larawiz/larawiz.github.io.git master
+git push -f git@github.com:Larawiz/docs.git master:gh-pages
 
 cd -

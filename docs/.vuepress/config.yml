@@ -1,6 +1,8 @@
 title: Larawiz
 description: Scaffolder documentation
 themeConfig:
+  base: /docs/
+
   logo: /assets/img/mage.png
   home: true
 

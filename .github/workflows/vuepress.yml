@@ -8,7 +8,7 @@ jobs:
         uses: actions/checkout@master
 
       - name: Build and Deploy
-        uses: jenkey2011/vuepress-deploy@master
+        uses: testthedocs/github-pages-deploy-action@master
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           TARGET_BRANCH: gh-pages
