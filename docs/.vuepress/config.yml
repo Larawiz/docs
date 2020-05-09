@@ -1,0 +1,64 @@
+title: Larawiz
+description: Scaffolder documentation
+themeConfig:
+  logo: /assets/img/mage.png
+  home: true
+
+  nav:
+    - text: Support me on Kofi
+      link: https://ko-fi.com/DarkGhostHunter
+    - text: Support me with Paypal
+      link: https://paypal.me/darkghosthunter
+
+  smoothScroll: true
+
+  repo: larawiz/larawiz
+  repoLabel: Download
+
+  docsRepo: larawiz/docs
+  docsDir: docs
+  editLinks: true
+  editLinkText: Improve this page
+
+  lastUpdated: true
+
+  sidebar:
+    - title: ⚡ Quickstart
+      path: /quickstart
+      collapsable: false
+    - title: 📗 Model
+      path: /model
+      collapsable: false
+    - title: 📄 Model Columns
+      children:
+        - /model-columns/columns
+        - /model-columns/primary-key
+        - /model-columns/indexes
+        - /model-columns/soft-deletes
+        - /model-columns/timestamps
+    - title: 🔀 Model Relations
+      children:
+        - /model-relations/relations
+        - /model-relations/has-one-or-many
+        - /model-relations/has-one-or-many-through
+        - /model-relations/polymorphic-has-one-or-many
+        - /model-relations/many-to-many-and-polymorphic
+        - /model-relations/pivots
+    - title: 🏷️ Model Properties
+      children:
+        - /model-properties/table-names
+        - /model-properties/fillable
+        - /model-properties/hidden
+        - /model-properties/traits
+        - /model-properties/route-binding
+        - /model-properties/users
+        - /model-properties/per-page
+        - /model-properties/factories
+        - /model-properties/seeders
+        - /model-properties/global-scopes
+        - /model-properties/eloquent-observers
+    - title: 🗄 Migrations
+      path: /migrations
+
+plugins:
+  - tabs
