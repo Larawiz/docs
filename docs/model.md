@@ -28,42 +28,6 @@ class GameLeaderboard extends Model
 ```
 :::
 
-::: tab "Migration" id="braindead-syntax-tab-migration"
-```php{17}
-<?php
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-class CreateGameLeaderboardsTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('game_leaderboards', function (Blueprint $table) {
-            // ... 
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('game_leaderboards');
-    }
-}        
-```
-:::
 ::::
 
 When creating a model, the following logic will be automated for you:
@@ -410,32 +374,6 @@ $factory->state(Podcast::class, 'scheduled', [
 ```
 :::
 
-::: tab "Seeder" id="custom-model-tab-seeder"
-```php
-<?php
-
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
-use App\Models\Podcast;
-
-class PodcastSeeder extends Seeder
-{
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        $twoAndHalfPages = ceil(Podcast::make()->getPerPage() * 2.5);
-    
-        factory(Podcast::class, $twoAndHalfPages)->create();
-    }
-}
-```
-:::
 ::::
 
 ::: tip Custom models hands off

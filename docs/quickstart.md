@@ -36,6 +36,35 @@ php artisan larawiz:scaffold
 
 Larawiz will try to guess almost everything. This documentation will help you do some advanced things or override others for your convenience.
 
+## What does scaffold?
+
+If you're looking how a complete scaffold looks, here are the sample files for a `Post` model **with just 7 lines of code!**
+
+:::: tabs :options="{ useUrlFragment: false }"
+::: tab "YAML" id="what-does-scaffold-tab-yaml"
+<<< @/docs/samples/yaml.yml{8-15}
+:::
+
+::: tab "Model" id="what-does-scaffold-tab-model"
+<<< @/docs/samples/model.php
+:::
+
+::: tab "Migration" id="what-does-scaffold-tab-tab-migration"
+<<< @/docs/samples/migration.php
+:::
+
+::: tab "Factory" id="what-does-scaffold-tab-tab-factory"
+<<< @/docs/samples/factory.php
+:::
+
+::: tab "Seeder" id="what-does-scaffold-tab-tab-seeder"
+<<< @/docs/samples/seeder.php
+:::
+
+::::
+
+That and much more!
+
 ## Backups
 
 Larawiz will automatically copy your `app` and some of your `database` directories as backups every time you scaffold.
