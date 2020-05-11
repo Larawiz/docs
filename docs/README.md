@@ -44,13 +44,11 @@ If you're looking how a complete scaffold looks, here are the sample files for a
 
 That and much more!
 
-* [Models](https://laravel.com/docs/eloquent#defining-models) with PHPDocs, [primary keys](https://laravel.com/docs/eloquent#eloquent-model-conventions), [timestamps](https://laravel.com/docs/eloquent#eloquent-model-conventions), [attribute casting](https://laravel.com/docs/eloquent-mutators#attribute-casting), [relations](https://laravel.com/docs/eloquent-relationships) and [fillable properties](https://laravel.com/docs/eloquent#mass-assignment).
+* [Models](https://laravel.com/docs/eloquent#defining-models) with PHPDocs, [primary keys](https://laravel.com/docs/eloquent#eloquent-model-conventions), [timestamps](https://laravel.com/docs/eloquent#eloquent-model-conventions), [attribute casting](https://laravel.com/docs/eloquent-mutators#attribute-casting), [relations](https://laravel.com/docs/eloquent-relationships), [hidden](https://laravel.com/docs/eloquent-serialization#hiding-attributes-from-json) and [fillable properties](https://laravel.com/docs/eloquent#mass-assignment).
 * [Migrations](https://laravel.com/docs/migrations#introduction).
 * [Factories](https://laravel.com/docs/database-testing#writing-factories).
 * [Seeders](https://laravel.com/docs/seeding).
-* **Pivot tables** without ever pointing them.
-* and much more...
+* **Pivot tables** without ever pointing them. **YES**, I SAID **AUTOMATIC PIVOT TABLES**. BELIEVE IT.
+* and that's just thetip of the iceberg...
 
-Wow! That a lot of code! Indeed, but falter not, you also have control on what to do since the core of this package is simple:
-
-**LARAWIZ GUESSES, DOESN'T IMPOSES**.
+Do you really want to save countless hours in just minutes? [Then start using it!](quickstart.md) 

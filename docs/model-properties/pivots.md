@@ -5,13 +5,14 @@ Some relations need a Pivot table to work. Don't worry, Larawiz will automatical
 :::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML"
 ```yaml
-User:
-  name: string
-  roles: belongsToMany:Role as:permissionsSet
+models: 
+  User:
+    name: string
+    roles: belongsToMany:Role as:permissionsSet
 
-Role:
-  name: string
-  users: belongsToMany:User
+  Role:
+    name: string
+    users: belongsToMany:User
 ```
 :::
 
@@ -150,18 +151,19 @@ Then, **use the `using` method in the relation declaration** to let Larawiz know
 :::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML"
 ```yaml
-User:
-  name: string
-  subscriptions: belongsToMany:Podcast using:Subscription
+models:
+  User:
+    name: string
+    subscriptions: belongsToMany:Podcast using:Subscription
 
-Podcast:
-  title: string
-  subscribers: belongsToMany:User using:Subscription
+  Podcast:
+    title: string
+    subscribers: belongsToMany:User using:Subscription
 
-Subscription:
-  user: belongsTo:User
-  podcast: belongsTo:Podcast
-  last_heard: timestamp nullable
+  Subscription:
+    user: belongsTo:User
+    podcast: belongsTo:Podcast
+    last_heard: timestamp nullable
 ```
 :::
 
@@ -228,12 +230,13 @@ When you reference a Model as a Pivot, Larawiz will automatically change the typ
 When creating [Pivot models](https://laravel.com/docs/eloquent-relationships#defining-custom-intermediate-table-models), soft-deleted, primary keys and timestamps are automatically disabled. You can re-enable them using the `primary` and `timestamps` keys or columns, but soft-deletes are bypassed since the framework still doesn't support it, [but it may in the future](https://github.com/laravel/framework/pull/31224).
 
 ```yaml
-Subscription:
-  id: ~
-  user: belongsTo:User
-  podcast: belongsTo:Podcast
-  last_heard: timestamps nullable
-  timestamps: ~
+models:
+  Subscription:
+    id: ~
+    user: belongsTo:User
+    podcast: belongsTo:Podcast
+    last_heard: timestamps nullable
+    timestamps: ~
 ```
 :::
 

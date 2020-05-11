@@ -36,17 +36,18 @@ For unique indexes, you can add `unique` for the index.
 
 :::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="composite-indexes-yaml"
-```yaml{9-10}
-Post:
-  columns:
-    id: ~
-    title: string
-    slug: string
-    body: longText
-    timestamps: ~
-
-  indexes:
-    - slug id name:slug_id_index unique
+```yaml{10-11}
+models:
+    Post:
+      columns:
+        id: ~
+        title: string
+        slug: string
+        body: longText
+        timestamps: ~
+    
+      indexes:
+        - slug id name:slug_id_index unique
 ```
 :::
 

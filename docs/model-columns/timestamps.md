@@ -75,12 +75,13 @@ When using [Custom Models](../model.md#custom-model), if the model doesn't inclu
 :::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="no-timestamps-yaml"
 ```yaml
-Post:
-  columns:
-    id: ~
-    title: string
-    excerpt: string
-    body: longText
+models:
+  Post:
+    columns:
+      id: ~
+      title: string
+      excerpt: string
+      body: longText
 ```
 :::
 
@@ -111,17 +112,18 @@ When using [Custom Models](../#custom-model), you can change the default columns
 
 :::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="custom-timestamps-yaml"
-```yaml{9-10}
-Post:
-  columns:
-    id: ~
-    title: string
-    excerpt: string
-    body: longText
-    creation_date: timestamp nullable
+```yaml{10-11}
+models:
+  Post:
+    columns:
+      id: ~
+      title: string
+      excerpt: string
+      body: longText
+      creation_date: timestamp nullable
 
-  timestamps:
-    created_at: creation_date
+    timestamps:
+      created_at: creation_date
 ```
 :::
 

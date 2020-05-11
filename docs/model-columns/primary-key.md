@@ -76,12 +76,13 @@ For both [Quick Models](../model.md#quick-model) and [Custom Models](../model.md
 
 :::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="uuid-as-primary-key-yaml"
-```yaml{2}
-Post:
-  uuid: ~
-  title: string
-  excerpt: string
-  body: longText
+```yaml{3}
+models:
+  Post:
+    uuid: ~
+    title: string
+    excerpt: string
+    body: longText
 ```
 :::
 
@@ -165,15 +166,16 @@ If you're not using `id`, you can set any other column as primary by using the `
 
 :::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="custom-primary-key-yaml"
-```yaml{8}
-Podcast:
-  columns:
-    title: string
-    excerpt: string
-    body: longText
-    timestamps: ~
+```yaml{9}
+models:
+  Podcast:
+    columns:
+      title: string
+      excerpt: string
+      body: longText
+      timestamps: ~
 
-  primary: title
+    primary: title
 ```
 :::
 
@@ -212,14 +214,15 @@ On the other hand, if you want your model to not have any primary key, ensure yo
 
 :::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="custom-primary-key-yaml-2" 
-```yaml{7}
-Podcast:
-  columns:
-    title: string
-    slug: string
-    # ...
+```yaml{8}
+models:
+  Podcast:
+    columns:
+      title: string
+      slug: string
+      # ...
 
-  primary: false
+    primary: false
 ```
 :::
 
@@ -255,16 +258,17 @@ If you need to manually set the primary key properties, for custom or non-standa
 
 :::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML"  id="custom-primary-key-yaml-3"
-```yaml{6-9}
-Podcast:
-  columns:
-    foo: custom
-    # ...
+```yaml{7-10}
+models:
+  Podcast:
+    columns:
+      foo: custom
+      # ...
 
-  primary:
-    column: foo
-    type: bar
-    incrementing: false
+    primary:
+      column: foo
+      type: bar
+      incrementing: false
 ```
 :::
 

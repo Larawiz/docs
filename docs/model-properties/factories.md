@@ -54,13 +54,14 @@ You can add additional states by defining a list on the `factory` key:
 
 :::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="factories-yaml-2"
-```yaml{4-6}
-Post:
-  title: string
-  body: longText
-  factory:
-    - unpublished
-    - scheduled
+```yaml{5-7}
+models:
+  Post:
+    title: string
+    body: longText
+    factory:
+      - unpublished
+      - scheduled
 ```
 :::
 
