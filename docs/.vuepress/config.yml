@@ -9,6 +9,10 @@ themeConfig:
   logo: /assets/img/mage.png
   home: true
 
+  algolia:
+    apiKey: 7f6d9ad3b10545cdd4d7b77ee29f38da
+    indexName: larawiz
+
   nav:
     - text: Support me on Kofi
       link: https://ko-fi.com/DarkGhostHunter
