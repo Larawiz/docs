@@ -17,29 +17,32 @@ footer: MIT Licensed | Laravel is a Trademark of Taylor Otwell. Copyright © 201
 
 ## Scaffold your database like a 🧙 
 
-This is just a tiny example of what Larawiz can do for you, **automatically**. 
+If you're looking how a complete scaffold looks, here are the sample files for a `Post` model **with just 7 lines of code!**
 
-```yaml
-models:
-  User:
-    name: string
-    password: string
-    email: string
-    posts: belongsTo
+:::: tabs :options="{ useUrlFragment: false }"
+::: tab "YAML" id="what-does-scaffold-tab-yaml"
+<<< @/docs/samples/yaml.yml{8-15}
+:::
 
-  Post:
-    uuid: ~
-    title: string
-    body: text
-    private_notes: json
-    published_at: timestmap nullable
-    user: hasOne
-    tag: belongsToMany
-   
-  Tag:
-    name: string
-    post: belongsToMany
-```
+::: tab "Model" id="what-does-scaffold-tab-model"
+<<< @/docs/samples/model.php
+:::
+
+::: tab "Migration" id="what-does-scaffold-tab-tab-migration"
+<<< @/docs/samples/migration.php
+:::
+
+::: tab "Factory" id="what-does-scaffold-tab-tab-factory"
+<<< @/docs/samples/factory.php
+:::
+
+::: tab "Seeder" id="what-does-scaffold-tab-tab-seeder"
+<<< @/docs/samples/seeder.php
+:::
+
+::::
+
+That and much more!
 
 * [Models](https://laravel.com/docs/eloquent#defining-models) with PHPDocs, [primary keys](https://laravel.com/docs/eloquent#eloquent-model-conventions), [timestamps](https://laravel.com/docs/eloquent#eloquent-model-conventions), [attribute casting](https://laravel.com/docs/eloquent-mutators#attribute-casting), [relations](https://laravel.com/docs/eloquent-relationships) and [fillable properties](https://laravel.com/docs/eloquent#mass-assignment).
 * [Migrations](https://laravel.com/docs/migrations#introduction).
