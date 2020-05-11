@@ -46,7 +46,7 @@ class PostSeeder extends Seeder
      */
     public function createStates($factory)
     {
-        // If your Schematic model has states defined, you can add them here too.
+        // If your Post model has states defined, you can add them here too.
         //
         // $factory->of(Post::class)->times(10)->state('state')->create();
     }
@@ -59,7 +59,7 @@ class PostSeeder extends Seeder
      */
     protected function amount($post)
     {
-        // We will conveniently create to two and a half pages of Schematic.
+        // We will conveniently create to two and a half pages of Post.
         return (int) ($post->getPerPage() * 2.5);
     }
 
