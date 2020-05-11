@@ -43,8 +43,17 @@
   background-color var(--codeBgColor)
   border-bottom 1px solid #00000033
   border-radius 0 6px 6px 6px
-  box-shadow 0 0 10px rgba(0, 0, 0, .05)
+  box-shadow 0 5px 5px #00000022
   padding 0
+
+@media (max-width: 419px)
+
+  .tabs-component-panel div[class*="language-"]
+    margin-top 0
+
+  .tabs-component-panels
+    border-bottom none
+    box-shadow none
 
 .custom-block
   font-size 1rem
