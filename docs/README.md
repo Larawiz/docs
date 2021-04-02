@@ -49,6 +49,6 @@ That and much more!
 * [Factories](https://laravel.com/docs/database-testing#writing-factories).
 * [Seeders](https://laravel.com/docs/seeding).
 * **Pivot tables** without ever pointing them. **YES**, I SAID **AUTOMATIC PIVOT TABLES**. BELIEVE IT.
-* and that's just thetip of the iceberg...
+* and that's just the tip of the iceberg...
 
 Do you really want to save countless hours in just minutes? [Then start using it!](quickstart.md) 
