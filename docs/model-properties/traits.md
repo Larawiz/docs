@@ -7,8 +7,6 @@ Each trait contains an empty `boot{Trait}` and `initialize{Trait}` ready for you
 :::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="traits-yaml"
 ```yaml{11-12,20-21}
-namespace: Models
-
 models:
 
   Post:
@@ -109,7 +107,7 @@ models:
 ```php{10}
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use DarkGhostHunter\Laraguard\TwoFactorAuthentication;
@@ -125,6 +123,6 @@ class User extends Authenticatable
 ::::
 
 ::: warning Ensure the trait exists
-If a trait doesn't exist, watch out, it will be created inside the application namespace.
+If a trait doesn't exist, watch out, it will be created inside the application models namespace, which is `App\Models`
 :::
 

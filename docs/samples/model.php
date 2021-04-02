@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use App\User;
-use App\Comment;
-use App\HasUuidPrimaryKey;
+use App\Models\User;
+use App\Models\Comment;
+use App\Models\HasUuidPrimaryKey;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

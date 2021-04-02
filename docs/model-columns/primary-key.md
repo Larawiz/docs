@@ -105,7 +105,7 @@ class Post extends Model
 ```php
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Support\Str;
 

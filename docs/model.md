@@ -17,7 +17,7 @@ models:
 ```php{7}
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
