@@ -89,16 +89,20 @@ models:
 :::
 
 ::: tab "Factory" id="deleted-factory-state-factory"
-```php{5-9}
-$factory->define(Post::class, function (Faker $faker) {
+```php{6-13}
+public function definition()
+{
     // ...
-});
+}
 
-$factory->state(Post::class, 'deleted', function (Faker $faker) {
-    return [
-        'soft_deleted_at' => $faker->dateTime,
-    ];
-});
+public function deleted()
+{
+    return $this->state(function (array $attributes) {
+        return [
+            (new Post)->getDeletedAtColumn() => $this->faker->datetime,
+        ];
+    });
+}
 ```
 :::
 ::::

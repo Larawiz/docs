@@ -108,23 +108,27 @@ class Post extends Model
 
 ::: tab "Factory" id="quick-model-tab-factory"
 ```php
-$factory->define(User::class, function (Faker $faker) {
+// Database/Factories/UserFactory
+public function define()
+{
     return [
-        'name' => $faker->name,
+        'name' => $this->faker->name,
         'password' => "$2y$12$3stGkQNBgw6UF0gAepE.mebtZ/ZVDDxJdXJKrdmbW/dkXAMjNyL1e", // "secret"
-        'email' => $faker->email,
+        'email' => $this->faker->email,
     ];
-});
+}
 
-$factory->define(Post::class, function (Faker $faker) {
+// Database/Factories/PostFactory
+public function define()
+{
     return [
-        'user_id' => $faker->randomNumber(),
-        'title' => $faker->title,
-        'excerpt' => $faker->paragraph,
-        'body' => $faker->realText(),
-        'published_at' => $faker->dateTime,
+        'user_id' => $this->faker->randomNumber(),
+        'title' => $this->faker->title,
+        'excerpt' => $this->faker->paragraph,
+        'body' => $this->faker->realText(),
+        'published_at' => $this->faker->dateTime,
     ];
-});
+}
 ```
 :::
 
@@ -351,26 +355,63 @@ class CreatePodcastsTable extends Migration
 ```php
 <?php
 
-use App\Models\Podcast;
-use Faker\Generator as Faker;
+namespace Database\Factories;
 
-/** @var \Illuminate\Database\Eloquent\FactoryBuilder $factory */
-$factory->define(Podcast::class, function (Faker $faker) {
-    return [
-        'title' => $faker->title,
-        'excerpt' => $faker->body,
-        'length' => $faker->randomDigitNotNull,
-        'published_at' => $faker->dateTime,
-    ];
-});
+use App\Modls\Podcast;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->state(Podcast::class, 'unpublished', [
-    // ...
-]);
+class PodcastFactory extends Factory
+{
+        /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Post::class;
 
-$factory->state(Podcast::class, 'scheduled', [
-    // ...
-]);
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'title' => $this->faker->title,
+            'excerpt' => $this->faker->body,
+            'length' => $this->faker->randomDigitNotNull,
+            'published_at' => $this->faker->dateTime,
+        ];
+    }
+
+    /**
+     * Define the unpublished state.
+     *
+     * @return $this
+     */
+    public function unpublished()
+    {
+        return $this->state(function (array $states) {
+            return [
+                // ..
+            ];
+        });
+    }
+
+    /**
+     * Define the scheduled state.
+     *
+     * @return $this
+     */
+    public function scheduled()
+    {
+        return $this->state(function (array $states) {
+            return [
+                // ..
+            ];
+        });
+    }
+}
 ```
 :::
 
