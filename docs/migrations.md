@@ -30,10 +30,8 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateFailedJobsTable extends Migration
 {
-
     /**
      * Run the migrations.
-     *
      *
      * @return void
      */
