@@ -28,6 +28,33 @@ class GameLeaderboard extends Model
 ```
 :::
 
+::: tab "Migration" id="braindead-syntax-tab-migration"
+```php{18}
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateGameLeaderboardsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('game_leaderboards', function (Blueprint $table) {
+           // ...
+        });
+    }
+    
+    // ...
+}
+```
+:::
+
 ::::
 
 When creating a model, the following logic will be automated for you:
@@ -168,7 +195,7 @@ When using the columns names directly, Larawiz will understand the following:
 * Make fillable everything except **booleans**, [timestamps](model-columns/timestamps.md), [soft-deletes](model-columns/soft-deletes.md) and [primary keys](model-columns/primary-key.md).
 
 ::: warning Timestamps are not fillable
-Columns for `date`, `datetime`, `time` , and their timezone variants, are considered **fillable**. Timestamps are not because are considered application-dependant.
+Columns for `date`, `datetime`, `time` , and their timezone variants, are considered **fillable**. Timestamps are not because are not considered user-dependant.
 :::
 
 ## Custom Model
