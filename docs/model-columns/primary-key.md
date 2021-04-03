@@ -154,15 +154,66 @@ Having `uuid` as primary column will automatically change `morphs` columns to `u
 
 ## Custom Primary Key
 
-Using [Custom Models](../model.md#custom-model), you will be in charge of adding the primary key. 
+When using [Custom Models](../model.md#custom-model), Larawiz will hands-off the primary key declaration to you. You have three options: 
 
-By default, if there is no `id` or other auto-incrementing column defined, it will be understood the model has no primary key, so it will be disabled for the model.
+1. simply add an `id` or `uuid` manually,
+2. use another Primary Key, 
+3. or just disable it altogether.
 
-::: tip Always use Primary Keys
-Primary keys identify a single row in the database. Most of the time you will want one in your table.
+::: danger No Composite Primary Keys
+[Eloquent ORM doesn't support Composite Primary keys](https://github.com/laravel/framework/issues/5355) (made from multiple columns). For that reason, these are also no supported in Larawiz.
 :::
 
-If you're not using `id`, you can set any other column as primary by using the `primary` key. Larawiz will guess the rest based on the column you point as primary, like the type and incrementing nature.
+
+### Adding the ID or UUID manually
+
+By default, if there is `id`, `uuid`, or an auto-incrementing column defined, it will be understood the model has a primary key. For example, we can do that with `uuid`. 
+
+:::: tabs :options="{ useUrlFragment: false }"
+::: tab "YAML" id="custom-primary-key-yaml"
+```yaml{4}
+models:
+  Podcast:
+    columns:
+      uuid: ~
+      title: string
+      excerpt: string
+      body: longText
+      timestamps: ~
+```
+:::
+
+::: tab "Model" id="custom-primary-key-model"
+```php{3-5}
+class Podcast extends Model
+{
+    protected $primary = 'uuid';
+    protected $keyType = 'string';
+    protected $incrementing = false;
+
+    // ...
+}
+```
+:::
+
+::: tab "Migration" id="custom-primary-key-migration"
+```php{2, 8}
+Schema::create('podcasts', function (Blueprint $table) {
+    $table->uuid('uuid');
+    $table->string('title');
+    $table->string('excerpt');
+    $table->longText('body');
+    $table->timestamps();
+
+    $table->primary('uuid');
+});
+```
+:::
+::::
+
+### Using another column as Primary Key 
+
+Alternatively, you can set any other column as primary by using the `primary` key. Larawiz will guess the rest based on the column you point as primary key, like the type and incrementing nature.
 
 :::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="custom-primary-key-yaml"
@@ -193,7 +244,7 @@ class Podcast extends Model
 :::
 
 ::: tab "Migration" id="custom-primary-key-migration"
-```php{7}
+```php{2, 7}
 Schema::create('podcasts', function (Blueprint $table) {
     $table->string('title');
     $table->string('excerpt');
@@ -206,55 +257,7 @@ Schema::create('podcasts', function (Blueprint $table) {
 :::
 ::::
 
-::: danger No Composite Primary Keys
-[Eloquent ORM doesn't support Composite Primary keys](https://github.com/laravel/framework/issues/5355) (made from multiple columns). For that reason, these are also no supported in Larawiz.
-:::
-
-On the other hand, if you want your model to not have any primary key, ensure you set `primary` to `false`.
-
-:::: tabs :options="{ useUrlFragment: false }"
-::: tab "YAML" id="custom-primary-key-yaml-2" 
-```yaml{8}
-models:
-  Podcast:
-    columns:
-      title: string
-      slug: string
-      # ...
-
-    primary: false
-```
-:::
-
-::: tab "Model" id="custom-primary-key-model-2"
-```php{3-4}
-class Podcast extends Model
-{
-    protected $primary = null;
-    protected $incrementing = false;
-
-    // ...
-}
-```
-:::
-
-::: tab "Migration" id="custom-primary-key-migration-2"
-```php
-Schema::create('podcasts', function (Blueprint $table) {
-    $table->string('title');
-    $table->string('slug');
-});
-```
-:::
-::::
-
-::: warning [id] takes precedence
-You will get an error if you set `primary` to `false` or any other column if you have an auto-incrementing column like `id`, since the latter takes precedence.
-
-Instead, use `unsignedBigInteger` or edit the migration after scaffolding.
-:::
-
-If you need to manually set the primary key properties, for custom or non-standard columns, you can add `type` and `incrementing` values:
+If you need to manually set the primary key properties instead of letting Larawiz guess it for custom or non-standard columns, you can add `type` and `incrementing` values inside the `primary` key: 
 
 :::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML"  id="custom-primary-key-yaml-3"
@@ -286,11 +289,53 @@ class Podcast extends Model
 :::
 
 ::: tab "Migration" id="custom-primary-key-migration-3"
-```php{2}
+```php{2,5}
 Schema::create('podcasts', function (Blueprint $table) {
     $table->custom('foo');
+    // ...
+    
+    $table->primary('foo');
+});
+```
+:::
+::::
+
+### No primary key
+
+On the other hand, if you want your model to not have any primary key, simply don't issue an `id`, `uuid`, or auto-incrementing column at all.
+
+::: tip Always use Primary Keys
+Primary keys identify a single row in the database. Most of the time you will want one in your table.
+:::
+
+:::: tabs :options="{ useUrlFragment: false }"
+::: tab "YAML" id="custom-primary-key-yaml-2" 
+```yaml{8}
+models:
+  Podcast:
+    columns:
+      title: string
+      slug: string
+```
+:::
+
+::: tab "Model" id="custom-primary-key-model-2"
+```php{3-4}
+class Podcast extends Model
+{
+    protected $primary = null;
+    protected $incrementing = false;
 
     // ...
+}
+```
+:::
+
+::: tab "Migration" id="custom-primary-key-migration-2"
+```php
+Schema::create('podcasts', function (Blueprint $table) {
+    $table->string('title');
+    $table->string('slug');
 });
 ```
 :::
