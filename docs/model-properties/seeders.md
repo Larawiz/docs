@@ -15,6 +15,8 @@ models:
 ```php
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use App\Models\Podcast;
