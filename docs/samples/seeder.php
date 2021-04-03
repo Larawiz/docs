@@ -48,7 +48,7 @@ class PostSeeder extends Seeder
      */
     protected function amount()
     {
-        // We will conveniently create to two and a half pages of {DummyModel}.
+        // We will conveniently create to two and a half pages of Post.
         return (int) ((new Post)->getPerPage() * 2.5);
     }
 
