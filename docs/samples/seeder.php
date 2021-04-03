@@ -20,7 +20,7 @@ class PostSeeder extends Seeder
     }
 
     /**
-     * Run the database seeder for {DummySeeder}.
+     * Run the database seeder for PostSeeder.
      *
      * @return void
      */
