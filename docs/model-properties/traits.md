@@ -6,7 +6,7 @@ Each trait contains an empty `boot{Trait}` and `initialize{Trait}` ready for you
 
 :::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="traits-yaml"
-```yaml{11-12,20-21}
+```yaml{9-10,18-19}
 models:
 
   Post:
@@ -80,14 +80,14 @@ trait HasPrimaryUuid
 ::::
 
 ::: warning Only lists accepted
-Ensure the `trait` key is a list. If you issue a string in the YAML file, it will be treated as a column.
+Ensure the `trait` key is a **list**. If you issue a string in the YAML file, it will be treated as a column.
 :::
 
 ## External traits
 
 In other occasions, you may have a package with a trait you want to use. 
 
-For illustration purposes, we are gonna install a package that [allows users to have Two Factor Authentication without external providers](https://github.com/DarkGhostHunter/Laraguard). We can immediately use the trait that comes with the package by just issuing it into the list.
+For illustration purposes, we are going to install a package that [allows users to have Two Factor Authentication without external providers](https://github.com/DarkGhostHunter/Laraguard). We can immediately use the trait that comes with the package by just issuing it into the list.
 
 :::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="external-traits-yaml"
