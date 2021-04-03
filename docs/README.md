@@ -15,7 +15,7 @@ features:
 footer: MIT Licensed | Laravel is a Trademark of Taylor Otwell. Copyright © 2011-2020 Laravel LLC.
 ---
 
-## Scaffold your database like a 🧙 
+## Scaffold your project like a 🧙 
 
 If you're looking how a complete scaffold looks, here are the sample files for a `Post` model **with just 7 lines of code!**
 
