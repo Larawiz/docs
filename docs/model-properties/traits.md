@@ -16,7 +16,7 @@ models:
     body: longText
 
     traits:
-      - Utilites\HasPrimaryUuid
+      - Utilites\MyCustomTrait
 
   Podcast:
     columns:
@@ -25,22 +25,24 @@ models:
       timestamps: ~
   
     traits:
-      - Utilities\HasPrimaryUuid
+      - Utilities\MyCustomTrait
 ```
 :::
 
 ::: tab "Model" id="traits-model"
-```php{3,10}
+```php{1,5,12}
+use App\Models\Utilities\MyCustomTrait;
+
 class Post extends Model
 {
-    use Utilities\HasPrimaryUuid;
+    use MyCustomTrait;
 
     // ...
 }
 
 class Podcast extends Model
 {
-    use Utilities\HasPrimaryUuid;
+    use MyCustomTrait;
  
     // ...
 }
@@ -51,26 +53,26 @@ class Podcast extends Model
 ```php
 <?php
 
-namespace App\Utilites;
+namespace App\Models\Utilities;
 
-trait HasPrimaryUuid
+trait MyCustomTrait
 {
     /**
-     * Boot the Has Primary Uuid trait for a model.
+     * Boot the My Custom Trait trait for a model.
      *
      * @return void
      */
-    protected static function bootHasPrimaryUuid()
+    protected static function bootMyCustomTrait()
     {
         // TODO: Boot the HasPrimaryUuid trait.
     }
 
     /**
-     * Initialize the Has Primary Uuid trait for an instance.
+     * Initialize the My Custom Trait trait for an instance.
      *
      * @return void
      */
-    protected function initializeSoftDeletes()
+    protected function initializeMyCustomTrait()
     {
         // TODO: Initialize the HasPrimaryUuid trait.
     }
