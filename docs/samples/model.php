@@ -11,22 +11,22 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @mixin \Illuminate\Database\Eloquent\Builder
  *
- * @method \App\Post make(array $attributes = [])
- * @method \App\Post create(array $attributes = [])
- * @method \App\Post forceCreate(array $attributes)
- * @method \App\Post firstOrNew(array $attributes = [], array $values = [])
- * @method \App\Post firstOrFail($columns = ['*'])
- * @method \App\Post firstOrCreate(array $attributes, array $values = [])
- * @method \App\Post firstOr($columns = ['*'], \Closure $callback = null)
- * @method \App\Post firstWhere($column, $operator = null, $value = null, $boolean = 'and')
- * @method \App\Post updateOrCreate(array $attributes, array $values = [])
- * @method \App\Post findOrFail($id, $columns = ['*'])
- * @method \App\Post findOrNew($id, $columns = ['*'])
- * @method null|\App\Post first($columns = ['*'])
- * @method null|\App\Post find($id, $columns = ['*'])
+ * @method \App\Models\Post make(array $attributes = [])
+ * @method \App\Models\Post create(array $attributes = [])
+ * @method \App\Models\Post forceCreate(array $attributes)
+ * @method \App\Models\Post firstOrNew(array $attributes = [], array $values = [])
+ * @method \App\Models\Post firstOrFail($columns = ['*'])
+ * @method \App\Models\Post firstOrCreate(array $attributes, array $values = [])
+ * @method \App\Models\Post firstOr($columns = ['*'], \Closure $callback = null)
+ * @method \App\Models\Post firstWhere($column, $operator = null, $value = null, $boolean = 'and')
+ * @method \App\Models\Post updateOrCreate(array $attributes, array $values = [])
+ * @method \App\Models\Post findOrFail($id, $columns = ['*'])
+ * @method \App\Models\Post findOrNew($id, $columns = ['*'])
+ * @method null|\App\Models\Post first($columns = ['*'])
+ * @method null|\App\Models\Post find($id, $columns = ['*'])
  *
- * @property-read \App\User $user
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Comment[] $comments
+ * @property-read \App\Models\User $user
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Comment[] $comments
  *
  * @property string $uuid
  * @property string $title
@@ -92,7 +92,7 @@ class Post extends Model
     protected $dates = ['published_at'];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo|\App\User
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo|\App\Models\User
      */
     public function user()
     {
@@ -100,7 +100,7 @@ class Post extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany|\App\Comment
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany|\App\Models\Comment
      */
     public function comments()
     {

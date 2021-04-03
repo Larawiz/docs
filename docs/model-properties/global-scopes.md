@@ -23,7 +23,7 @@ models:
 
 namespace App\Scopes\Post;
 
-use App\Post;
+use App\Models\Post;
 use Illuminate\Database\Eloquent\Scope;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -33,7 +33,7 @@ class UnpublishedScope implements Scope
      * Apply the scope to a given Eloquent query builder.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $builder
-     * @param  \Illuminate\Database\Eloquent\Model|\App\Post $model
+     * @param  \Illuminate\Database\Eloquent\Model|\App\Models\Post $model
      * @return void
      */
     public function apply(Builder $builder, Post $post)
