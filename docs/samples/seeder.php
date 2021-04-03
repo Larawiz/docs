@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class PostSeeder extends Seeder
 {
     /**
-     * Creates a new {DummySeeder} instance.
+     * Creates a new PostSeeder instance.
      *
      * @return void
      */
