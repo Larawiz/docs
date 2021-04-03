@@ -38,6 +38,15 @@ Larawiz will try to guess almost everything. This documentation will help you do
 
 ## Backups
 
-Larawiz will automatically copy your `app` and some of your `database` directories as backups every time you scaffold.
+Every time you scaffold with Larawiz, it will automatically move to a backup folder in `storage/larawiz/backups` the following directories and their contents:
 
-You can find it in your application default storage path under the `storage/larawiz/backups` directory, and copy them over your project if you need to go back to a previous state.
+- `app/Models`
+- `database/factories`
+- `database/migrations`
+- `database/seeders`
+
+These backup folders are sorted by scaffolding date, so you can copy them over your project if you need to go back to a previous state.
+
+::: tip Keeping the house clean
+If you need to create some files inside these directories, put them somewhere else instead, as these will be automatically moved to a backup folder and won't persist between scaffolding.
+:::
