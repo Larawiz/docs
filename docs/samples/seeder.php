@@ -25,19 +25,19 @@ class PostSeeder extends Seeder
      * @return void
      */
     public function run()
-{
-    // If you are using SQLite file instead of in-memory database, you may
-    // want to wrap this run into a database transaction. It's known that
-    // SQLite is very slow when each database statement runs one by one.
-    //
-    // @link https://laravel.com/docs/database#database-transactions
+    {
+        // If you are using SQLite file instead of in-memory database, you may
+        // want to wrap this run into a database transaction. It's known that
+        // SQLite is very slow when each database statement runs one by one.
+        //
+        // @link https://laravel.com/docs/database#database-transactions
 
-    $this->createRecords(static::factory(), $this->amount());
+        $this->createRecords(static::factory(), $this->amount());
 
-    $this->createStates(static::factory());
+        $this->createStates(static::factory());
 
-    $this->createAdditionalRecords(static::factory());
-}
+        $this->createAdditionalRecords(static::factory());
+    }
 
     /**
      * Returns a useful number of records to create.
