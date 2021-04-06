@@ -39,7 +39,7 @@ class Player extends Model
 
 ## Disabling casts
 
-To disable any automatic cast in custom models, set the `casts` key to `false`. 
+To disable any automatic cast in custom models, set the `casts` key to `false`.
 
 ```yaml{9}
 models:
@@ -54,7 +54,7 @@ models:
 ```
 
 ::: warning Cast are king
-If casts are disabled, PHPDoc `@properties` will reflect that and treat each column as a `string`.
+If casts are disabled, PHPDoc `@properties` will treat each column as a `mixed`, or `null|mixed` if it's nullable.
 :::
 
 ## Set or override a cast type
@@ -100,12 +100,12 @@ class Player extends Model
 ::::
 
 ::: tip PHPDoc understands
-Setting manually a native cast for a column will be reflected in its PHPDoc.
+Setting manually a native cast for a column will be reflected in its PHPDoc too.
 :::
 
 ## Custom casts
 
-One of the key features of Eloquent ORM are [custom casts](https://laravel.com/docs/eloquent-mutators#custom-casts). You can **create custom casts on the fly** by just listing the column to cast, and the cast class name (capitalized), and reuse them across all models that use the same.
+One of the key features of Eloquent ORM are [custom casts](https://laravel.com/docs/eloquent-mutators#custom-casts). You can **create custom casts on the fly** by just setting the name of the column, and the cast class name (capitalized). It will be reused across all models that use the same.
 
 :::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="custom-cast-yaml"
@@ -245,9 +245,9 @@ If you use custom cast second parameter (type override), all other models that s
 
 ### External casts
 
-If you have a package that includes a cast class already, and you want to use it, you can always reference it with the full namespace. Larawiz will find it and include it in your Model automatically.
+If you have a package that includes a cast class, and you want to use it, you can always reference it with the full namespace. Larawiz will find it and include it in your Model automatically.
 
-For the sake of this example, we are going to install a package that has a handy [Cast BASE64](https://github.com/DarkGhostHunter/Laratraits). We can immediately use the cast that comes with the package by just issuing it into the list.
+For the sake of this example, we are going to install a package that has a handy [custom cast for BASE64](https://github.com/DarkGhostHunter/Laratraits). We can immediately use the cast that comes with the package by just issuing the it into the list.
 
 :::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="external-cast-yaml"
@@ -291,4 +291,3 @@ class AuthenticationKey extends Model
 ::: warning Ensure the cast exists
 If a cast doesn't exist, watch out, it will be created inside casts directory, which is `App\Casts`.
 :::
-
