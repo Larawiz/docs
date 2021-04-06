@@ -190,11 +190,11 @@ class PlayerPositionCast extends CastAttributes
 :::
 ::::
 
-### Overriding PHPDoc on custom cast
+### Overriding PHPDoc type on custom cast
 
 As you may have noted, when using a custom cast, the PHPDoc for the casted property becomes `mixed`. You can easily override this with adding a cast type as second parameter. If it's `nullable`, it will be added before the type.
 
-The second parameter is added verbatim, so if you set even a class that doesn't exist, Larawiz won't bat an eye.
+If you're using a class as a type, check that it exists, otherwise Larawiz will panic.
 
 :::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="custom-cast-phpdoc-yaml"
