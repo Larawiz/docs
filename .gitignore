@@ -7,6 +7,6 @@
 /test/
 /node_modules/
 /yarn.lock
-/yarn
+/.yarn
 /.idea
 .pnp.js
