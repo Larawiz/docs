@@ -59,9 +59,9 @@ If casts are disabled, PHPDoc `@properties` will treat each column as a `mixed`,
 This doesn't override the primary ID, or the default timestamps, from be casted, though, only the rest of columns.
 :::
 
-## Set or override a cast type
+## Override a cast type
 
-While Larawiz tries to guess a cast column by their type if it's not a string, you can always set the [cast type](https://laravel.com/docs/eloquent-mutators#attribute-casting) for each column manually in the `casts` key:
+While Larawiz tries to guess a cast column by their type if it's not a string, you can always set the [cast type](https://laravel.com/docs/eloquent-mutators#attribute-casting) for each column manually in the `casts` key, which will completely override it.
 
 :::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="set-cast-yaml"
