@@ -55,6 +55,8 @@ models:
 
 ::: warning Cast are king
 If casts are disabled, PHPDoc `@properties` will treat each column as a `mixed`, or `null|mixed` if it's nullable.
+
+This doesn't override the primary ID, or the default timestamps, from be casted, though, only the rest of columns.
 :::
 
 ## Set or override a cast type
