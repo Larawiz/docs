@@ -3,8 +3,10 @@
 #
 # Recommended template: Node.gitignore
 
-docs/_book
-test/
+/docs/_book
+/test/
 /node_modules/
 /yarn.lock
+/yarn
 /.idea
+.pnp.js
