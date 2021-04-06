@@ -240,7 +240,7 @@ class Substitute extends Model
 ::::
 
 ::: tip Include once, forget later
-If you use custom cast second parameter (type override), all other models that share the same custom cast will also use the same type... unless your override it again.
+If you use custom cast second parameter (type override), all other models that share the same custom cast will also use the same type declared in the first custom cast... unless your override it on the next.
 :::
 
 ### External casts
