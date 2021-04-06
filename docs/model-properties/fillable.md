@@ -53,6 +53,7 @@ models:
     publised_at: datetime nullable
 ```
 
+
 ```php{5}
 class Post extends Model
 {
@@ -63,7 +64,6 @@ class Post extends Model
 }
 ```
 :::
-
 When using [Custom Models](../model.md#custom-model), the same rule will apply, but you can override the fillable properties using the `fillable` key. 
 
 In this example, we will set only the `title` and the `body` columns for the Model, since we plan to automatically create the `slug` from the title itself after scaffolding.

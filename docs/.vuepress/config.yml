@@ -59,6 +59,7 @@ themeConfig:
         - /model-properties/fillable
         - /model-properties/hidden
         - /model-properties/traits
+        - /model-properties/casts
         - /model-properties/route-binding
         - /model-properties/users
         - /model-properties/per-page
@@ -68,6 +69,10 @@ themeConfig:
         - /model-properties/eloquent-observers
     - title: 📝 Migrations
       path: /migrations
+    - title: 📝 http
+      path: /http
+      children:
+        - /http/controller-statements
 
   searchPlaceholder: Search...
 

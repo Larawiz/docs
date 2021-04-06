@@ -64,11 +64,10 @@ You can disable factories by issuing the `factory` key with the `false` value. Y
 ```yaml{9}
 models:
   Post:
-    columns:
-      id: ~
-      title: string
-      body: longText
-      timestamps: ~
+    id: ~
+    title: string
+    body: longText
+    timestamps: ~
   
     factory: false
 ```
@@ -81,11 +80,12 @@ You can add additional states by defining a list on the `factory` key, which wil
 
 :::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="factories-yaml-2"
-```yaml{5-7}
+```yaml{6-8}
 models:
   Post:
     title: string
     body: longText
+    
     factory:
       - unpublished
       - scheduled
