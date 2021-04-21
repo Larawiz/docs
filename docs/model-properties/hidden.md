@@ -1,6 +1,6 @@
 # Hidden
 
-When using [Quick Models](../model.md#quick-model) or [Custom Models](../model.md#custom-model), Larawiz will automatically set as [hidden](https://laravel.com/docs/eloquent-serialization#hiding-attributes-from-json) any attribute that contains:
+When using [Quick Models](../model.md#quick-model) or [Custom Models](../model.md#custom-model), Larawiz will automatically set as [hidden](https://laravel.com/docs/eloquent-serialization#hiding-attributes-from-json) any attribute that contains the words:
  
 * `password`,
 * `secret`,
