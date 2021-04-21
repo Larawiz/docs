@@ -16,7 +16,7 @@ models:
 ```
 :::
 
-::: tab "Observer"  id="global-scopes-observer"
+::: tab "Observer"  id="scopes-observer"
 ```php
 <?php
 
