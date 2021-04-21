@@ -65,14 +65,11 @@ themeConfig:
         - /model-properties/per-page
         - /model-properties/factories
         - /model-properties/seeders
-        - /model-properties/global-scopes
+        - /model-properties/scopes
+        - /model-properties/appends
         - /model-properties/eloquent-observers
     - title: 📝 Migrations
       path: /migrations
-    - title: 📝 http
-      path: /http
-      children:
-        - /http/controller-statements
 
   searchPlaceholder: Search...
 
