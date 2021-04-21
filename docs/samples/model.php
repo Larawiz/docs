@@ -32,7 +32,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $title
  * @property string $body
  * @property array $private_notes
- * @property null|\Illuminate\Support\Carbon $premium_at
+ * @property null|\Illuminate\Support\Carbon $published_at
  *
  * @property-read \Illuminate\Support\Carbon $created_at
  * @property-read \Illuminate\Support\Carbon $updated_at
@@ -47,7 +47,7 @@ class Post extends Model
      *
      * @var.
      */
-    protected $casts = ['private_notes' => 'array'];
+    protected $casts = ['private_notes' => 'array', 'published_at' => 'datetime'];
 
     /**
      * The attributes that are mass assignable.
@@ -83,13 +83,6 @@ class Post extends Model
      * @var string
      */
     protected $keyType = 'string';
-
-    /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    protected $dates = ['published_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo|\App\Models\User

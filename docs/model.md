@@ -59,9 +59,8 @@ class CreateGameLeaderboardsTable extends Migration
 
 When creating a model, the following logic will be automated for you:
 
-* [Attribute Casting](https://laravel.com/docs/eloquent-mutators#attribute-casting) their appropriate type (strings, integers, floats...).
-* [Serialization hiding](https://laravel.com/docs/eloquent-serialization#hiding-attributes-from-json) for sensible data.
-* [Mutating dates columns](https://laravel.com/docs/eloquent-mutators#date-mutators) as `date` and `datetime`.
+* [Attribute Casting](https://laravel.com/docs/eloquent-mutators#attribute-casting) their appropriate type (dates, strings, integers, floats...).
+* [Serialization hiding](https://laravel.com/docs/eloquent-serialization#hiding-attributes-from-json) 
 * [Relationships](https://laravel.com/docs/eloquent-relationships) with methods and pivot tables, if necessary.
 * PHPDoc mixin for Eloquent Builder, `create` and `make` methods among others (`find`, `firstOrNew`, etc.)
 * PHPDoc blocks for model properties and relations.
@@ -289,6 +288,13 @@ class Podcast extends Model
      * @var bool
      */
     public $incrementing = false;
+    
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = ['published_at' => 'datetime'];
 
     /**
      * The number of models-properties to return for pagination.
@@ -296,15 +302,6 @@ class Podcast extends Model
      * @var int
      */
     protected $perPage = 20;
-
-    /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    protected $dates = [
-        'published_at',
-    ];
     
     /**
      * The attributes that are mass assignable.
