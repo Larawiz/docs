@@ -58,6 +58,7 @@ themeConfig:
         - /model-properties/table-names
         - /model-properties/fillable
         - /model-properties/hidden
+        - /model-properties/eager-load
         - /model-properties/traits
         - /model-properties/casts
         - /model-properties/route-binding
