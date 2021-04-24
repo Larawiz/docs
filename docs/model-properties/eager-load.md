@@ -6,7 +6,7 @@ For example, we have a `Post` model that always needs to load the images, and th
 
 :::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="scopes-yaml"
-```yaml{7-9}
+```yaml{8-10}
 models:
   Post:
     columns:
