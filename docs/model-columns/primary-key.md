@@ -74,6 +74,10 @@ When using [Quick Models](../model.md#quick-model), you can exchange the default
 
 For both [Quick Models](../model.md#quick-model) and [Custom Models](../model.md#custom-model), Larawiz will automatically point and update the primary key inside the model, and include the `HasUuidPrimaryKey` trait for free alongside it, **right out of the box!**
 
+::: tip Do not add free traits
+You can use the option `--no-free-traits` when calling Larawiz to not include the `HasUuidPrimaryKey` and other free traits.
+::: 
+
 :::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="uuid-as-primary-key-yaml"
 ```yaml{3}
