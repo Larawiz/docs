@@ -31,11 +31,7 @@ models:
 ```php
 class Post extends Model
 {
-    protected $fillable = [
-        'title',
-        'slug',
-        'body',
-    ];
+    protected $fillable = ['title', 'slug', 'body'];
 
     // ...
 }
@@ -64,7 +60,8 @@ class Post extends Model
 }
 ```
 :::
-When using [Custom Models](../model.md#custom-model), the same rule will apply, but you can override the fillable properties using the `fillable` key. 
+
+When using [Custom Models](../model.md#custom-model), the same rule will apply, but you can override the fillable properties using the `fillable` key. Larawiz won't check the fillable properties, so you can go full manual.
 
 In this example, we will set only the `title` and the `body` columns for the Model, since we plan to automatically create the `slug` from the title itself after scaffolding.
 
@@ -92,10 +89,7 @@ models:
 ```php{4-5}
 class Post extends Model
 {
-    protected $fillable = [
-        'title',
-        'body',
-    ];
+    protected $fillable = ['title', 'body'];
 
     // ...
 }
