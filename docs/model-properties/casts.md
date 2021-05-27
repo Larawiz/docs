@@ -37,28 +37,6 @@ class Player extends Model
 :::
 ::::
 
-## Disabling casts
-
-To disable any automatic cast in custom models, set the `casts` key to `false`.
-
-```yaml{9}
-models:
-
-  Player:
-    columns:
-      name: string
-      shirt_number: unsignedTinyInteger
-      pitch_positions: json
-      
-    casts: false
-```
-
-::: warning Cast are king
-If casts are disabled, PHPDoc `@properties` will treat each column as a `mixed`, or `null|mixed` if it's nullable.
-
-This doesn't override the primary ID, or the default timestamps, from be casted, though, only the rest of columns.
-:::
-
 ## Override a cast type
 
 While Larawiz tries to guess a cast column by their type if it's not a string, you can always set the [cast type](https://laravel.com/docs/eloquent-mutators#attribute-casting) for each column manually in the `casts` key, which will completely override it.
