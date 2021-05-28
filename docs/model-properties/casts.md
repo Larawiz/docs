@@ -37,59 +37,13 @@ class Player extends Model
 :::
 ::::
 
-## Override a cast type
-
-While Larawiz tries to guess a cast column by their type if it's not a string, you can always set the [cast type](https://laravel.com/docs/eloquent-mutators#attribute-casting) for each column manually in the `casts` key, which will completely override it.
-
-:::: tabs :options="{ useUrlFragment: false }"
-::: tab "YAML" id="set-cast-yaml"
-```yaml{8,11}
-models:
-
-  Player:
-    columns:
-        name: string
-        shirt_number: unsignedTinyInteger
-        pitch_positions: json
-        birthday: datetime
-        
-    casts:
-      birthday: date
-```
-:::
-
-::: tab "Model" id="set-cast-model"
-```php{4,11}
-/**
- * ...
- *
- * @property \Illuminate\Support\Carbon $birthday
- */
-class Player extends Model
-{
-    protected $casts = [
-        'shirt_number' => 'integer',
-        'pitch_positions' => 'array',
-        'bithday' => 'date',
-    ];
-    
-    // ...
-}
-```
-:::
-::::
-
-::: tip PHPDoc understands
-Setting manually a native cast for a column will be reflected in its PHPDoc too.
-:::
-
 ## Custom casts
 
-One of the key features of Eloquent ORM are [custom casts](https://laravel.com/docs/eloquent-mutators#custom-casts). You can **create custom casts on the fly** by just setting the name of the column, and the cast class name (capitalized). It will be reused across all models that use the same.
+One of the key features of Eloquent ORM are [custom casts](https://laravel.com/docs/eloquent-mutators#custom-casts). You can **create custom casts on the fly** by just setting the name of the column, and the cast type or the capitalized class name.
 
 :::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="custom-cast-yaml"
-```yaml{7,10}
+```yaml{7-8,11-12}
 models:
 
   Player:
@@ -97,14 +51,16 @@ models:
         name: string
         shirt_number: unsignedTinyInteger
         pitch_positions: json
+        can_play: unsignedTinyInteger
         
     casts:
       pitch_positions: PitchPositionCast
+      can_play: boolean
 ```
 :::
 
 ::: tab "Model" id="custom-cast-model"
-```php{3,8,15}
+```php{3,8-9,15-16}
 <?php
 
 use App\Casts\PitchPositionCast;
@@ -112,13 +68,15 @@ use App\Casts\PitchPositionCast;
 /**
  * ...
  *
- * @property mixed $pitch_positions
+ * @property string $pitch_positions
+ * @property bool $can_play
  */
 class Player extends Model
 {
     protected $casts = [
         'shirt_number' => 'integer',
         'pitch_positions' => PitchPositionCast::class,
+        'can_play' => 'boolean',
     ];
     
     // ...
@@ -172,9 +130,9 @@ class PlayerPositionCast extends CastAttributes
 
 ### Overriding PHPDoc type on custom cast
 
-As you may have noted, when using a custom cast, the PHPDoc for the casted property becomes `mixed`. You can easily override this with adding a cast type as second parameter. If it's `nullable`, it will be added before the type.
+As you may have noted, when using a custom cast, the PHPDoc for the casted property uses the column native PHP type. You can easily override this with adding a cast type as second parameter.
 
-If you're using a class as a type, check that it exists, otherwise Larawiz will panic.
+If you're using a class as a type, check that it exists, otherwise Larawiz will return an error.
 
 :::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="custom-cast-phpdoc-yaml"
@@ -193,7 +151,7 @@ models:
         pitch_positions: json nullable
         
     casts:
-      pitch_positions: PitchPositionCast
+      pitch_positions: PitchPositionCast \App\Types\PitchPosition
 ```
 :::
 
@@ -217,17 +175,11 @@ class Substitute extends Model
 ```
 :::
 
-::::
-
-::: tip Include once, forget later
-If you use custom cast second parameter (type override), all other models that share the same custom cast will also use the same type declared in the first custom cast... unless your override it on the next.
-:::
-
 ### External casts
 
-If you have a package that includes a cast class, and you want to use it, you can always reference it with the full namespace. Larawiz will find it and include it in your Model automatically.
+If you have a package that includes a cast class, and you want to use it, you can always reference it with the full namespace. Larawiz will find and include it inside your Model automatically.
 
-For the sake of this example, we are going to install a package that has a handy [custom cast for BASE64](https://github.com/DarkGhostHunter/Laratraits). We can immediately use the cast that comes with the package by just issuing the it into the list.
+For the sake of this example, we are going to install a package that has a handy [custom cast for BASE64](https://github.com/DarkGhostHunter/Laratraits). We can immediately use the cast that comes with the package by just issuing it into the list.
 
 :::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="external-cast-yaml"
@@ -240,7 +192,7 @@ models:
         private_key: string 
         
     casts:
-      private_key: \DarkGhostHunter\Laratraits\Eloquent\Casts\CastsBase64 string
+      private_key: DarkGhostHunter\Laratraits\Eloquent\Casts\CastsBase64 string
 ```
 :::
 
