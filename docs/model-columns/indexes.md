@@ -52,14 +52,16 @@ models:
 :::
 
 ::: tab "Migration" id="composite-indexes-migration"
-```php{8}
+```php{10}
 Schema::create('posts', function (Blueprint $table) {
     $table->id();
     $table->string('title');
     $table->string('slug');
     $table->longText('body');
     $table->timestamps();
-    
+});
+
+Schema::table('posts', function (Blueprint $table) {
     $table->unique(['slug', 'id'], 'slug_id_index');
 });
 ```
