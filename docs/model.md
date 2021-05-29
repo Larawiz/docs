@@ -171,15 +171,13 @@ Schema::create('users', function (Blueprint $table) {
 });
 
 Schema::create('posts', function (Blueprint $table) {
-    $table->uuid();
+    $table->uuid()->primary();
     $table->unsignedBigInteger('user_id');
     $table->string('title');
     $table->string('excerpt')->nullable();
     $table->longText('body');
     $table->timestampTz('published_at')->useCurrent()->nullable();
     $table->timestampsTz();
-    
-    $table->primary('uuid');
 });
 ```
 :::
@@ -348,15 +346,13 @@ class CreatePodcastsTable extends Migration
     public function up()
     {
         Schema::create('podcasts', function (Blueprint $table) {
-            $table->string('title');
+            $table->string('title')->primary();
             $table->string('excerpt');
             $table->unsignedBigInteger('show_uuid');
             $table->unsignedBigInteger('length');
             $table->timestamp('published_at')->nullable()->useCurrent();
             $table->timestamps();
             $table->softDeletes();
-            
-            $table->primary('title');
         });
     }
 
