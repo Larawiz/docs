@@ -142,7 +142,7 @@ trait HasUuidPrimaryKey
 ::: tab "Migration" id="uuid-as-primary-key-migration"
 ```php{2}
 Schema::create('podcasts', function (Blueprint $table) {
-    $table->uuid('uuid');
+    $table->uuid('uuid')->primary();
     $table->string('title');
     $table->string('slug');
     $table->longText('body');
@@ -201,15 +201,13 @@ class Podcast extends Model
 :::
 
 ::: tab "Migration" id="custom-primary-key-migration"
-```php{2, 8}
+```php{2}
 Schema::create('podcasts', function (Blueprint $table) {
-    $table->uuid('uuid');
+    $table->uuid('uuid')->primary();
     $table->string('title');
     $table->string('excerpt');
     $table->longText('body');
     $table->timestamps();
-
-    $table->primary('uuid');
 });
 ```
 :::
@@ -248,14 +246,12 @@ class Podcast extends Model
 :::
 
 ::: tab "Migration" id="custom-primary-key-migration"
-```php{2, 7}
+```php{2}
 Schema::create('podcasts', function (Blueprint $table) {
-    $table->string('title');
+    $table->string('title')->primary();
     $table->string('excerpt');
     $table->longText('body');
     $table->timestamps();
-
-    $table->primary('title');
 });
 ```
 :::
@@ -293,12 +289,11 @@ class Podcast extends Model
 :::
 
 ::: tab "Migration" id="custom-primary-key-migration-3"
-```php{2,5}
+```php{2}
 Schema::create('podcasts', function (Blueprint $table) {
-    $table->custom('foo');
-    // ...
+    $table->custom('foo')->primary();
     
-    $table->primary('foo');
+    // ...
 });
 ```
 :::
