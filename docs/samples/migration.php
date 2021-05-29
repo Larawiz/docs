@@ -14,15 +14,13 @@ class CreatePostsTable extends Migration
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->uuid('uuid');
+            $table->uuid('uuid')->primary();
             $table->string('title');
             $table->text('body');
             $table->json('private_notes');
             $table->timestamp('published_at')->nullable();
             $table->softDeletes();
             $table->timestamps();
-
-            $table->primary('uuid');
         });
     }
 
