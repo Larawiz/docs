@@ -28,7 +28,7 @@ Schema::create('posts', function (Blueprint $table) {
 
 ## Composite Indexes
 
-For [Custom Models](../model.md#custom-model), additional and personalized indexes can be declared under the `indexes` key. 
+For [Custom Models](../model.md#custom-model), additional and personalized indexes can be declared under the `indexes` key, even for `belongsTo` relations that may be costly for your table without an index.
 
 Set one or many indexes with a custom name (especially if your SQL engine doesn't support large-named indexes) using a list. If you also want to name the index yourself, use `name:{index_name}` .
 
@@ -36,7 +36,7 @@ For unique indexes, you can add `unique` for the index.
 
 :::: tabs :options="{ useUrlFragment: false }"
 ::: tab "YAML" id="composite-indexes-yaml"
-```yaml{10-11}
+```yaml{11-13}
 models:
     Post:
       columns:
@@ -44,15 +44,17 @@ models:
         title: string
         slug: string
         body: longText
+        author: belongsTo:User
         timestamps: ~
     
       indexes:
         - slug id name:slug_id_index unique
+        - author
 ```
 :::
 
 ::: tab "Migration" id="composite-indexes-migration"
-```php{10}
+```php{10-11}
 Schema::create('posts', function (Blueprint $table) {
     $table->id();
     $table->string('title');
@@ -63,7 +65,12 @@ Schema::create('posts', function (Blueprint $table) {
 
 Schema::table('posts', function (Blueprint $table) {
     $table->unique(['slug', 'id'], 'slug_id_index');
+    $table->index(['author']);
 });
 ```
 :::
 ::::
+
+::: danger No index for morphs
+Larawiz doesn't support indexes for `morphTo` columns. This is because Laravel migrations already create an index over the morph itself. 
+:::
