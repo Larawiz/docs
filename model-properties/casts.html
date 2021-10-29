@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Casts | Larawiz</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="Scaffolder documentation">
+    
+    <link rel="preload" href="/docs/assets/css/0.styles.0c938224.css" as="style"><link rel="preload" href="/docs/assets/js/app.b547baa1.js" as="script"><link rel="preload" href="/docs/assets/js/3.f26bd306.js" as="script"><link rel="preload" href="/docs/assets/js/21.19eecae0.js" as="script"><link rel="preload" href="/docs/assets/js/8.f0ca99ad.js" as="script"><link rel="prefetch" href="/docs/assets/js/10.c7e8d10f.js"><link rel="prefetch" href="/docs/assets/js/11.c7b9efa4.js"><link rel="prefetch" href="/docs/assets/js/12.5031be47.js"><link rel="prefetch" href="/docs/assets/js/13.e32a661b.js"><link rel="prefetch" href="/docs/assets/js/14.3f9d4f87.js"><link rel="prefetch" href="/docs/assets/js/15.799c90e8.js"><link rel="prefetch" href="/docs/assets/js/16.fde06fe9.js"><link rel="prefetch" href="/docs/assets/js/17.c3e38431.js"><link rel="prefetch" href="/docs/assets/js/18.d8e48e72.js"><link rel="prefetch" href="/docs/assets/js/19.d51d80e9.js"><link rel="prefetch" href="/docs/assets/js/20.968b7e27.js"><link rel="prefetch" href="/docs/assets/js/22.ea8cf1f6.js"><link rel="prefetch" href="/docs/assets/js/23.eaba87d5.js"><link rel="prefetch" href="/docs/assets/js/24.bb4e8903.js"><link rel="prefetch" href="/docs/assets/js/25.39612dda.js"><link rel="prefetch" href="/docs/assets/js/26.85191ffc.js"><link rel="prefetch" href="/docs/assets/js/27.42ecb2f6.js"><link rel="prefetch" href="/docs/assets/js/28.b38a4100.js"><link rel="prefetch" href="/docs/assets/js/29.1badf8a4.js"><link rel="prefetch" href="/docs/assets/js/30.8a24cc82.js"><link rel="prefetch" href="/docs/assets/js/31.7a4712a2.js"><link rel="prefetch" href="/docs/assets/js/32.2579a392.js"><link rel="prefetch" href="/docs/assets/js/33.a565007e.js"><link rel="prefetch" href="/docs/assets/js/34.f47893cf.js"><link rel="prefetch" href="/docs/assets/js/35.8df65dbe.js"><link rel="prefetch" href="/docs/assets/js/36.d9e15402.js"><link rel="prefetch" href="/docs/assets/js/37.ff211f00.js"><link rel="prefetch" href="/docs/assets/js/38.f12076b4.js"><link rel="prefetch" href="/docs/assets/js/39.7387c014.js"><link rel="prefetch" href="/docs/assets/js/4.2bb0a595.js"><link rel="prefetch" href="/docs/assets/js/40.7ee8d546.js"><link rel="prefetch" href="/docs/assets/js/41.6cbd7081.js"><link rel="prefetch" href="/docs/assets/js/42.0f6037e2.js"><link rel="prefetch" href="/docs/assets/js/5.7fe876df.js"><link rel="prefetch" href="/docs/assets/js/6.f3b42d45.js"><link rel="prefetch" href="/docs/assets/js/7.fc738575.js"><link rel="prefetch" href="/docs/assets/js/9.d7f35b98.js"><link rel="prefetch" href="/docs/assets/js/vendors~docsearch.6cb0424f.js">
+    <link rel="stylesheet" href="/docs/assets/css/0.styles.0c938224.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/docs/" class="home-link router-link-active"><img src="/docs/assets/img/mage.png" alt="Larawiz" class="logo"> <span class="site-name can-hide">Larawiz</span></a> <div class="links"><form id="search-form" role="search" class="algolia-search-wrapper search-box"><input id="algolia-search-input" class="search-query"></form> <nav class="nav-links can-hide"><div class="nav-item"><a href="https://ko-fi.com/DarkGhostHunter" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Support me on Kofi
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://paypal.me/darkghosthunter" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Support me with Paypal
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <div class="nav-item"><a role="button" aria-label="Switch to light mode" class="nav-link"><span>Switch theme</span></a></div> <a href="https://github.com/larawiz/larawiz" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Download
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="https://ko-fi.com/DarkGhostHunter" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Support me on Kofi
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://paypal.me/darkghosthunter" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Support me with Paypal
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <div class="nav-item"><a role="button" aria-label="Switch to light mode" class="nav-link"><span>Switch theme</span></a></div> <a href="https://github.com/larawiz/larawiz" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Download
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/docs/quickstart.html" class="sidebar-link">⚡ Quickstart</a></li><li><a href="/docs/model.html" class="sidebar-link">📗 Model</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>📄 Model Columns</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>🔀 Model Relations</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>🏷️ Model Properties</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/docs/model-properties/table-names.html" class="sidebar-link">Table names</a></li><li><a href="/docs/model-properties/fillable.html" class="sidebar-link">Fillable</a></li><li><a href="/docs/model-properties/hidden.html" class="sidebar-link">Hidden</a></li><li><a href="/docs/model-properties/eager-load.html" class="sidebar-link">Eager Load</a></li><li><a href="/docs/model-properties/traits.html" class="sidebar-link">Traits</a></li><li><a href="/docs/model-properties/casts.html" aria-current="page" class="active sidebar-link">Casts</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/docs/model-properties/casts.html#custom-casts" class="sidebar-link">Custom casts</a></li></ul></li><li><a href="/docs/model-properties/route-binding.html" class="sidebar-link">Route Binding</a></li><li><a href="/docs/model-properties/users.html" class="sidebar-link">Users</a></li><li><a href="/docs/model-properties/per-page.html" class="sidebar-link">Per Page</a></li><li><a href="/docs/model-properties/factories.html" class="sidebar-link">Factories</a></li><li><a href="/docs/model-properties/seeders.html" class="sidebar-link">Seeders</a></li><li><a href="/docs/model-properties/scopes.html" class="sidebar-link">Scopes</a></li><li><a href="/docs/model-properties/appends.html" class="sidebar-link">Appends</a></li><li><a href="/docs/model-properties/eloquent-observers.html" class="sidebar-link">Eloquent Observers</a></li></ul></section></li><li><a href="/docs/migrations.html" class="sidebar-link">📝 Migrations</a></li></ul> </aside> <main class="page"> <div class="theme-succinct-content content__default"><h1 id="casts"><a href="#casts" class="header-anchor">#</a> Casts</h1> <p>When quick models and custom models are created, Larawiz will automatically <a href="https://laravel.com/docs/8.x/eloquent-mutators#attribute-casting" target="_blank" rel="noopener noreferrer">cast the column to their appropriate type<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> in the <code>$casts</code> property, and annotate the casting in the model class PHPDoc.</p> <p>Larawiz magically casts <code>integer</code>, <code>decimal</code>, <code>bool</code>, <code>array</code>, <code>double</code>, and <code>datetimes</code> automatically from the database column type.</p> <div class="tabs-component"><ul role="tablist" class="tabs-component-tabs"></ul> <div class="tabs-component-panels"><section aria-hidden="true" id="traits-yaml" role="tabpanel" class="tabs-component-panel" style="display:none;"><div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">models</span><span class="token punctuation">:</span>
+
+  <span class="token key atrule">Player</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> string
+    <span class="token key atrule">shirt_number</span><span class="token punctuation">:</span> unsignedTinyInteger
+    <span class="token key atrule">rating</span><span class="token punctuation">:</span> decimal<span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">1</span> <span class="token comment"># Like 10.0 or 3.5</span>
+    <span class="token key atrule">pitch_positions</span><span class="token punctuation">:</span> json
+    <span class="token key atrule">birthday</span><span class="token punctuation">:</span> datetime
+    <span class="token key atrule">joined_at</span><span class="token punctuation">:</span> timestamp
+</code></pre></div></section> <section aria-hidden="true" id="traits-model" role="tabpanel" class="tabs-component-panel" style="display:none;"><div class="language-php extra-class"><pre class="language-php"><code><span class="token keyword">class</span> <span class="token class-name-definition class-name">Player</span> <span class="token keyword">extends</span> <span class="token class-name">Model</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">protected</span> <span class="token variable">$casts</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
+        <span class="token string single-quoted-string">'shirt_number'</span> <span class="token operator">=&gt;</span> <span class="token string single-quoted-string">'integer'</span><span class="token punctuation">,</span>
+        <span class="token string single-quoted-string">'rating'</span> <span class="token operator">=&gt;</span> <span class="token string single-quoted-string">'decimal:2'</span><span class="token punctuation">,</span>
+        <span class="token string single-quoted-string">'pitch_positions'</span> <span class="token operator">=&gt;</span> <span class="token string single-quoted-string">'array'</span><span class="token punctuation">,</span>
+        <span class="token string single-quoted-string">'bithday'</span> <span class="token operator">=&gt;</span> <span class="token string single-quoted-string">'datetime'</span><span class="token punctuation">,</span>
+        <span class="token string single-quoted-string">'joined_at'</span> <span class="token operator">=&gt;</span> <span class="token string single-quoted-string">'datetime'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+</code></pre></div></section></div></div> <h2 id="custom-casts"><a href="#custom-casts" class="header-anchor">#</a> Custom casts</h2> <p>One of the key features of Eloquent ORM are <a href="https://laravel.com/docs/eloquent-mutators#custom-casts" target="_blank" rel="noopener noreferrer">custom casts<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>. You can <strong>create custom casts on the fly</strong> by just setting the name of the column, and the cast type or the capitalized class name.</p> <div class="tabs-component"><ul role="tablist" class="tabs-component-tabs"></ul> <div class="tabs-component-panels"><section aria-hidden="true" id="custom-cast-yaml" role="tabpanel" class="tabs-component-panel" style="display:none;"><div class="language-yaml extra-class"><div class="highlight-lines"><br><br><br><br><br><br><div class="highlighted"> </div><div class="highlighted"> </div><br><br><div class="highlighted"> </div><div class="highlighted"> </div><br></div><pre class="language-yaml"><code><span class="token key atrule">models</span><span class="token punctuation">:</span>
+
+  <span class="token key atrule">Player</span><span class="token punctuation">:</span>
+    <span class="token key atrule">columns</span><span class="token punctuation">:</span>
+        <span class="token key atrule">name</span><span class="token punctuation">:</span> string
+        <span class="token key atrule">shirt_number</span><span class="token punctuation">:</span> unsignedTinyInteger
+        <span class="token key atrule">pitch_positions</span><span class="token punctuation">:</span> json
+        <span class="token key atrule">can_play</span><span class="token punctuation">:</span> unsignedTinyInteger
+        
+    <span class="token key atrule">casts</span><span class="token punctuation">:</span>
+      <span class="token key atrule">pitch_positions</span><span class="token punctuation">:</span> PitchPositionCast
+      <span class="token key atrule">can_play</span><span class="token punctuation">:</span> boolean
+</code></pre></div></section> <section aria-hidden="true" id="custom-cast-model" role="tabpanel" class="tabs-component-panel" style="display:none;"><div class="language-php extra-class"><div class="highlight-lines"><br><br><div class="highlighted"> </div><br><br><br><br><div class="highlighted"> </div><div class="highlighted"> </div><br><br><br><br><br><div class="highlighted"> </div><div class="highlighted"> </div><br><br><br><br><br></div><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token keyword">use</span> <span class="token package">App<span class="token punctuation">\</span>Casts<span class="token punctuation">\</span>PitchPositionCast</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * ...
+ *
+ * @property string $pitch_positions
+ * @property bool $can_play
+ */</span>
+<span class="token keyword">class</span> <span class="token class-name-definition class-name">Player</span> <span class="token keyword">extends</span> <span class="token class-name">Model</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">protected</span> <span class="token variable">$casts</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
+        <span class="token string single-quoted-string">'shirt_number'</span> <span class="token operator">=&gt;</span> <span class="token string single-quoted-string">'integer'</span><span class="token punctuation">,</span>
+        <span class="token string single-quoted-string">'pitch_positions'</span> <span class="token operator">=&gt;</span> <span class="token class-name static-context">PitchPositionCast</span><span class="token operator">::</span><span class="token keyword">class</span><span class="token punctuation">,</span>
+        <span class="token string single-quoted-string">'can_play'</span> <span class="token operator">=&gt;</span> <span class="token string single-quoted-string">'boolean'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+</span></code></pre></div></section> <section aria-hidden="true" id="custom-cast-class" role="tabpanel" class="tabs-component-panel" style="display:none;"><div class="language-php extra-class"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token keyword">namespace</span> <span class="token package">App<span class="token punctuation">\</span>Casts</span><span class="token punctuation">;</span>
+
+<span class="token keyword">use</span> <span class="token package">Illuminate<span class="token punctuation">\</span>Contracts<span class="token punctuation">\</span>Database<span class="token punctuation">\</span>Eloquent<span class="token punctuation">\</span>CastsAttributes</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name-definition class-name">PlayerPositionCast</span> <span class="token keyword">extends</span> <span class="token class-name">CastAttributes</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">/**
+     * Cast the given value.
+     *
+     * @param  \Illuminate\Database\Eloquent\Model  $model
+     * @param  string  $key
+     * @param  mixed  $value
+     * @param  array  $attributes
+     * @return array
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">get</span><span class="token punctuation">(</span><span class="token variable">$model</span><span class="token punctuation">,</span> <span class="token variable">$key</span><span class="token punctuation">,</span> <span class="token variable">$value</span><span class="token punctuation">,</span> <span class="token variable">$attributes</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// TODO: Update the casting of the value.</span>
+        <span class="token keyword">return</span> <span class="token variable">$key</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/**
+     * Prepare the given value for storage.
+     *
+     * @param  \Illuminate\Database\Eloquent\Model  $model
+     * @param  string  $key
+     * @param  array  $value
+     * @param  array  $attributes
+     * @return string
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">set</span><span class="token punctuation">(</span><span class="token variable">$model</span><span class="token punctuation">,</span> <span class="token variable">$key</span><span class="token punctuation">,</span> <span class="token variable">$value</span><span class="token punctuation">,</span> <span class="token variable">$attributes</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// TODO: Update the casting of the value.</span>
+        <span class="token keyword">return</span> <span class="token variable">$key</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span></code></pre></div></section></div></div> <h3 id="overriding-phpdoc-type-on-custom-cast"><a href="#overriding-phpdoc-type-on-custom-cast" class="header-anchor">#</a> Overriding PHPDoc type on custom cast</h3> <p>As you may have noted, when using a custom cast, the PHPDoc for the casted property uses the column native PHP type. You can easily override this with adding a cast type as second parameter.</p> <p>If you're using a class as a type, check that it exists, otherwise Larawiz will return an error.</p> <div class="tabs-component"><ul role="tablist" class="tabs-component-tabs"></ul> <div class="tabs-component-panels"><section aria-hidden="true" id="custom-cast-phpdoc-yaml" role="tabpanel" class="tabs-component-panel" style="display:none;"><div class="language-yaml extra-class"><div class="highlight-lines"><br><br><br><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br><div class="highlighted"> </div><br></div><pre class="language-yaml"><code><span class="token key atrule">models</span><span class="token punctuation">:</span>
+
+  <span class="token key atrule">Player</span><span class="token punctuation">:</span>
+    <span class="token key atrule">columns</span><span class="token punctuation">:</span>
+        <span class="token key atrule">pitch_positions</span><span class="token punctuation">:</span> json
+        
+    <span class="token key atrule">casts</span><span class="token punctuation">:</span>
+      <span class="token key atrule">pitch_positions</span><span class="token punctuation">:</span> PitchPositionCast \App\Types\PitchPosition
+
+  <span class="token key atrule">Substitute</span><span class="token punctuation">:</span>
+    <span class="token key atrule">columns</span><span class="token punctuation">:</span>
+        <span class="token key atrule">pitch_positions</span><span class="token punctuation">:</span> json nullable
+        
+    <span class="token key atrule">casts</span><span class="token punctuation">:</span>
+      <span class="token key atrule">pitch_positions</span><span class="token punctuation">:</span> PitchPositionCast \App\Types\PitchPosition
+</code></pre></div></section> <section aria-hidden="true" id="custom-cast-phpdoc-model" role="tabpanel" class="tabs-component-panel" style="display:none;"><div class="language-php extra-class"><div class="highlight-lines"><br><div class="highlighted"> </div><br><br><br><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br></div><pre class="language-php"><code><span class="token comment">/**
+ * @property \App\Types\PitchPosition $pitch_positions
+ */</span>
+<span class="token keyword">class</span> <span class="token class-name-definition class-name">Player</span> <span class="token keyword">extends</span> <span class="token class-name">Model</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/**
+ * @property null|\App\Types\PitchPosition $pitch_positions
+ */</span>
+<span class="token keyword">class</span> <span class="token class-name-definition class-name">Substitute</span> <span class="token keyword">extends</span> <span class="token class-name">Model</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+</code></pre></div></section> <h3 id="external-casts"><a href="#external-casts" class="header-anchor">#</a> External casts</h3> <p>If you have a package that includes a cast class, and you want to use it, you can always reference it with the full namespace. Larawiz will find and include it inside your Model automatically.</p> <p>For the sake of this example, we are going to install a package that has a handy <a href="https://github.com/DarkGhostHunter/Laratraits" target="_blank" rel="noopener noreferrer">custom cast for BASE64<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>. We can immediately use the cast that comes with the package by just issuing it into the list.</p> <div class="tabs-component"><ul role="tablist" class="tabs-component-tabs"></ul> <div class="tabs-component-panels"><section aria-hidden="true" id="external-cast-yaml" role="tabpanel" class="tabs-component-panel" style="display:none;"><div class="language-yaml extra-class"><div class="highlight-lines"><br><br><br><br><br><br><br><br><div class="highlighted"> </div><br></div><pre class="language-yaml"><code><span class="token key atrule">models</span><span class="token punctuation">:</span>
+
+  <span class="token key atrule">AuthenticationKey</span><span class="token punctuation">:</span>
+    <span class="token key atrule">columns</span><span class="token punctuation">:</span>
+        <span class="token key atrule">device</span><span class="token punctuation">:</span> string
+        <span class="token key atrule">private_key</span><span class="token punctuation">:</span> string 
+        
+    <span class="token key atrule">casts</span><span class="token punctuation">:</span>
+      <span class="token key atrule">private_key</span><span class="token punctuation">:</span> DarkGhostHunter\Laratraits\Eloquent\Casts\CastsBase64 string
+</code></pre></div></section> <section aria-hidden="true" id="external-cast-model" role="tabpanel" class="tabs-component-panel" style="display:none;"><div class="language-php extra-class"><div class="highlight-lines"><br><br><div class="highlighted"> </div><br><br><br><br><div class="highlighted"> </div><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br></div><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token keyword">use</span> <span class="token package">DarkGhostHunter<span class="token punctuation">\</span>Laratraits<span class="token punctuation">\</span>Eloquent<span class="token punctuation">\</span>Casts<span class="token punctuation">\</span>CastsBase64</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * ...
+ *
+ * @property string $private_key
+ */</span>
+<span class="token keyword">class</span> <span class="token class-name-definition class-name">AuthenticationKey</span> <span class="token keyword">extends</span> <span class="token class-name">Model</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">protected</span> <span class="token variable">$casts</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
+        <span class="token string single-quoted-string">'private_key'</span> <span class="token operator">=&gt;</span> <span class="token class-name static-context">CastsBase64</span><span class="token operator">::</span><span class="token keyword">class</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+</span></code></pre></div></section></div></div></div></div> <div class="custom-block warning"><p class="custom-block-title">Ensure the cast exists</p> <p>If a cast doesn't exist, watch out, it will be created inside casts directory, which is <code>App\Casts</code>.</p></div></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/larawiz/docs/edit/master/docs/model-properties/casts.md" target="_blank" rel="noopener noreferrer">Improve this page</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">10/29/2021, 2:57:18 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ⟵
+      <a href="/docs/model-properties/traits.html" class="prev">
+        Traits
+      </a></span> <span class="next"><a href="/docs/model-properties/route-binding.html">
+        Route Binding
+      </a>
+      ⟶
+    </span></p></div> </main></div><div class="global-ui"><div style="visibility:hidden;display:none;"></div></div></div>
+    <script src="/docs/assets/js/app.b547baa1.js" defer></script><script src="/docs/assets/js/3.f26bd306.js" defer></script><script src="/docs/assets/js/21.19eecae0.js" defer></script><script src="/docs/assets/js/8.f0ca99ad.js" defer></script>
+  </body>
+</html>
