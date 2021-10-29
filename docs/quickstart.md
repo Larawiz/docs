@@ -5,7 +5,7 @@
 To install Larawiz, just fire up Composer in your project root folder and require it in your development dependencies.
 
 ```bash
-composer require -dev larawiz/larawiz 
+composer require --dev larawiz/larawiz 
 ```
 
 ## Usage
