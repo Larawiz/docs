@@ -93,9 +93,10 @@ export default defineConfig({
             text: 'Something not right? Propose a change on GitHub'
         },
         footer: {
-            copyright: "Laravel is a Trademark of Taylor Otwell. Copyright © 2011-2022 Laravel LLC."
+            copyright: 'Laravel is a Trademark of Taylor Otwell. Copyright © 2011-2022 Laravel LLC.'
         },
         algolia: {
+            appId: 'EUW1B23GVV',
             apiKey: '7f6d9ad3b10545cdd4d7b77ee29f38da',
             indexName: 'larawiz'
         },
