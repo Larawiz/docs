@@ -1,0 +1,1 @@
+import{_ as s,c as n,o as a,a as l}from"./app.c69ee041.js";const b=JSON.parse('{"title":"Scopes","description":"","frontmatter":{},"headers":[],"relativePath":"model-properties/scopes.md"}'),p={name:"model-properties/scopes.md"},e=l("",11),o=[e];function c(r,t,i,y,D,C){return a(),n("div",null,o)}const A=s(p,[["render",c]]);export{b as __pageData,A as default};
