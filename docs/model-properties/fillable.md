@@ -1,21 +1,20 @@
 # Fillable
 
-By default, using [Quick Models](../model.md#quick-model) or [Custom Models](../model.md#custom-model), Larawiz adds to the `$fillable` property every column that is not:
+By default, using [Quick Models](../model.md#quick-model) or [Custom Models](../model.md#custom-model), Larawiz won't add as `$fillable` attributes that are:
 
-* a **timestamp**, 
-* a **boolean**, 
-* a **relation column** (for `belongsTo` or `morphTo`), 
+* a **timestamp**,
+* a **boolean**,
+* a **relation**,
 * a **soft delete** column,
+* a column that contains the word `token`,
 * or a **primary key**.
 
-Considering that these types depend most on the application rather than inputs from a Request, most of the time there is no need to set the fillable columns manually.
+Larawiz considers these attributes as app-dependant, which saves you more keystrokes and expanding the lifetime of your keyboard, tablet or phone.
 
-:::: tabs :options="{ useUrlFragment: false }"
-::: tab "YAML" id="fillable-yaml"
 ```yaml
 models:
   # ...
-  
+
   Post:
     title: string
     slug: string
@@ -25,9 +24,7 @@ models:
     user: belongsTo
     softDeletes: ~
 ```
-:::
 
-::: tab "Model" id="fillable-model"
 ```php
 class Post extends Model
 {
@@ -36,11 +33,9 @@ class Post extends Model
     // ...
 }
 ```
-:::
-::::
 
-::: tip No timestamps are fillable
-Note that the `published_at` wasn't included in the `$fillable` array because is a `timestamp` . If you want it fillable, you can always use `datetime`.
+::: warning Timestamps are NOT fillable. Period.
+Note that the `published_at` wasn't included in the `$fillable` array because is a `timestamp`. If you want it fillable, you can always use `datetime`, `date` or `time`, but be wary of the query constraints on these column types.
 
 ```yaml{4}
 models:
@@ -48,8 +43,7 @@ models:
     # ...
     publised_at: datetime nullable
 ```
-
-
+ 
 ```php{5}
 class Post extends Model
 {
@@ -59,60 +53,53 @@ class Post extends Model
     ];
 }
 ```
+
 :::
 
-When using [Custom Models](../model.md#custom-model), the same rule will apply, but you can override the fillable properties using the `fillable` key. Larawiz won't check the fillable properties, so you can go full manual.
+## Overriding the fillable attributes
 
-In this example, we will set only the `title` and the `body` columns for the Model, since we plan to automatically create the `slug` from the title itself after scaffolding.
+To override the fillable attributes, use the `fillable` key with the list of fillable properties. Larawiz won't check if the fillable attribute exist, so you can go full manual.
 
-:::: tabs :options="{ useUrlFragment: false }"
-::: tab "YAML" id="fillable-yaml-2"
-```yaml{12-14}
+In this example, we will set the `title`, `body` and `published_at` columns for the Model, since we plan to automatically create the `slug` from the title itself after we receive our scaffolded app, and the `published_at` will allow to publish something into the future.
+
+```yaml{10-13}
 models:
   Post:
-    columns:
-      id: ~
-      title: string
-      slug: string
-      body: longText
-      published_at: timestamp nullable
-      user: belongsTo
-      timestamps: ~
-      softDeletes: ~
+    title: string
+    slug: string
+    body: longText
+    published_at: timestamp nullable
+    user: belongsTo
+    softDeletes: ~
+      
     fillable:
       - title
       - body
+      - published_at
 ```
-:::
 
-::: tab "Model" id="fillable-model-2"
-```php{4-5}
+```php{3}
 class Post extends Model
 {
-    protected $fillable = ['title', 'body'];
+    protected $fillable = ['title', 'body', 'published_at'];
 
     // ...
 }
 ```
-:::
-::::
 
-## Disabling Fillable
+## No fillable attributes
 
-If you have no plans to have fillable properties, you can set the `fillable` property to `false`.
+If you have no plans to have fillable attributes, you can set the `fillable` property to `false`. 
 
-```yaml{11}
+```yaml{12}
 models:
   Post:
-    columns:
-      id: ~
-      title: string
-      slug: string
-      body: longText
-      published_at: timestamp nullable
-      user: belongsTo
-      timestamps: ~
-      softDeletes: ~
+    title: string
+    slug: string
+    body: longText
+    published_at: timestamp nullable
+    user: belongsTo
+    softDeletes: ~
+      
     fillable: false
 ```
-

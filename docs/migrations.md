@@ -1,26 +1,21 @@
-# 📝 Migrations
+# Migrations
 
-The `migrations` key represents a quick way to add raw tables that are **not** tied to Models and any other addendum. 
+The `migrations` key adds additional tables, and allows to override [automatic pivot tables](#overriding-pivot-tables).
 
-Define migrations using the table name as key, and a list of columns directly under the name. These are passed as-it-is to the migration class, using the same column notation.
+Define migrations using the table name as key, and a list of columns directly under the name. These are passed as-it-is to the migration, using the same column notation you're familiar with.
 
-For example, the `failed_jobs` tables can be declared like this:
+For example, we will declare the `user_actions` table like it was a Model. All method and arguments **will be taken verbatim** to be used in the migration.
 
-:::: tabs :options="{ useUrlFragment: false }"
-::: tab "YAML" id="migrations-yaml"
 ```yaml
 migrations:
-  failed_jobs:
-    id: ~
-    connection: text
-    queue: text
-    payload: longText
-    exception: longText
-    failed_at: timestamp useCurrent
+  user_actions:
+    id: uuid primary
+    username: string
+    action: string
+    route: string
+    created_at: timestamp useCurrent
 ```
-:::
 
-::: tab "Migration" id="migrations-migration"
 ```php
 <?php
 
@@ -28,7 +23,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFailedJobsTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -37,13 +32,12 @@ class CreateFailedJobsTable extends Migration
      */
     public function up()
     {
-        Schema::create('failed_jobs', function (Blueprint $table) {
-            $table->id();
-            $table->text('connection');
-            $table->text('queue');
-            $table->longText('payload');
-            $table->longText('exception');
-            $table->timestamp('failed_at')->useCurrent();
+        Schema::create('user_actions', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('username');
+            $table->string('action');
+            $table->string('route');
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 
@@ -55,22 +49,46 @@ class CreateFailedJobsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('failed_jobs');
+        Schema::dropIfExists('user_actions');
     }
 }
 ```
-:::
-::::
+
+## Using `foreignIdFor`
+
+Laravel includes the `foreignIdFor` method that automatically generates a _foreign_ column reference to the model by checking its primary key. This is what Larawiz uses to create relations.
+
+You can also use this method manually by setting the model name as key, and the `foreignIdFor` as value. The value accepts the column name as first argument.
+
+```yaml{4,5}
+migrations:
+  user_actions:
+    id:
+    User: foreignIdFor
+    Action: foreignIdFor:movement_id
+    name: string
+```
+
+```php{3,4}
+Schema::create('user_actions', function (Blueprint $table) {
+    $table->id();
+    $table->foreignIdFor(User::class);
+    $table->foreignIdFor(Action::class, 'movement_id');
+    $table->string('name');
+});
+```
 
 ## Overriding pivot tables
 
-Using automatic pivot tables or polymorphic pivot tables, you can override the tables by just issuing the table name with your own columns. Larawiz will automatically use your migration instead of the automatic pivot table.
+When using [automatic pivot tables or polymorphic pivot tables](model-relations/many-to-many-and-polymorphic.md), you can override the tables by just issuing the table name with your own columns. Larawiz will automatically use your migration instead of the automatic pivot table.
 
-For example, we can override the `card_player` table to add some information about the card, like an aliased name the player may have for it.
+For example, we can override the `card_player` table to add some information about the card, like an aliased name the player may have for it. Then, we can use `withPivot` with the name of the additional pivot name to include when retrieving the relation through the pivot record.
 
-:::: tabs :options="{ useUrlFragment: false }"
-::: tab "YAML" id="overriding-pivot-tables-yaml"
-```yaml{12-17}
+::: warning These are your keys
+When overriding pivot tables, **Larawiz hands-off all checks to you**, so ensure your pivot tables contain the necessary relation columns.
+:::
+
+```yaml{10,12-18}
 models:  
   Card:
     name: string
@@ -85,13 +103,12 @@ models:
 migrations:
   card_player:
     id: ~
-    player_id: unsignedBigInteger
-    card_id: unsignedBigInteger    
+    printer: uuid
+    Player: foreignIdFor
+    Card: foreignIdFor    
     alias: string nullable
 ```
-:::
 
-::: tab "Models" id="overriding-pivot-tables-models"
 ```php{13}
 class Card extends Model
 {
@@ -109,9 +126,7 @@ class Player extends Model
     }
 }
 ```
-:::
 
-::: tab "Migrations" id="overriding-pivot-tables-migrations"
 ```php{15-21}
 Schema::create('cards', function (Blueprint $table) {
     $table->id();
@@ -127,21 +142,17 @@ Schema::create('players', function (Blueprint $table) {
     $table->timestamps();
 });
 
-// Pivot "card_player" table manually overridden by developer.
 Schema::create('card_player', function (Blueprint $table) {
     $table->id();
+    $table->uuid('printer');
     $table->unsignedBigInteger('card_id');
     $table->unsignedBigInteger('player_id');
     $table->string('alias')->nullable();
 });
 ```
-:::
-::::
 
 The same concept applies for polymorphic pivot tables. In the next example, the automatic table is called `routables`, so with adding the migration manually you can customize the table, like adding a column to point out the `difficulty` for the attached `Car` or `Bus` model.
 
-:::: tabs :options="{ useUrlFragment: false }"
-::: tab "YAML" id="overriding-pivot-tables-yaml-2"
 ```yaml{16-20}
 models:  
   Car:
@@ -164,9 +175,7 @@ migrations:
     routable: morphs
     difficulty: string default:low
 ```
-:::
 
-::: tab "Models" id="overriding-pivot-tables-models-2"
 ```php{6,15}
 class Car extends Model
 {
@@ -199,10 +208,8 @@ class Route extends Model
     }
 }
 ```
-:::
 
-::: tab "Migrations" id="overriding-pivot-tables-migrations-2"
-```php{19-25}
+```php{19-24}
 Schema::create('cars', function (Blueprint $table) {
     $table->id();
     $table->string('model');
@@ -221,7 +228,6 @@ Schema::create('routes', function (Blueprint $table) {
     $table->timestamps();
 });
 
-// Morph Pivot "routables" table manually overridden by developer.
 Schema::create('routables', function (Blueprint $table) {
     $table->id();
     $table->unsignedBigInteger('route_id');
@@ -229,5 +235,30 @@ Schema::create('routables', function (Blueprint $table) {
     $table->string('difficulty')->default('low');
 });
 ```
+
+::: danger Pivots override only
+If you declare the Pivot Model, and create a migration for it, you will get an error. Only automatic pivot tables can be overridden with a migration.
+
+In other words, you may create any migrations as long it doesn't collide with a model you have declared previously.
 :::
-::::
+
+## Included migrations
+
+Larawiz includes Laravel default migrations which are key for all fresh installations:
+
+* `failed_jobs`, to handle failed jobs from the queue,
+* `password_resets`, to handle users password resets, and,
+* `personal_access_tokens`, to handle api-style authentication through [Laravel Sanctum](https://laravel.com/docs/sanctum).
+
+These will be added in your scaffolded App automatically. You can disable each of them by issuing `false`:
+
+```yaml
+migrations:
+  failed_jobs: false
+  password_resets: false
+  personal_access_tokens: false
+```
+
+::: warning They are as it is
+The included migrations cannot be overridden with your own. You may do it _after_ your application is scaffolded.
+:::

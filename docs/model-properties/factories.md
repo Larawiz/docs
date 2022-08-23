@@ -2,10 +2,12 @@
 
 Factories for Models are created automatically for [Quick Models](../model.md#quick-model) and [Custom Models](../model.md#custom-model).
 
-When creating models, the `HasFactory` trait will be automatically included in the model.
+When creating models, the `HasFactory` trait will be automatically included in the model and documented via its PHPDoc.
 
-:::: tabs :options="{ useUrlFragment: false }"
-::: tab "YAML" id="factories-yaml"
+::: tip Soft Deletes comes free
+If you're using [soft-deletes](../model-columns/soft-deletes.md#deleted-factory-state), the `trashed` state will be created for free.
+:::
+
 ```yaml
 models:
   Post:
@@ -14,72 +16,85 @@ models:
     body: longText
     published_at: timestamp nullable
     length: int
+    softDeletes: ~
 ```
-:::
 
-::: tab "Factory" id="factories-factory"
+```php
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+/**
+ * ... 
+ * @method static \Database\Factories\PostFactory factory($count = null, $state = [])
+ */
+class Post extends Model
+{
+    use HasFactory;
+    use SoftDeletes;
+    
+    // ...
+}
+```
+
 ```php
 namespace Database\Factories;
 
 use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * @implements \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
+ */
 class PostFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
     protected $model = Post::class;
-    
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
+
     public function definition()
     {
-        return [
-            'title' => $this->faker->name,
-            'slug' => $this->faker->slug,
-            'body' => $this->faker->body,
-            'published_at' => $this->faker->datetime,
-            'length' => $this->faker->randomInteger,
-        ];
+        throw new \RuntimeException("The factory for model [Post] has no defined attributes yet.");
+        // return [
+        //     // ...
+        // ];
+    }
+    
+    public function trashed()
+    {
+        return $this->state([
+            $this->newModel()->getDeletedAtColumn() => now(),
+        ]);
     }
 }
 ```
-:::
-::::
 
-::: warning Always check the factory
-Larawiz will try to guess the `Faker` values for each property by using the name of the column, but in any case you should go to your factory and check them manually just to be sure.
+::: tip I will remember you
+Larawiz automatically adds Exceptions to the definition and the factory states, so you can remember to fill the attributes before anything else.
 :::
 
-## Disabled Factory
+## No Model Factory
 
-You can disable factories by issuing the `factory` key with the `false` value. You can do this directly below the Model definition of a [Custom Model](../model.md#custom-model).
+You can disable factories by issuing the `factory` key with the `false` value. This will also disable including the `HasFactory` trait in the model.
 
 ```yaml{9}
 models:
   Post:
-    id: ~
     title: string
     body: longText
-    timestamps: ~
+    published_at: timestamp useCurrent
   
     factory: false
 ```
 
-This will also disable including the `HasFactory` trait in the model.
+::: warning No Factory, no Seeder
+If you disable the Factory of the Model, it will also [disable the Seeder](seeders.md) for it.
+:::
 
 ## Factory States
 
-You can add additional states by defining a list on the `factory` key, which will create new methods for the states you list inside the model factory.
+You can add additional [factory states](https://laravel.com/docs/database-testing#factory-states) by defining a list on the `factory` key with the state names you wish to add.
 
-:::: tabs :options="{ useUrlFragment: false }"
-::: tab "YAML" id="factories-yaml-2"
 ```yaml{6-8}
 models:
   Post:
@@ -90,10 +105,8 @@ models:
       - unpublished
       - scheduled
 ```
-:::
 
-::: tab "Factory" id="factories-factory-2"
-```php{6-17,15-22}
+```php{6-14,16-24}
 public function definition()
 {
     // ...
@@ -101,27 +114,23 @@ public function definition()
 
 public function unpublished()
 {
-    return $this->state(function (array $attributes) {
-        return [
-            // TODO: Add attributes for the Post "unpublished" state.
-        ]
+    return $this->state(static function (array $attributes): array {
+        throw new \RuntimeException("The factory for model [$model->name] has no defined the [$state] state yet.");
+        // return [
+        //     // ...
+        // ];
     });
 }
 
 public function scheduled()
 {
-    return $this->state(function (array $attributes) {
-        return [
-            // TODO: Add attributes for the Post "scheduled" state.
-        ]
+    return $this->state(static function (array $attributes): array {
+        throw new \RuntimeException("The factory for model [$model->name] has no defined the [$state] state yet.");
+        // return [
+        //     // ...
+        // ];
     });
 }
 ```
-:::
-::::
 
-States will be created empty, so you can fill them later with any attribute you need to.
-
-::: tip Soft Deletes comes free
-If you're using [soft-deletes](../model-columns/soft-deletes.md#deleted-factory-state), the `deleted` state will be created for free.
-:::
+States will be created empty with an exception to remember to setting the apropiate attributes.

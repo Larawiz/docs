@@ -1,11 +1,9 @@
 # Users
 
 You may want to create an [Authenticable](https://laravel.com/docs/authentication) and [Authorizable](https://laravel.com/docs/authorization) user, like the one shipping by default with Laravel.
- 
-If you're using a [Quick Model](./#quick-model), issuing a `password`, `rememberToken`, or both, will instruct Larawiz to treat the model as an User Model.
 
-:::: tabs :options="{ useUrlFragment: false }"
-::: tab "YAML" id="users-yaml"
+Issuing a `password` or `rememberToken` as columns will instruct Larawiz to change the type of the model to a User.
+
 ```yaml{5-6}
 models:
 
@@ -15,59 +13,78 @@ models:
     rememberToken: ~
     age: unsignedSmallInteger default:18
 ```
-:::
 
-::: tab "Model" id="users-model"
-```php
+```php{10}
 <?php
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class Admin extends Authenticatable
 {
     use Notifiable;
+    use HasFactory;
+    
+    // ...
 }
 ```
-:::
 
-::::
+## Forcing a User model
 
-If you're using [Custom Models](../model.md#custom-model), you will need to change the type of the model by just setting the `type` key to `user`, even if there is already  a `password` or `rememberToken` column.
+You can force Larawiz to make a model as a User by setting the `type` key to `user`, which is useful if you want an User to authenticate without passwords or remember tokens.
 
-```yaml{12}
+```yaml{7}
+models:
+
+  Kid:
+    name: string unique
+    age: unsignedSmallInteger default:18
+    
+    type: user 
+```
+
+```php{10}
+<?php
+
+namespace App\Models;
+
+use Illuminate\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+
+class Kid extends Authenticatable
+{
+    use Notifiable;
+    use HasFactory;
+    
+    // ...
+}
+```
+
+## No user model
+
+You can force Larawiz to not change the type of the model to a User by setting the `type` key to `model`.
+
+```yaml{9}
 models:
 
   Admin:
-    columns:
-      id: ~
-      name: string unique
-      password: string
-      rememberToken: ~
-      age: unsignedSmallInteger default:18
-      timestamps: ~
+    name: string unique
+    password: string
+    rememberToken: ~
+    age: unsignedSmallInteger default:18
 
-    type: user
+    type: model
 ```
 
-::: tip
-If you set an User model with `password`, Larawiz will [add a mutator](https://laravel.com/docs/eloquent-mutators#defining-a-mutator) to automatically encrypt the password into the model attributes, for free.
-
-```php
-class Admin extends Authenticatable
+```php{1}
+class Admin extends Model
 {
     // ...
-
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = app('hash')->make($password);
-    }
 }
 ```
-:::
-
-
-

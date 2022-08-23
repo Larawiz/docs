@@ -3,52 +3,48 @@
 When using [Quick Models](../model.md#quick-model) or [Custom Models](../model.md#custom-model), Larawiz will automatically set as [hidden](https://laravel.com/docs/eloquent-serialization#hiding-attributes-from-json) any attribute that contains the words:
  
 * `password`,
+* `token` (like `remember_token`),
 * `secret`,
 * `private`,
-* `hidden`,
-* or is a `rememberToken`.
+* or `hidden`.
 
-:::: tabs :options="{ useUrlFragment: false }"
-::: tab "YAML" id="hidden-yaml"
-```yaml{4-6,11}
+```yaml{5-7,12-13}
 models:
   User:
     name: string
     email: string
     password: string
+    auth_token: string
     rememberToken: ~
   Post:
     columns: 
       title: string
       body: text
       private_notes: json
+      hidden_informer: string
 ```
-:::
 
-::: tab "Model" id="hidden-model"
 ```php{4,11}
 class User extends Authenticatable
 {
     protected $hidden = [
-        'password', 'remember_token'
+        'password', 'auth_token', 'remember_token'
     ];
 }
 
 class Post extends Model
 {
     protected $hidden = [
-        'private_notes'
+        'private_notes', 'hidden_informer'
     ];
 }
 ```
-:::
-::::
 
-If you're using a [Custom Model](../model.md#custom-model), you have full control on what is hidden or not by using the `hidden` key inside the model declaration.
+## Override hidden attributes
 
-:::: tabs :options="{ useUrlFragment: false }"
-::: tab "YAML" id="hidden-yaml-2"
-```yaml{8-10}
+You may use the `hidden` key inside the model declaration to override the list of attributes that should be hidden. Larawiz won't check if these attributes exist or not.
+
+```yaml{9-11}
 models:
   Post:
     columns: 
@@ -56,13 +52,12 @@ models:
       body: text
       private_notes: json
       editor_notes: json
+      magic_token: string
     hidden:
       - author_notes
       - private_notes
 ```
-:::
 
-::: tab "Model" id="hidden-model-2"
 ```php{4}
 class Post extends Model
 {
@@ -71,14 +66,10 @@ class Post extends Model
     ];
 }
 ```
-:::
-::::
 
-::: warning Don't bother me
-Larawiz won't bother checking if the hidden properties doesn't exist in the column definitions.
-:::
+## No hidden attributes
 
-Alternatively, you can disable any hidden guessing by issuing `hidden` with `false`. No hidden properties will be added to the model.
+Alternatively, you can make all attributes visible by issuing `hidden` with `false`. 
 
 ```yaml{8}
 models:
@@ -90,4 +81,3 @@ models:
       editor_notes: json
     hidden: false
 ```
-

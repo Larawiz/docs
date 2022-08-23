@@ -4,57 +4,63 @@ namespace App\Models;
 
 use App\Models\User;
 use App\Models\Comment;
-use App\Models\HasUuidPrimaryKey;
+use App\Models\Concerns\UuidPrimaryKey;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @mixin \Illuminate\Database\Eloquent\Builder
  *
- * @method \App\Models\Post make(array $attributes = [])
- * @method \App\Models\Post create(array $attributes = [])
- * @method \App\Models\Post forceCreate(array $attributes)
+ * @method static \Illuminate\Database\Eloquent\Builder|static query()
+ * @method static static make(array $attributes = [])
+ * @method static static create(array $attributes = [])
+ * @method static static forceCreate(array $attributes)
  * @method \App\Models\Post firstOrNew(array $attributes = [], array $values = [])
  * @method \App\Models\Post firstOrFail($columns = ['*'])
  * @method \App\Models\Post firstOrCreate(array $attributes, array $values = [])
  * @method \App\Models\Post firstOr($columns = ['*'], \Closure $callback = null)
  * @method \App\Models\Post firstWhere($column, $operator = null, $value = null, $boolean = 'and')
  * @method \App\Models\Post updateOrCreate(array $attributes, array $values = [])
- * @method \App\Models\Post findOrFail($id, $columns = ['*'])
- * @method \App\Models\Post findOrNew($id, $columns = ['*'])
- * @method null|\App\Models\Post first($columns = ['*'])
- * @method null|\App\Models\Post find($id, $columns = ['*'])
+ * @method null|static first($columns = ['*'])
+ * @method static static findOrFail($id, $columns = ['*'])
+ * @method static static findOrNew($id, $columns = ['*'])
+ * @method static null|static find($id, $columns = ['*'])
  *
- * @property-read \App\Models\User $user
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Comment[] $comments
+ * @property-read string $id
  *
- * @property string $uuid
  * @property string $title
  * @property string $body
  * @property array $private_notes
- * @property null|\Illuminate\Support\Carbon $published_at
+ * @property \Illuminate\Support\Carbon|null $published_at
+ *
+ * @property-read \App\Models\User $user
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Comment>|\App\Models\Comment[] $comments
  *
  * @property-read \Illuminate\Support\Carbon $created_at
  * @property-read \Illuminate\Support\Carbon $updated_at
+ *
+ * @method static \Database\Factories\PostFactory factory($count = null, $state = [])
  */
 class Post extends Model
 {
     use SoftDeletes;
-    use HasUuidPrimaryKey;
+    use HasFactory;
+    use UuidPrimaryKey;
 
     /**
      * The attributes that should be cast.
      *
-     * @var.
+     * @var array
      */
-    protected $casts = ['private_notes' => 'array', 'published_at' => 'datetime'];
+    protected $casts = ['private_notes' => 'array', 'published_at' => 'timestamp'];
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['title', 'body'];
+    protected $fillable = ['title', 'body', 'private_notes'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -62,13 +68,6 @@ class Post extends Model
      * @var array
      */
     protected $hidden = ['private_notes'];
-
-    /**
-     * The primary key for the model.
-     *
-     * @var string
-     */
-    protected $primaryKey = 'uuid';
 
     /**
      * Indicates if the IDs are auto-incrementing.
@@ -89,7 +88,7 @@ class Post extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
     }
 
     /**

@@ -2,8 +2,6 @@
 
 A simple way to create an index or unique index for a table is just to add `index` or `unique` to the column definition:
 
-:::: tabs :options="{ useUrlFragment: false }"
-::: tab "YAML" id="indexes-yaml"
 ```yaml{3-4}
 models:
   Post:
@@ -11,9 +9,7 @@ models:
     slug: string unique  # Make a Unique Index on the `slug` column
     body: longText
 ```
-:::
 
-::: tab "Migration" id="indexes-migration"
 ```php{3-4}
 Schema::create('posts', function (Blueprint $table) {
     $table->id();
@@ -23,38 +19,29 @@ Schema::create('posts', function (Blueprint $table) {
     $table->timestamps();
 });
 ```
-:::
-::::
+
+You can also set a [primary key](primary-key.md#using-another-column-as-primary-key) this way.
 
 ## Composite Indexes
 
-For [Custom Models](../model.md#custom-model), additional and personalized indexes can be declared under the `indexes` key, even for `belongsTo` relations that may be costly for your table without an index.
+Additional and personalized indexes can be declared under the `indexes` key, even for `belongsTo` relations that may be costly for your table without an index. While you only need to issue a list of columns, you can also set the index name (especially if your SQL engine doesn't support large-named indexes) and the type if is not a normal _index_, like `unique`.
 
-Set one or many indexes with a custom name (especially if your SQL engine doesn't support large-named indexes) using a list. If you also want to name the index yourself, use `name:{index_name}` .
-
-For unique indexes, you can add `unique` for the index.
-
-:::: tabs :options="{ useUrlFragment: false }"
-::: tab "YAML" id="composite-indexes-yaml"
-```yaml{11-13}
+```yaml{9-12}
 models:
     Post:
-      columns:
-        id: ~
-        title: string
-        slug: string
-        body: longText
-        author: belongsTo:User
-        timestamps: ~
+      title: string
+      slug: string
+      body: longText
+      author: belongsTo:User
+      timestamps: ~
     
       indexes:
-        - slug id name:slug_id_index unique
-        - author
+        - columns: slug id 
+          name: slug_id_index
+          type: unique
 ```
-:::
 
-::: tab "Migration" id="composite-indexes-migration"
-```php{10-11}
+```php{9-11}
 Schema::create('posts', function (Blueprint $table) {
     $table->id();
     $table->string('title');
@@ -65,12 +52,11 @@ Schema::create('posts', function (Blueprint $table) {
 
 Schema::table('posts', function (Blueprint $table) {
     $table->unique(['slug', 'id'], 'slug_id_index');
-    $table->index(['author']);
 });
 ```
-:::
-::::
 
-::: danger No index for morphs
-Larawiz doesn't support indexes for `morphTo` columns. This is because Laravel migrations already create an index over the morph itself. 
+The indexes will be created in the migrations file, and executed _after_ the table is created.
+
+::: tip Morphs are already indexed
+Laravel migrations already create an index over the morph itself, so you don't need to declare an index over a `morphTo` relation.
 :::

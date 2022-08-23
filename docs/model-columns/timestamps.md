@@ -1,9 +1,7 @@
 # Timestamps
 
-When using [Quick Models](../model.md#quick-model), Larawiz automatically appends timestamps, so there is no need to re-declare them inside the model definition.
+When using [Quick Models](../model.md#quick-model), Larawiz automatically adds timestamps, so there is no need to declare them inside the model definition.
 
-:::: tabs :options="{ useUrlFragment: false }"
-::: tab "YAML" id="timestamps-yaml"
 ```yaml
 models:
   Post:
@@ -11,9 +9,7 @@ models:
     excerpt: string
     body: longText
 ```
-:::
 
-::: tab "Migration" id="timestamps-migration"
 ```php{6}
 Schema::create('posts', function (Blueprint $table) {
     $table->id();
@@ -23,21 +19,20 @@ Schema::create('posts', function (Blueprint $table) {
     $table->timestamps();
 });
 ```
+
+## Timestamps with time zone
+
+::: info You don't need time zones
+Before going for timestamps with time zone, consider the following:
+
+- PHP, like most languages, is aware of timezone shifts and DST in the future or past.
+- Laravel always saves dates converted to UTC into the database.
+
+In most scenarios, [using time zone is not needed](https://darkghosthunter.medium.com/laravel-timezones-in-the-database-1905020cc699) unless you expect to work on edge cases.
 :::
-::::
 
-## Timezone Timestamps
+When using [Quick Models](../model.md#quick-model), you can always use `timestampsTz` in the columns definitions to swap the normal timestamps to ones with time zone data.
 
-Laravel by default always saves dates converted to UTC into the database, so **in most scenarios using time zone is not needed**.
-
-::: tip When to use timezones?
-If you plan to **save and retrieve time using different time zones into the database**, like displaying it to users from different parts of the world or run jobs at each local time, **you may use time-zone-aware timestamps**.
-:::
-
-When using [Quick Models](../model.md#quick-model), you can always use `timestampsTz` in the columns definitions to swap the normal timestamps to these in a case-by-case scenario.
-
-:::: tabs :options="{ useUrlFragment: false }"
-::: tab "YAML" id="timezone-timestamps-yaml"
 ```yaml{8}
 models:
   Post:
@@ -48,9 +43,7 @@ models:
     body: string
     timestampsTz: ~
 ```
-:::
 
-::: tab "Migration" id="timezone-timestamps-migration"
 ```php{5,11}
 Schema::create('posts', function (Blueprint $table) {
     $table->id();
@@ -65,15 +58,11 @@ Schema::create('posts', function (Blueprint $table) {
     $table->timestampsTz(); // Overridden from `timestamps`.
 });
 ```
-:::
-::::
 
 ## Disable Timestamps
 
-When using [Custom Models](../model.md#custom-model), if the model doesn't includes either `timestamps` or `timestampsTz`, timestamps will be disabled.
+To disable timestamps, use a [Custom Model](../model.md#custom-model). If the Custom Model doesn't include either `timestamps` or `timestampsTz` inside the columns declarations, timestamps will be disabled for the model.
 
-:::: tabs :options="{ useUrlFragment: false }"
-::: tab "YAML" id="no-timestamps-yaml"
 ```yaml
 models:
   Post:
@@ -83,18 +72,14 @@ models:
       excerpt: string
       body: longText
 ```
-:::
 
-::: tab "Model" id="no-timestamps-model"
 ```php{3}
 class Podcast extends Model
 {
     public $timestamps = false;
 }
 ```
-:::
 
-::: tab "Migration" id="no-timestamps-migration"
 ```php
 Schema::create('posts', function (Blueprint $table) {
     $table->id();
@@ -103,16 +88,14 @@ Schema::create('posts', function (Blueprint $table) {
     $table->longText('body');
 });
 ```
-:::
-::::
 
 ## Custom Timestamps
 
-When using [Custom Models](../#custom-model), you can change the default columns for _timestamping_ using the `timestamps` key. For example, you can disable the default timestamps for updates and only point out a column for the creation date.
+Only under a [Custom Models](../model.md#custom-model) you can change the default columns for _timestamping_ using the `timestamps` key. 
 
-:::: tabs :options="{ useUrlFragment: false }"
-::: tab "YAML" id="custom-timestamps-yaml"
-```yaml{10-11}
+For example, we can disable the default timestamps for updates by setting it as `null` and point the column to use as creation date.
+
+```yaml{10-12}
 models:
   Post:
     columns:
@@ -124,10 +107,9 @@ models:
 
     timestamps:
       created_at: creation_date
+      updated_at: ~
 ```
-:::
 
-::: tab "Model" id="custom-timestamps-model"
 ```php{3-4}
 class Podcast extends Model
 {
@@ -135,9 +117,7 @@ class Podcast extends Model
     protected const UPDATED_AT = null;
 }
 ```
-:::
 
-::: tab "Migration" id="custom-timestamps-migration"
 ```php{6}
 Schema::create('posts', function (Blueprint $table) {
     $table->id();
@@ -147,5 +127,3 @@ Schema::create('posts', function (Blueprint $table) {
     $table->timestamp('creation_date')->nullable();
 });
 ```
-:::
-::::

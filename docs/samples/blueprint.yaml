@@ -1,0 +1,17 @@
+models:
+  User:
+    - posts: hasMany
+
+  Post:
+    id: uuid
+    title: string
+    body: text
+    private_notes: json
+    published_at: timestamp nullable
+    user: belongsTo
+    comments: hasMany
+
+  Comments:
+    body: text
+    user: belongsTo
+    post: belongsTo

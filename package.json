@@ -1,15 +1,26 @@
 {
-  "devDependencies": {
-    "vuepress": "^1.8.1",
-    "vuepress-theme-succinct": "^1.4.0"
-  },
+  "name": "docs",
+  "version": "1.0.0",
+  "description": "Larawiz Online documentation",
+  "main": "index.js",
   "scripts": {
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs"
   },
+  "keywords": [],
+  "author": "DarkGhostHunter",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Larawiz/docs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Larawiz/docs/issues"
+  },
+  "homepage": "https://larawiz/docs",
   "dependencies": {
-    "vue-tabs-component": "^1.5.0",
-    "vuepress-plugin-tabs": "^0.3.0"
-  },
-  "license": "MIT"
+    "vitepress": "^1.0.0-alpha.9",
+    "vue": "^3.2.37"
+  }
 }

@@ -1,34 +1,39 @@
 # Appends
 
-Custom models have the ability to set [appended attributes to JSON serialization](https://laravel.com/docs/8.x/eloquent-serialization#appending-values-to-json) with the `appends` key. Larawiz will automatically add the attribute getter, and its PHPDoc.
+Models have the ability to [append new attributes on JSON serialization](https://laravel.com/docs/8.x/eloquent-serialization#appending-values-to-json) with the `appends` key. Larawiz will automatically add the attribute getter and its annotated value type.
 
-To add and append the attribute, set the name of the attribute in `snake_case`, and its primitive type, `collection`, `date` or `datetime`, or an existing PHP Class.
+To append a new attribute, set the name of the attribute in `snake_case` and annotate with either:
 
-:::: tabs :options="{ useUrlFragment: false }"
-::: tab "YAML" id="traits-yaml"
-```yaml{7-9}
+- a primitive PHP type, 
+- a PHP Class with full namespace,
+- a `collection`,
+- or `timestamp|datetime`.
+
+Larawiz won't enforce any annotation type, so you're free to put whatever you want.
+
+```yaml{6-10}
 models:
 
   Player:
-    columns:
-      # ...
-    append:
-      last_match: dateTime
+    # ...
+      
+    appends:
+      last_match: timestamp
       win_streak: int
-      pose: App\Poses\BasePose
+      position: \App\Position
+      past_teams: collection
 ```
-:::
 
-::: tab "Model" id="traits-model"
-```php{2-4,8,12-15,17-20,22-25}
+```php
 /**
  * @property-read \Illuminate\Support\Carbon $lastMatch 
  * @property-read int $winStreak 
- * @property-read \App\Poses\BasePose $pose
+ * @property-read App\Position $position
+ * @property-read \Illuminate\Support\Collection $past_teams
  */
 class Player extends Model
 {
-    protected $appends = ['last_match', 'win_streak', 'pose'];
+    protected $appends = ['last_match', 'win_streak', 'position', 'past_teams'];
 
     // ...
     
@@ -42,17 +47,18 @@ class Player extends Model
         // TODO: Code the 'win_streak' getter.
     }
     
-    public function getPoseAttribute()
+    public function getPositionAttribute()
     {
-        // TODO: Code the 'win_streak' getter.
+        // TODO: Code the 'position' getter.
+    }
+    
+    public function getPastTeamsAttribute()
+    {
+        // TODO: Code the 'past_teams' getter.
     }
 }
 ```
-:::
-::::
 
-:::tip Collection and Carbon come free
-when setting the type as `collection`, or any date-time type like `dateTimeTz` or `timestamp`, don't worry, Larawiz will cast it as a Collection or Carbon instance, respectively.
-
-If you're using date-time, you should use the `dateTime` string to keep your scaffold file _uniform_. 
+::: tip Little helps that count
+When issuing `timestamp|datetime` or `collection`, Larawiz will automatically change the annotation to `Carbon` and `Collection`, respectively.  
 :::

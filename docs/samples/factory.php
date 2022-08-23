@@ -5,6 +5,9 @@ namespace Database\Factories;
 use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * @implements \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
+ */
 class PostFactory extends Factory
 {
     /**
@@ -21,23 +24,26 @@ class PostFactory extends Factory
      */
     public function definition()
     {
-        return [
-            'uuid' => $this->faker->uuid,
-            'title' => $this->faker->name,
-            'body' => $this->faker->body,
-            'published_at' => $this->faker->datetime,
-        ];
+        throw new \RuntimeException("The factory for model [Post] has no defined attributes yet.");
+        // return [
+        //     // ...
+        // ];
     }
 
     /**
      * Define the deleted state.
      *
-     * @return array
+     * @return static
      */
-    public function deleted()
+    public function trashed()
     {
-        return [
-            (new Post)->getDeletedAtColumn() => $this->faker->datetime,
-        ];
+        return $this->state(function (array $attributes): array {
+            // Ensure it's marked as deleted *after* the date it was created.
+            return [
+                $this->newModel()->getDeletedAtColumn() => fake()->dateTimeBetween(
+                    $attributes[$this->newModel()->getCreatedAtColumn()] ?? '-30 years', 'now'
+                ),
+            ];
+        });
     }
 }
