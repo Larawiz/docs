@@ -84,14 +84,8 @@ export default defineConfig({
         nav: [
             {text: `⬅ Back to scaffold`, link: 'https://larawiz.com'},
             {
-                text: 'You like it? Donate!',
-                items: [
-                    {text: 'Github Sponsorship', link: 'https://github.com/sponsors/DarkGhostHunter'},
-                    {text: 'Patreon', link: 'https://patreon.com/packagesforlaravel'},
-                    {text: 'Ko-fi', link: 'https://ko-fi.com/DarkGhostHunter'},
-                    {text: 'Buy me a coffee', link: 'https://www.buymeacoffee.com/darkghosthunter'},
-                    {text: 'Paypal', link: 'https://www.paypal.com/paypalme/darkghosthunter'},
-                ]
+                text: 'Sponsor Larawiz!',
+                link: 'https://github.com/sponsors/Larawiz'
             }
         ],
         editLink: {
