@@ -90,7 +90,7 @@ export default defineConfig({
         ],
         editLink: {
             pattern: 'https://github.com/larawiz/docs/edit/main/docs/:path',
-            text: 'Something not right? Propose a change on GitHub'
+            text: 'Something not right? Change it'
         },
         footer: {
             copyright: 'Laravel is a Trademark of Taylor Otwell. Copyright © 2011-2022 Laravel LLC.'
