@@ -2,7 +2,7 @@
 layout: home
 hero:
   name: Larawiz
-  text: Scaffold a Laravel app in 2 minutes
+  text: Scaffold a Laravel app in 1 minute
   tagline: Save hours syncing changes between models, migrations, and what else.
   actions:
     - theme: brand
