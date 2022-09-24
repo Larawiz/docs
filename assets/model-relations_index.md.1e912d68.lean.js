@@ -1,1 +1,0 @@
-import{_ as s,c as n,o as a,a as l}from"./app.c69ee041.js";const A=JSON.parse('{"title":"Relations","description":"","frontmatter":{},"headers":[],"relativePath":"model-relations/index.md"}'),p={name:"model-relations/index.md"},o=l("",9),e=[o];function r(c,t,y,i,D,F){return a(),n("div",null,e)}const b=s(p,[["render",r]]);export{A as __pageData,b as default};
