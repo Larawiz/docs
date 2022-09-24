@@ -15,14 +15,14 @@ hero:
 features:
   - icon: 🙅‍♂️
     title: Remember, no Artisan
-    details: Forget going around making many empty files from scratch.
+    details: Forget creating each file from scratch.
   - icon: 🤪
-    title: Braindead syntax
-    details: A simple YAML file spawn all needed files in sync.
+    title: Brain-dead syntax
+    details: Simple YAML creates all the proyect files in sync.
   - icon: 🧙‍♂️
     title: I'm a wizard, Harry
     details: Larawiz does most of the usual model chores for you.
   - icon: 🤝
     title: Easy relations
-    details: Set the relation, get the methods, migrations and pivots.
+    details: Set the relation, receive the methods, migrations and pivots.
 ---

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Models\User;
 use App\Models\Comment;
-use App\Models\Concerns\UuidPrimaryKey;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -46,7 +46,7 @@ class Post extends Model
 {
     use SoftDeletes;
     use HasFactory;
-    use UuidPrimaryKey;
+    use HasUuids;
 
     /**
      * The attributes that should be cast.
@@ -68,20 +68,6 @@ class Post extends Model
      * @var array
      */
     protected $hidden = ['private_notes'];
-
-    /**
-     * Indicates if the IDs are auto-incrementing.
-     *
-     * @var bool
-     */
-    public $incrementing = false;
-
-    /**
-     * The "type" of the primary key ID.
-     *
-     * @var string
-     */
-    protected $keyType = 'string';
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo|\App\Models\User

@@ -142,7 +142,7 @@ If you want to have a column name that collides with these reserved keys, you ca
 
 ## Custom Model
 
-Custom Models gives you full control on the Model itself by explicitly telling which columns you want to create by separating the columns from the rest of the Model configuration. Since Larawiz hands-off the columns to you, this comes with some small _drawbacks_:
+Custom Models gives you full control on the Model itself. Just explicitly tell which columns you want to create by separating the columns from the rest of the Model configuration. Since Larawiz hands-off the columns to you, this comes with some small _drawbacks_:
 
 * [Primary key](model-columns/primary-key.md) must be issued manually.
 * [Timestamps](model-columns/timestamps.md) must be issued manually.

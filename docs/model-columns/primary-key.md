@@ -54,64 +54,66 @@ Schema::create('podcasts', function (Blueprint $table) {
 Using `id: foo` instead of `foo: id` ensures you only declare a single primary key in a model.
 :::
 
-## UUID as Primary Key
+## UID as Primary Key
 
-By setting `id: uuid`, Larawiz will automatically change the primary id to a UUID, and include the `UuidPrimaryKey` trait to generate and UUID when persisting the model.
+By setting `id: uuid`, pr `id: ulid`, Larawiz will automatically [include the `HasUuids` or `HasUlids` traits](https://laravel.com/docs/9.x/eloquent#uuid-and-ulid-keys) that come with Laravel. Larawiz also makes adjustments in the migrations to set them as primary keys appropriately.
 
-```yaml{3}
+```yaml{3,9}
 models:
   Post:
     id: uuid
     title: string
     excerpt: string
     body: longText
+  
+  Image:
+    id: ulid
+    disk: string
+    path: string
 ```
 
-```php{5-6}
+```php
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Illuminate\Database\Eloquent\Model;
+
 class Post extends Model
 {
-    use UuidPrimaryKey;
+    use HasUuids;
+    
+    // ...
+}
 
-    protected $keyType = 'string';
-    protected $incrementing = false;
+class Image extends Model
+{
+    use HasUlids;
     
     // ...
 }
 ```
 
-```php{17}
-<?php
-
-namespace App\Models\Concerns;
-
-use Illuminate\Support\Str;
-
-trait UuidPrimaryKey
-{
-    /**
-     * Sets the primary key for the model as a UUID.
-     *
-     * @return void
-     */
-    protected function bootUuidPrimaryKey()
-    {
-        static::creating(static function (self $model): void {
-            $model->id ??= Str::uuid();
-        })
-    }
-}
-
-```
-
-```php{2}
-Schema::create('podcasts', function (Blueprint $table) {
+```php{2,10}
+Schema::create('posts', function (Blueprint $table) {
     $table->uuid('id')->primary();
     $table->string('title');
-    $table->string('slug');
+    $table->string('excerpt');
     $table->longText('body');
     $table->timestamps(); 
 });
+
+Schema::create('images', function (Blueprint $table) {
+    $table->ulid('id')->primary();
+    $table->string('disk');
+    $table->string('path');
+    $table->timestamps(); 
+});
 ```
+
+::: warning Only for Primary Keys 64
+The traits are only attached to the model when using UID as primary keys.
+
+You may add them manually [using the `traits` key](../model-properties/traits.md#external-traits). 
+:::
 
 ## Primary Key on Custom Models
 

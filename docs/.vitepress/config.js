@@ -89,7 +89,7 @@ export default defineConfig({
             }
         ],
         editLink: {
-            pattern: 'https://github.com/larawiz/docs/edit/main/docs/:path',
+            pattern: 'https://github.com/larawiz/docs/edit/master/docs/:path',
             text: 'Something not right? Change it'
         },
         footer: {

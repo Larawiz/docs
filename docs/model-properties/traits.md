@@ -84,20 +84,20 @@ models:
     # ...
 
     uses:
-      - \Illuminate\Auth\MustVerifyEmail
+      - \Illuminate\Database\Eloquent\Concerns\HasUlids
       - \Laragear\TwoFactor\TwoFactorAuthentication
 ```
 
 ```php
 namespace App\Models;
 
-use Illuminate\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laragear\TwoFactor\TwoFactorAuthentication;
 
 class Customer extends Authenticatable
 {
-    use MustVerifyEmail;
+    use HasUlids;
     use TwoFactorAuthentication;
     
     // ...
