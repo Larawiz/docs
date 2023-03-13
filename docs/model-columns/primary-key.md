@@ -56,7 +56,7 @@ Using `id: foo` instead of `foo: id` ensures you only declare a single primary k
 
 ## UID as Primary Key
 
-By setting `id: uuid`, pr `id: ulid`, Larawiz will automatically [include the `HasUuids` or `HasUlids` traits](https://laravel.com/docs/9.x/eloquent#uuid-and-ulid-keys) that come with Laravel. Larawiz also makes adjustments in the migrations to set them as primary keys appropriately.
+By setting `id: uuid` or `id: ulid`, Larawiz will automatically [include the `HasUuids` or `HasUlids` traits](https://laravel.com/docs/9.x/eloquent#uuid-and-ulid-keys) that come with Laravel. Larawiz also makes adjustments in the migrations to set them as primary keys appropriately.
 
 ```yaml{3,9}
 models:
