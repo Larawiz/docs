@@ -1,0 +1,1 @@
+import{_ as s,c as n,o as a,a as p}from"./app.74b96dce.js";const F=JSON.parse('{"title":"Appends","description":"","frontmatter":{},"headers":[],"relativePath":"model-properties/appends.md"}'),l={name:"model-properties/appends.md"},e=p("",8),o=[e];function t(r,c,i,y,D,C){return a(),n("div",null,o)}const b=s(l,[["render",t]]);export{F as __pageData,b as default};
