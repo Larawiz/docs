@@ -1,6 +1,6 @@
 # Scaffolding
 
-Once your blueprint is ready, go to [Larawiz.com](https://larawiz.com), paste your YAML file, put your email and hit the `Scaffold` button. The system will validate the blueprint and once done it will queue your app to be delivered in your email.
+Once your blueprint is ready, go to [Larawiz.com](https://larawiz.fly.dev/), paste your YAML file, put your email and hit the `Scaffold` button. The system will validate the blueprint and once done it will queue your app to be delivered in your email.
 
 ::: tip No errors, no problems
 If there is a problem in your Blueprint, you will receive the error to fix it.

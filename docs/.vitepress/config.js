@@ -82,7 +82,7 @@ export default defineConfig({
             {icon: 'github', link: 'https://github.com/larawiz/'},
         ],
         nav: [
-            {text: `⬅ Back to scaffold`, link: 'https://larawiz.com'},
+            {text: `⬅ Back to scaffold`, link: 'https://larawiz.fly.dev/'},
             {
                 text: 'Sponsor Larawiz!',
                 link: 'https://github.com/sponsors/Larawiz'
