@@ -1,1 +1,0 @@
-import{_ as s,c as n,o as a,a as l}from"./app.74b96dce.js";const b=JSON.parse('{"title":"Eloquent Observers","description":"","frontmatter":{},"headers":[],"relativePath":"model-properties/observers.md"}'),p={name:"model-properties/observers.md"},e=l("",10),o=[e];function r(c,t,i,y,D,F){return a(),n("div",null,o)}const A=s(p,[["render",r]]);export{b as __pageData,A as default};
