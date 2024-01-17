@@ -1,8 +1,25 @@
 # Seeders
 
-[Seeders](https://laravel.com/docs/seeding) are conveniently created automatically for the model if their [Factory is enabled](factories.md#no-model-factory), otherwise it won't be created.
+[Seeders](https://laravel.com/docs/seeding) are conveniently created automatically for the model if their [Factory is enabled](factories.md#no-model-factory), otherwise they won't be created.
 
-Larawiz ships with a seeder full of convenient tools, so you may not need to change anything but some arguments. The class itself is very self-explanatory, here is an example for a hypothetical `Podcast` model.
+Larawiz will register the seeders in your `database/seeds/DatabaseSeeder.php` in the order these appear in your blueprint, so you won't have to register them manually.
+
+```php
+// database/factories/DatabaseSeeder.php
+
+public function run()
+{
+    $this->call(UserSeeder::class);
+    $this->call(PodcastSeeder::class);
+    $this->call(SubscriptionSeeder::class);
+}
+```
+
+Larawiz ships with a supercharged seeder made to make your development easier, and each seeder extends that.
+
+Seeding works _better_ than the Laravel version by calling all public methods that start with `seed`, and in the order these appear in the class.
+
+The class itself is very self-explanatory, here is an example for a hypothetical `Podcast` model.
 
 ```yaml
 models:
@@ -15,114 +32,132 @@ models:
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\Podcast;
+use Database\Factories\PodcastFactory;
 
-class PodcastSeeder extends Seeder
+/**
+ * This seeder will run all methods that start with 'seed'.
+ *
+ * @extends \Database\Seeders\BaseSeeder<\App\Models\Podcast>
+ */
+class PodcastSeeder extends BaseSeeder
 {
     /**
-     * Run the database seeder.
+     * The model that creates the factory.
      *
-     * @return void
+     * @var class-string<\App\Models\Podcast>
      */
-    public function run()
-    {
-        $this->before();
-        
-        // Transactions will avoid lingering records and speed up SQLite.
-        DB::transaction($this->createRecords(...));
-        DB::transaction($this->createStates(...));
-        DB::transaction($this->createAdditionalRecords(...));
-        
-        $this->after();
-    }
+    protected string $model = Podcast::class;
     
     /**
-     * Run before seeding the database.
-     * 
-     * @return void
+     * Seed the database with new records.
      */
-    protected function before()
+    public function seed(PodcastFactory $factory): void
     {
-        // ...
-    }
-    
-    /**
-     * Populate the model records using the factory definition.
-     *
-     * @return void
-     */
-    protected function createRecords()
-    {
-        // This makes 2 and a half pages of your model. You can change it if you want.
-        $amount = (int) ((new Podcast())->getPerPage() * 2.5);
-        
-        Podcast::factory()->times($amount)->create();
-    }
-    
-    /**
-     * Creates additional records to populate the database.
-     *
-     * @return void
-     */
-    protected function createAdditionalRecords()
-    {
-        // This method is a convenient way to add personalized records.
-        //
-        // Podcast::factory()->create(['name' => 'John Doe']);
-    }
-    
-    /**
-     * Creates additional records by using states.
-     *
-     * @return void
-     */
-    protected function createStates()
-    {
-        // Add here any states you want to make.
-        //
-        // Podcast::factory()->times(10)->myAwesomeState()->create();
-    }
-    
-    /**
-     * Run after seeding the database.
-     * 
-     * @return void
-     */
-    protected function after()
-    {
-        // ...
+        $factory->count($this->pages(2.5))->create();
     }
 }
 ```
 
-If you didn't get the gist, is very simple to understand.
-
-* The `before()` and `after()` methods run before and after the seeding, respectively. You can use them to create parent models, or call another seeder.
-* The `createRecords()` can be used to create records normally.
-* The `createAdditionalRecords()` can be used to create custom records.
-* The `createStates()` can be used to create custom states.
-
-The `create` methods are invoked through a [Database Transaction](https://laravel.com/docs/database#database-transactions) to avoid creating orphaned models when there is any error. It also speeds up seeding under SQLite.
-
-Of course these are just suggestions. You're free to change, add and remove whatever you see fit. 
-
-::: tip Everything but the kitchen sink
-Larawiz will register the seeders in your `database/seeds/DatabaseSeeder.php` in the order these appear in your blueprint.
+Each `seed` method is resolved by the application container, so you can get use Dependency Injection to get anything you need. For example, we can later create a seeder for deleted podcasts.
 
 ```php
-// database/factories/DatabaseSeeder.php
+use Faker\Generator as Faker;
+use Database\Factories\PodcastFactory;
 
-public function run()
+/**
+ * Seed some trashed podcasts.
+ */
+public function seedTrashedPodcasts(PodcastFactory $factory, Faker $faker): void
 {
-    $this->call(UserSeeder::class);
-    $this->call(PodcastSeeder::class);
-    $this->call(SubscriptionSeeder::class);
+    $factory->trashed()->create([
+        'excerpt' => $faker->text()
+    ]);
 }
 ```
-:::
 
+## Transactions
+
+All `seed` methods are called within a [Database Transaction](https://laravel.com/docs/database#database-transactions). This to avoids the development hell of orphaned or incomplete records when a seeder throws an error. It also speeds up seeding under SQLite.
+
+If you don't want to run transactions at all, set the `$transactions` property to false.
+
+```php
+/**
+ * If the seeder should use transactions.
+ *
+ * @var bool|null
+ */
+protected bool $transactions = false;
+```
+
+## Before & After
+
+You may call a method _before_ and _after_ the seeding by just creating them as `before()` and `after()`, respectively. As with the _seed_ methods, these are resolved by the container, so you can use Dependency Injection.
+
+The `before()` method is a great place to make checks or prepare the database beforehand, while the `after()` is a good place to remove artifacts or check everything when right.
+
+```php
+use App\Models\Podcast;
+
+public function before(SomethingCool $cool)
+{
+    // If we already made Podcasts with coolness level, skip the seeder.
+    if (Podcast::where('coolness', $cool->highestLevel())->exist()) {
+        $this->skip();
+    }
+    
+    // Remove all the table data
+    Podcast::query()->truncate();
+}
+
+public function after()
+{
+    // Check if the podcasts were created as we expect, bail if not
+    if (Podcast::whereNull('cool_index')->exist()) {
+        throw new RuntimeException('Podcasts with no cool index were created!');
+    }
+    
+    // Remove all podcasts that have a banned author
+    Podcast::whereHas('author', fn($query) => $query->whereNotNull('banned_at'))->delete();
+}
+```
+
+## Skipping a seeder
+
+Sometimes you may have a seeder you want to skip for different reasons, like when some records already exist, or you already run it after a prior seeding run failed.
+
+To stop a seed method and continue to the next, invoke the use `skip()` method or the convenience methods `skipIf()` and `skipUnless()`. If you use the Eloquent Query Builder instance, it will automatically check if a record exists as condition.
+
+```php
+use App\Models\Podcast;
+
+public function seedTrashedPodcasts(PodcastFactory $factory)
+{
+    // If there is already trashed podcasts, skip.  
+    if (Podcast::whereNotNull('deleted_at')->exist()) {
+        $this->skip();
+    }
+    
+    // Or simplified...
+    $this->skipIf(Podcast::whereNotNull('deleted_at'));
+}
+```
+
+To skip the whole seeder, invoke the `skip` on the `before()` method. 
+
+```php
+use Illuminate\Support\Facades\DB;
+
+public function before()
+{
+    // Skip the seeding entirely if there is any record on the table.
+    if (DB::table('podcasts')->exists()) {
+        $this->skip();
+    }
+}
+```
 
 ## No Model Seeder
 
@@ -135,4 +170,3 @@ models:
 
     seeder: false
 ```
-
