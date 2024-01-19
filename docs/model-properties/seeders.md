@@ -77,6 +77,50 @@ public function seedTrashedPodcasts(PodcastFactory $factory, Faker $faker): void
 }
 ```
 
+## Return
+
+If you return a factory from the `seed` method, the Seeder will automatically create the records for you.
+
+```php
+use Database\Factories\PodcastFactory;
+
+public function seedCustomPodcasts(PodcastFactory $factory)
+{
+    return $factory->custom()->state(['coolness' => 'high'])->count(20);
+}
+```
+
+If you return an Eloquent Collection, it will persist all models on it:
+
+```php
+use Database\Factories\PodcastFactory;
+
+public function seedCustomPodcasts(PodcastFactory $factory)
+{
+    $podcasts = $factory->custom()->makeMany();
+    
+    // Something with the podcasts...
+    
+    return $podcasts;
+}
+```
+
+Finally, if you return anything that is `iteratable`, from an `array` to a `Generator`, it will be used to _insert_ that data directly into the Seeder model table in one query.
+
+```php
+use Faker\Generator as Faker;
+use App\Models\Podcast;
+
+protected string $model = Comment::class;
+
+public function seedComments(Faker $faker)
+{
+    foreach (Podcast::inRandomOrder()->take(500)->lazy() as $podcast) {
+        yield ['comment' => $faker->text(), 'podcast_id' => $podcast_id];
+    }
+}
+```
+
 ## Transactions
 
 All `seed` methods are called within a [Database Transaction](https://laravel.com/docs/database#database-transactions). This to avoids the development hell of orphaned or incomplete records when a seeder throws an error. It also speeds up seeding under SQLite.
