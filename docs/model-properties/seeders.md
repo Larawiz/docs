@@ -1,8 +1,8 @@
 # Seeders
 
-[Seeders](https://laravel.com/docs/seeding) are conveniently created automatically for the model if their [Factory is enabled](factories.md#no-model-factory), otherwise they won't be created.
+Model [Seeders](https://laravel.com/docs/seeding) are conveniently created when the model [Factory is enabled](factories.md#no-model-factory). If the factory has been disabled, they won't be included.
 
-Larawiz will register the seeders in your `database/seeds/DatabaseSeeder.php` in the order these appear in your blueprint, so you won't have to register them manually.
+For starters, Larawiz registers the seeders in your `database/seeds/DatabaseSeeder.php` file, in the order these appear in your blueprint, so you don't have to.
 
 ```php
 // database/factories/DatabaseSeeder.php
@@ -15,9 +15,7 @@ public function run()
 }
 ```
 
-Larawiz ships with a supercharged seeder made to make your development easier, and each seeder extends that.
-
-Seeding works _better_ than the Laravel version by calling all public methods that start with `seed`, and in the order these appear in the class.
+Each Model Seeder is supercharged from a custom seeder from Larawiz, to make your development easier. This way you can seed a model separately, skip seeders, and even stop the whole seeding.
 
 The class itself is very self-explanatory, here is an example for a hypothetical `Podcast` model.
 
@@ -36,11 +34,6 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Podcast;
 use Database\Factories\PodcastFactory;
 
-/**
- * This seeder will run all methods that start with 'seed'.
- *
- * @extends \Database\Seeders\BaseSeeder<\App\Models\Podcast>
- */
 class PodcastSeeder extends BaseSeeder
 {
     /**
@@ -60,7 +53,7 @@ class PodcastSeeder extends BaseSeeder
 }
 ```
 
-Each `seed` method is resolved by the application container, so you can get use Dependency Injection to get anything you need. For example, we can later create a seeder for deleted podcasts.
+Your Model Seeder executes all method that start with `seed`, and each method is resolved by the application container to take advantage of Dependency Injection. For example, you may add another seeding procedure for trashed models and call the `Faker` generator for some random text.
 
 ```php
 use Faker\Generator as Faker;
@@ -72,14 +65,14 @@ use Database\Factories\PodcastFactory;
 public function seedTrashedPodcasts(PodcastFactory $factory, Faker $faker): void
 {
     $factory->trashed()->create([
-        'excerpt' => $faker->text()
+        'trashed_reason' => $faker->text()
     ]);
 }
 ```
 
-## Return
+## Returning data
 
-If you return a factory from the `seed` method, the Seeder will automatically create the records for you.
+If you return a Model Factory from the seeding method, the Seeder will automatically create the records for you.
 
 ```php
 use Database\Factories\PodcastFactory;
@@ -90,7 +83,7 @@ public function seedCustomPodcasts(PodcastFactory $factory)
 }
 ```
 
-If you return an Eloquent Collection, it will persist all models on it:
+On the other hand, if you return an Eloquent Collection, it will persist all models and relations on it.
 
 ```php
 use Database\Factories\PodcastFactory;
@@ -99,13 +92,13 @@ public function seedCustomPodcasts(PodcastFactory $factory)
 {
     $podcasts = $factory->custom()->makeMany();
     
-    // Something with the podcasts...
+    // Do something with the podcasts...
     
     return $podcasts;
 }
 ```
 
-Finally, if you return anything that is `iteratable`, from an `array` to a `Generator`, it will be used to _insert_ that data directly into the Seeder model table in one query.
+Finally, if you return anything that is `iteratable`, like an `array`, `Generator` or Collection, it will be used to _insert_ that data directly into the Seeder model table in one query.
 
 ```php
 use Faker\Generator as Faker;
@@ -123,7 +116,7 @@ public function seedComments(Faker $faker)
 
 ## Transactions
 
-All `seed` methods are called within a [Database Transaction](https://laravel.com/docs/database#database-transactions). This to avoids the development hell of orphaned or incomplete records when a seeder throws an error. It also speeds up seeding under SQLite.
+All seeding methods are called within a [Database Transaction](https://laravel.com/docs/database#database-transactions) to avoid ~~the development hell of~~ orphaned or incomplete records when a seeder throws an error in the middle of the operation. It also speeds up seeding under SQLite when using a file-based database.
 
 If you don't want to run transactions at all, set the `$transactions` property to false.
 
@@ -138,9 +131,9 @@ protected bool $transactions = false;
 
 ## Before & After
 
-You may call a method _before_ and _after_ the seeding by just creating them as `before()` and `after()`, respectively. As with the _seed_ methods, these are resolved by the container, so you can use Dependency Injection.
+You may execute some logic _before_ and _after_ the calling all the seeding methods by just creating the `before()` and `after()` methods, respectively. As with the _seed_ methods, these are resolved by the container, so you can use Dependency Injection.
 
-The `before()` method is a great place to make checks or prepare the database beforehand, while the `after()` is a good place to remove artifacts or check everything when right.
+The `before()` method is a great place to [skip](#skipping-a-seeder) the seeder class or prepare the database beforehand. The `after()` is good to remove unwanted artifacts or just stop if something is not right.
 
 ```php
 use App\Models\Podcast;
@@ -172,7 +165,7 @@ public function after()
 
 Sometimes you may have a seeder you want to skip for different reasons, like when some records already exist, or you already run it after a prior seeding run failed.
 
-To stop a seed method and continue to the next, invoke the use `skip()` method or the convenience methods `skipIf()` and `skipUnless()`. If you use the Eloquent Query Builder instance, it will automatically check if a record exists as condition.
+To stop a seed method and continue to the next, invoke the use `skip()` method or the convenience methods `skipIf()` and `skipUnless()`. If you use an Eloquent Query Builder instance, it will check if there is any existing record for that query.
 
 ```php
 use App\Models\Podcast;
@@ -189,7 +182,7 @@ public function seedTrashedPodcasts(PodcastFactory $factory)
 }
 ```
 
-To skip the whole seeder, invoke the `skip` on the `before()` method. 
+To skip the whole seeder, invoke the `skip()` on the `before()` method, so  
 
 ```php
 use Illuminate\Support\Facades\DB;
@@ -203,9 +196,13 @@ public function before()
 }
 ```
 
+> Skips everything
+> 
+> When methods [run within a transactions](#transactions), skipping will _roll back_ all changes made. Instead, divide your logic on more seeders, and put the skipping logic before any database manipulation.
+
 ## No Model Seeder
 
-To disable the seeder for a given model, set the `seeder` as `false`.
+To disable the seeder for a given model before checking your mental health, set the `seeder` as `false`.
 
 ```yaml{5}
 models:
@@ -214,3 +211,5 @@ models:
 
     seeder: false
 ```
+
+I mean, really, I just dumped 150 lines of code to make your development easier, and you dare to disable the seeder? Not cool man, not cool.
