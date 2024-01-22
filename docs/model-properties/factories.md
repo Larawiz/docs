@@ -5,7 +5,7 @@ Factories for Models are created automatically for [Quick Models](../model.md#qu
 When creating models, the `HasFactory` trait will be automatically included in the model and documented via its PHPDoc.
 
 ::: tip Soft Deletes comes free
-If you're using [soft-deletes](../model-columns/soft-deletes.md#deleted-factory-state), the `trashed` state will be created for free.
+Laravel includes the `trashed` state when your model uses [soft-deletes](../model-columns/soft-deletes.md#deleted-factory-state).
 :::
 
 ```yaml
@@ -58,13 +58,6 @@ class PostFactory extends Factory
         // return [
         //     // ...
         // ];
-    }
-    
-    public function trashed()
-    {
-        return $this->state([
-            $this->newModel()->getDeletedAtColumn() => now(),
-        ]);
     }
 }
 ```
