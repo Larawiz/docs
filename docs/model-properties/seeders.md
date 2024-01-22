@@ -178,7 +178,7 @@ class PodcastSeeder extends Seeder
 
 Sometimes you may have a seeder you want to skip for different reasons, like when some records already exist, or you already run it after a prior seeding run failed.
 
-To stop a seed method and continue to the next, invoke the use `skip()` method or the convenience methods `skipIf()` and `skipUnless()`. If you use an Eloquent Query Builder instance, it will check if there is any existing record for that query.
+To stop a seed method and continue to the next, invoke the use `skip()` method or the convenience methods `skipWhen()` and `skipUnless()`. If you use an Eloquent Query Builder instance, it will check if there is any existing record for that query.
 
 ```php
 use App\Models\Podcast;
@@ -191,7 +191,7 @@ public function seedTrashedPodcasts(PodcastFactory $factory)
     }
     
     // Or simplified...
-    $this->skipIf(Podcast::whereNotNull('deleted_at'));
+    $this->skipWhen(Podcast::whereNotNull('deleted_at'));
 }
 ```
 
