@@ -15,7 +15,7 @@ public function run()
 }
 ```
 
-Each Model Seeder is supercharged from a custom seeder from Larawiz, to make your development easier. This way you can seed a model separately, skip seeders, and even stop the whole seeding.
+Each Model Seeder is supercharged from a custom seeder from Larawiz with some handy methods to make your development easier. This way you can seed a model separately, skip seeders, and even stop the whole seeding.
 
 The class itself is very self-explanatory, here is an example for a hypothetical `Podcast` model.
 
@@ -97,7 +97,7 @@ public function seedCustomPodcasts(PodcastFactory $factory)
 }
 ```
 
-Finally, if you return anything that is `iteratable`, like an `array`, `Generator` or Collection, it will be used to _insert_ that data directly into the Seeder model table in one query.
+Finally, if you return anything that is `iteratable`, like an `array`, `Generator` or Collection, it will be used to _insert_ that data directly into the model table in one query.
 
 ```php
 use Faker\Generator as Faker;
@@ -107,8 +107,11 @@ protected string $model = Comment::class;
 
 public function seedCommentsDirectlyToDatabase(Faker $faker)
 {
-    foreach (Podcast::inRandomOrder()->take(500)->lazy() as $podcast) {
-        yield ['comment' => $faker->text(), 'podcast_id' => $podcast_id];
+    foreach (Podcast::inRandomOrder()->take(2000)->lazy() as $podcast) {
+        yield [
+            'comment' => $faker->text(),
+            'podcast_id' => $podcast_id
+        ];
     }
 }
 ```
@@ -123,7 +126,7 @@ If you don't want to run transactions at all, set the `$transactions` property t
 /**
  * If the seeder should use transactions.
  *
- * @var bool|null
+ * @var bool
  */
 protected bool $transactions = false;
 ```
@@ -151,6 +154,11 @@ class PodcastSeeder extends Seeder
         
         // Remove all the table data to start from the first ID.
         Podcast::query()->truncate();
+    }
+    
+    public function seed(PodcastFactory $factory)
+    {
+        // ...
     }
     
     public function after()
@@ -200,29 +208,29 @@ public function before()
     }
 }
 ```
+::: warning Skip or die
+When methods [run within a transactions](#transactions), skipping will _roll back_ all changes made since it uses a `RuntimeException` to exit the function.
 
-> Skips everything
-> 
-> When methods [run within a transactions](#transactions), skipping will _roll back_ all changes made. Instead, divide your logic on more seeders, and put the skipping logic before any database manipulation.
+If you need to skip after a certain point, just `return` or divide your logic on more skip-able seeders.
+:::
 
 ## Calling other seeders with arguments
 
 As you may (correctly) suspect, using `call()` with parameters works differently since the Larawiz Seeder overrides the `run()` call.
 
-Instead, when you pass parameters, these are passed down to all `seed()` methods.
+When you pass an array parameters, these are passed down to all `seed()` methods.
 
-```php{11,17}
+```php{11,16}
 use App\Models\User;
-use Database\Factories\UserFactory;
 use Database\Factories\KarmaFactory;
 
-class UserSeeder extends Seeder
+class DatabaseSeeder extends Seeder
 {
-    public function seedUser(UserFactory $factory)
+    public function run()
     {
-        $user = $factory->create()
+        $user = User::factory()->create();
         
-        $this->call(KarmaSeeder::class, ['user' => $user])
+        $this->call(KarmaSeeder::class, ['user' => $user]);
     }
 }
 
@@ -230,33 +238,32 @@ class KarmaSeeder extends Seeder
 {
     public function seedKarma(KarmaFactory $factory, $user)
     {
-        $factory->for($user)->times(2)->create(['amount' => $user->karma / 2])
+        $factory->for($user)->times(2)->create(['amount' => $user->karma / 2]);
     }
 }
 ```
 
 If you need to pass parameters to specific seeding methods, just issue them with the method name as key and the parameters as an array.
 
-```php{11-13,19}
+```php{10-12,18}
 use App\Models\User;
-use Database\Factories\UserFactory;
 use Database\Factories\KarmaFactory;
 
-class UserSeeder extends Seeder
+class DatabaseSeeder extends Seeder
 {
-    public function seedUser(UserFactory $factory)
+    public function run()
     {
-        $user = $factory->create()
+        $user = User::factory()->create();
         
         $this->call(KarmaSeeder::class, [
             'seedKarma' => ['user' => $user]
-        ])
+        ]);
     }
 }
 
 class KarmaSeeder extends Seeder
 {
-    public function seedKarma(KarmaFactory $factory, User $user)
+    public function seedKarma(KarmaFactory $factory, $user)
     {
         $factory->for($user)->times(2)->create(['amount' => $user->karma / 2])
     }
@@ -275,4 +282,4 @@ models:
     seeder: false
 ```
 
-I mean, really? I just dumped 150 lines of code to make your development easier, and you dare to disable the seeder? Not cool man, not cool.
+I mean, really? I just dumped almost 200 lines of code to make your development easier, and you dare to disable the seeder? Not cool man, not cool.
