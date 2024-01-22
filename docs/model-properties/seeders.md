@@ -30,11 +30,10 @@ models:
 
 namespace Database\Seeders;
 
-use Illuminate\Support\Facades\DB;
 use App\Models\Podcast;
 use Database\Factories\PodcastFactory;
 
-class PodcastSeeder extends BaseSeeder
+class PodcastSeeder extends Seeder
 {
     /**
      * The model that creates the factory.
@@ -106,7 +105,7 @@ use App\Models\Podcast;
 
 protected string $model = Comment::class;
 
-public function seedComments(Faker $faker)
+public function seedCommentsDirectlyToDatabase(Faker $faker)
 {
     foreach (Podcast::inRandomOrder()->take(500)->lazy() as $podcast) {
         yield ['comment' => $faker->text(), 'podcast_id' => $podcast_id];
@@ -116,7 +115,7 @@ public function seedComments(Faker $faker)
 
 ## Transactions
 
-All seeding methods are called within a [Database Transaction](https://laravel.com/docs/database#database-transactions) to avoid ~~the development hell of~~ orphaned or incomplete records when a seeder throws an error in the middle of the operation. It also speeds up seeding under SQLite when using a file-based database.
+All seeding methods are called within a [Database Transaction](https://laravel.com/docs/database#database-transactions) to avoid ~~the development hell of~~ orphaned or incomplete records when a seeder throws an error in the middle of the operation. It also speeds up seeding under SQLite when using a file-based database by default.
 
 If you don't want to run transactions at all, set the `$transactions` property to false.
 
@@ -136,28 +135,34 @@ You may execute some logic _before_ and _after_ the calling all the seeding meth
 The `before()` method is a great place to [skip](#skipping-a-seeder) the seeder class or prepare the database beforehand. The `after()` is good to remove unwanted artifacts or just stop if something is not right.
 
 ```php
+namespace Database\Seeders;
+
 use App\Models\Podcast;
+use Database\Factories\PodcastFactory;
 
-public function before(SomethingCool $cool)
+class PodcastSeeder extends Seeder
 {
-    // If we already made Podcasts with coolness level, skip the seeder.
-    if (Podcast::where('coolness', $cool->highestLevel())->exist()) {
-        $this->skip();
+    public function before(SomethingCool $cool)
+    {
+        // If we already made Podcasts with coolness level, skip the seeder.
+        if (Podcast::where('coolness', $cool->highestLevel())->exist()) {
+            $this->skip();
+        }
+        
+        // Remove all the table data to start from the first ID.
+        Podcast::query()->truncate();
     }
     
-    // Remove all the table data
-    Podcast::query()->truncate();
-}
-
-public function after()
-{
-    // Check if the podcasts were created as we expect, bail if not
-    if (Podcast::whereNull('cool_index')->exist()) {
-        throw new RuntimeException('Podcasts with no cool index were created!');
+    public function after()
+    {
+        // Check if the podcasts were created as we expect, bail if not
+        if (Podcast::whereNull('cool_index')->exist()) {
+            throw new RuntimeException('Podcasts with no cool index were created!');
+        }
+        
+        // Remove all podcasts that have a banned author
+        Podcast::whereHas('author', fn($query) => $query->whereNotNull('banned_at'))->delete();
     }
-    
-    // Remove all podcasts that have a banned author
-    Podcast::whereHas('author', fn($query) => $query->whereNotNull('banned_at'))->delete();
 }
 ```
 
@@ -182,7 +187,7 @@ public function seedTrashedPodcasts(PodcastFactory $factory)
 }
 ```
 
-To skip the whole seeder, invoke the `skip()` on the `before()` method, so  
+To skip the whole seeder, invoke the `skip()` on the `before()` method. 
 
 ```php
 use Illuminate\Support\Facades\DB;
@@ -200,9 +205,67 @@ public function before()
 > 
 > When methods [run within a transactions](#transactions), skipping will _roll back_ all changes made. Instead, divide your logic on more seeders, and put the skipping logic before any database manipulation.
 
+## Calling other seeders with arguments
+
+As you may (correctly) suspect, using `call()` with parameters works differently since the Larawiz Seeder overrides the `run()` call.
+
+Instead, when you pass parameters, these are passed down to all `seed()` methods.
+
+```php{11,17}
+use App\Models\User;
+use Database\Factories\UserFactory;
+use Database\Factories\KarmaFactory;
+
+class UserSeeder extends Seeder
+{
+    public function seedUser(UserFactory $factory)
+    {
+        $user = $factory->create()
+        
+        $this->call(KarmaSeeder::class, ['user' => $user])
+    }
+}
+
+class KarmaSeeder extends Seeder
+{
+    public function seedKarma(KarmaFactory $factory, $user)
+    {
+        $factory->for($user)->times(2)->create(['amount' => $user->karma / 2])
+    }
+}
+```
+
+If you need to pass parameters to specific seeding methods, just issue them with the method name as key and the parameters as an array.
+
+```php{11-13,19}
+use App\Models\User;
+use Database\Factories\UserFactory;
+use Database\Factories\KarmaFactory;
+
+class UserSeeder extends Seeder
+{
+    public function seedUser(UserFactory $factory)
+    {
+        $user = $factory->create()
+        
+        $this->call(KarmaSeeder::class, [
+            'seedKarma' => ['user' => $user]
+        ])
+    }
+}
+
+class KarmaSeeder extends Seeder
+{
+    public function seedKarma(KarmaFactory $factory, User $user)
+    {
+        $factory->for($user)->times(2)->create(['amount' => $user->karma / 2])
+    }
+}
+```
+
 ## No Model Seeder
 
-To disable the seeder for a given model before checking your mental health, set the `seeder` as `false`.
+To disable the seeder for a given model, set the `seeder` as `false`.
 
 ```yaml{5}
 models:
@@ -212,4 +275,4 @@ models:
     seeder: false
 ```
 
-I mean, really, I just dumped 150 lines of code to make your development easier, and you dare to disable the seeder? Not cool man, not cool.
+I mean, really? I just dumped 150 lines of code to make your development easier, and you dare to disable the seeder? Not cool man, not cool.
