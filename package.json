@@ -20,7 +20,7 @@
   },
   "homepage": "https://larawiz/docs",
   "dependencies": {
-    "vitepress": "^1.0.0-alpha.9",
+    "vitepress": "^1.3.4",
     "vue": "^3.2.37"
   }
 }
